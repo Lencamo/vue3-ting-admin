@@ -6,6 +6,9 @@
     <hr />
     <button @click="getDemoListFn">axios请求测试</button>
     <p>{{ demoList }}</p>
+    <hr />
+    <el-button type="primary" size="default" @click="">Primary</el-button>
+    <el-button :plain="true" @click="open">success</el-button>
   </div>
 </template>
 
@@ -21,6 +24,14 @@ const { counter, doubleCounter } = storeToRefs(demoStore)
 
 const counterAdd = (num: number) => {
   demoStore.incrementCounter(num)
+}
+
+const open = () => {
+  ElMessage({
+    message: 'Congrats, this is a success message.',
+    type: 'success'
+  })
+  ElMessage.success('Congrats, this is a success message.')
 }
 
 // ==========
