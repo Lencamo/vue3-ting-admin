@@ -3,6 +3,9 @@
     <h2>demo</h2>
     <div>{{ counter }} -- {{ doubleCounter }}</div>
     <button @click="counterAdd(2)">+2</button>
+    <hr />
+    <button @click="getDemoListFn">axios请求测试</button>
+    <p>{{ demoList }}</p>
   </div>
 </template>
 
@@ -10,11 +13,22 @@
 import useDemoStore from '@/stores/demo.ts'
 import { storeToRefs } from 'pinia'
 
+import { getDemoList } from '@/services/modules/demo.ts'
+import { ref } from 'vue'
+
 const demoStore = useDemoStore()
 const { counter, doubleCounter } = storeToRefs(demoStore)
 
 const counterAdd = (num: number) => {
   demoStore.incrementCounter(num)
+}
+
+// ==========
+
+const demoList = ref()
+const getDemoListFn = async () => {
+  const res = await getDemoList()
+  demoList.value = JSON.stringify(res.data, null, 2)
 }
 </script>
 
