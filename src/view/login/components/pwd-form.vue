@@ -24,7 +24,7 @@ const pwdForm = reactive({
 const formRules = reactive<FormRules>({
   user: [
     { required: true, message: '用户名不能为空', trigger: 'blur' },
-    { min: 1, max: 8, message: '用户名过长，请重新输入！', trigger: 'blur' }
+    { min: 2, max: 12, message: '用户名长度范围应在 2 - 12 之间', trigger: 'blur' }
   ],
   pwd: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
@@ -40,10 +40,12 @@ const formRules = reactive<FormRules>({
 // 待调用函数
 const pwdFormRef = ref<FormInstance>()
 const pwdLoginAction = () => {
-  console.log(pwdForm)
   pwdFormRef.value?.validate((valid, fields) => {
     if (valid) {
       ElMessage.success('表单校验成功！')
+
+      // 密码登录请求
+      console.log(pwdForm)
     } else {
       ElMessage.error('表单校验失败.')
     }
