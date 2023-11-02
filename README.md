@@ -13,3 +13,17 @@ This template should help get you started developing with Vue 3 in Vite.
 ```sh
 nvm install && nvm use # 匹配并使用当前项目node版本
 ```
+
+## 2、项目流程
+
+- 项目入口：
+
+> ---> main.ts --> App.vue
+
+- 数据流向：
+
+> ---> [types] ---> services ---> stores ---> views
+
+- 页面跳转：
+
+> ---> App.vue ---> router --> views

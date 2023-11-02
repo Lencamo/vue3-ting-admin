@@ -14,6 +14,11 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
+import useloginStore from '@/stores/login/login.ts'
+import { useRouter } from 'vue-router'
+
+const loginStore = useloginStore()
+const router = useRouter()
 
 const pwdForm = reactive({
   user: '',
@@ -44,8 +49,12 @@ const pwdLoginAction = () => {
     if (valid) {
       ElMessage.success('表单校验成功！')
 
-      // 密码登录请求
-      console.log(pwdForm)
+      // 密码登录 Action
+      // console.log(pwdForm)
+      const { user, pwd } = pwdForm
+      loginStore.pwdLoginAction({ username: user, password: pwd }).then(() => {
+        router.push('/home')
+      })
     } else {
       ElMessage.error('表单校验失败.')
     }

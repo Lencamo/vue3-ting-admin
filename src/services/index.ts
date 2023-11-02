@@ -18,3 +18,10 @@ export const testRequest = new RenRequest({
 })
 
 export * from './modules/demo.ts'
+
+// ==============
+
+export const tingRequest = new RenRequest({
+  baseURL: BASE_URL,
+  timeout: TIMEOUT
+})
