@@ -21,3 +21,17 @@ export function phoneLoginApi(account: any) {
     data: account
   })
 }
+
+// =========
+
+export function getUserInfoApi(userId: number) {
+  return tingRequest.get({
+    url: `/user/details/${userId}`
+  })
+}
+
+export function getUserRoleMenuApi(roleId: number) {
+  return tingRequest.get({
+    url: `/role/menu/${roleId}`
+  })
+}
