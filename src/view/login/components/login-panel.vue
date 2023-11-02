@@ -20,16 +20,18 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import pwdForm from './pwd-form.vue'
 import phoneForm from './phone-form.vue'
+import { localCache } from '@/utils/cache.ts'
+import { CACHE_REMEBER } from '@/config/constants.ts'
 
 // 记住密码
-const isRemeber = ref(false)
+const isRemeber = ref<boolean>(localCache.getCache(CACHE_REMEBER) ?? false)
 // 测试
 watch(isRemeber, (newvalue, oldvalue) => {
-  console.log(newvalue)
+  // console.log(newvalue)
+  localCache.setCache(CACHE_REMEBER, newvalue)
 })
 
 // 登录方式
@@ -40,7 +42,7 @@ const phoneFormRef = ref<InstanceType<typeof phoneForm>>()
 const handleLoginBtn = () => {
   if (loginWays.value === 'pwd') {
     // console.log('使用密码进行登录')
-    pwdFormRef.value?.pwdLoginAction()
+    pwdFormRef.value?.pwdLoginAction(isRemeber.value)
   } else {
     // console.log('使用手机号进行登录')
     phoneFormRef.value?.phoneLoginAction()

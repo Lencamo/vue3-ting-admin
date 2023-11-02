@@ -16,13 +16,15 @@ import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import useloginStore from '@/stores/login/login.ts'
 import { useRouter } from 'vue-router'
+import { localCache } from '@/utils/cache.ts'
+import { CACHE_USER } from '@/config/constants.ts'
 
 const loginStore = useloginStore()
 const router = useRouter()
 
 const pwdForm = reactive({
-  user: '',
-  pwd: ''
+  user: localCache.getCache(CACHE_USER)?.username ?? '',
+  pwd: localCache.getCache(CACHE_USER)?.password ?? ''
 })
 
 // 表单校验
@@ -44,7 +46,7 @@ const formRules = reactive<FormRules>({
 
 // 待调用函数
 const pwdFormRef = ref<FormInstance>()
-const pwdLoginAction = () => {
+const pwdLoginAction = (isRemeber: boolean) => {
   pwdFormRef.value?.validate((valid, fields) => {
     if (valid) {
       ElMessage.success('表单校验成功！')
@@ -52,9 +54,20 @@ const pwdLoginAction = () => {
       // 密码登录 Action
       // console.log(pwdForm)
       const { user, pwd } = pwdForm
+
       loginStore.pwdLoginAction({ username: user, password: pwd }).then(() => {
+        // 页面跳转
         router.push('/home')
+
+        // 记住密码
+        if (isRemeber) {
+          localCache.setCache(CACHE_USER, { username: user, password: pwd })
+        } else {
+          localCache.removeCache(CACHE_USER)
+        }
       })
+
+      //
     } else {
       ElMessage.error('表单校验失败.')
     }
