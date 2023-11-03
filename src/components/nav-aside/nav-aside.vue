@@ -7,34 +7,36 @@
 
     <div class="memu">
       <el-menu>
-        <!-- 1 -->
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon><Monitor /></el-icon>
-            <span>系统总览</span>
-          </template>
-          <el-menu-item index="1-1"><span>核心技术</span></el-menu-item>
-          <el-menu-item index="1-2"><span>商品统计</span></el-menu-item>
-        </el-sub-menu>
+        <!-- 一级 -->
+        <template v-for="item in userRoleMenu" :key="item.id">
+          <el-sub-menu :index="item.id + ''">
+            <template #title>
+              <el-icon>
+                <!-- 动态图标组件 -->
+                <component :is="item.icon" />
+              </el-icon>
+              <span>{{ item.name }}</span>
+            </template>
 
-        <!-- 2 -->
-        <el-sub-menu index="2">
-          <template #title>
-            <el-icon><setting /></el-icon>
-            <span>系统管理</span>
-          </template>
-          <el-menu-item index="2-1"><span>用户管理</span></el-menu-item>
-          <el-menu-item index="2-2"><span>部门管理</span></el-menu-item>
-          <el-menu-item index="2-3"><span>角色管理</span></el-menu-item>
-          <el-menu-item index="2-4"><span>菜单管理</span></el-menu-item>
-        </el-sub-menu>
+            <!-- 二级 -->
+            <template v-for="subItem in item.children" :key="subItem.id">
+              <el-menu-item :index="subItem.id + ''">
+                <span>{{ subItem.name }}</span>
+              </el-menu-item>
+            </template>
+          </el-sub-menu>
+        </template>
       </el-menu>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-//
+import useloginStore from '@/stores/login/login'
+const loginStore = useloginStore()
+
+// 菜单树
+const userRoleMenu = loginStore.userRoleMenu
 </script>
 
 <style lang="scss" scoped>

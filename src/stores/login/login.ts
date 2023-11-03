@@ -8,13 +8,13 @@ import {
 
 import type { IAccount } from '@/types/login/login.ts'
 import { localCache } from '@/utils/cache.ts'
-import { LOGIN_TOKEN } from '@/config/constants.ts'
+import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 
 const useloginStore = defineStore('login', {
   state: () => ({
     token: (localCache.getCache(LOGIN_TOKEN) ?? '') as string,
-    userInfo: {} as any,
-    userRoleMenu: [] as any
+    userInfo: (localCache.getCache(LOGIN_USER_INFO) ?? {}) as any,
+    userRoleMenu: (localCache.getCache(LOGIN_ROLE_MENU) ?? []) as any
   }),
   getters: {
     //
@@ -23,7 +23,6 @@ const useloginStore = defineStore('login', {
     async pwdLoginAction(account: IAccount) {
       // 1、密码登录
       const { data: res } = await pwdLoginApi(account)
-      // console.log(res.data)
 
       const userId = res.data.id
       const username = res.data.username
@@ -32,20 +31,24 @@ const useloginStore = defineStore('login', {
       // 2、token缓存
       localCache.setCache(LOGIN_TOKEN, this.token)
 
-      // ====
+      // =======
 
       // 1、根据userId获取当前用户的详细信息（包含role信息）
       const { data: res2 } = await getUserInfoApi(userId)
-      // console.log(res2)
 
       const roleId = res2.data.role.id
       this.userInfo = res2.data
 
+      // userInfo 缓存
+      localCache.setCache(LOGIN_USER_INFO, this.userInfo)
+
       // 2、根据roleId获取当前用户的权限菜单树（菜单栏）
       const { data: res3 } = await getUserRoleMenuApi(roleId)
-      // console.log(res3)
 
       this.userRoleMenu = res3.data
+
+      // 权限菜单树 缓存
+      localCache.setCache(LOGIN_ROLE_MENU, this.userRoleMenu)
     }
   }
 })

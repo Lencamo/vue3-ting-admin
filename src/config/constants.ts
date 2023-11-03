@@ -1,3 +1,5 @@
 export const LOGIN_TOKEN = 'lencamo-token'
 export const CACHE_USER = 'cache-user'
 export const CACHE_REMEBER = 'cache-remeber'
+export const LOGIN_USER_INFO = 'login-user-info'
+export const LOGIN_ROLE_MENU = 'login-role-menu'

@@ -31,15 +31,19 @@
 <script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue'
 
-import { LOGIN_TOKEN } from '@/config/constants'
+import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 import { localCache } from '@/utils/cache'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const handleLogoutBtn = () => {
-  // 1、删除token
+  // 1、清除部分storage缓存
+  // 删除token
   localCache.removeCache(LOGIN_TOKEN)
+  // 删除用户的角色、权限信息
+  localCache.removeCache(LOGIN_USER_INFO)
+  localCache.removeCache(LOGIN_ROLE_MENU)
 
   // 2、页面跳转
   router.push('/login')
