@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <el-container class="home-content">
-      <el-aside width="210px">
-        <nav-aside></nav-aside>
+      <el-aside :width="isCollapse ? '60px' : '210px'">
+        <nav-aside :is-collapse="isCollapse"></nav-aside>
       </el-aside>
       <el-container>
         <el-header height="50px">
-          <nav-header></nav-header>
+          <nav-header @collapse-change="handleCollapse"></nav-header>
         </el-header>
         <el-main>Main</el-main>
         <el-footer>Footer</el-footer>
@@ -16,8 +16,17 @@
 </template>
 
 <script setup lang="ts">
-import navAside from '@/components/nav-aside/nav-aside.vue'
-import navHeader from '@/components/nav-header/nav-header.vue'
+import navAside from './nav-aside/nav-aside.vue'
+import navHeader from './nav-header/nav-header.vue'
+
+import { ref } from 'vue'
+
+// aside折叠功能
+const isCollapse = ref(false)
+
+const handleCollapse = (payload: boolean) => {
+  isCollapse.value = payload
+}
 </script>
 
 <style lang="scss" scoped>
@@ -32,6 +41,8 @@ import navHeader from '@/components/nav-header/nav-header.vue'
     }
     .el-aside {
       background-color: #c2c7cc;
+
+      transition: all 0.2s ease !important;
     }
 
     .el-main {

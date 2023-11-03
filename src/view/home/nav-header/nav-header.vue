@@ -1,7 +1,11 @@
 <template>
   <div class="nav-header">
     <div class="left">
-      <el-icon size="25" color="#323435"><Fold /></el-icon>
+      <div class="exchange" @click="handleMenuIconClick">
+        <el-icon size="25" color="#323435">
+          <component :is="isCollapse ? 'Expand' : 'Fold'"></component>
+        </el-icon>
+      </div>
       <div class="bread">
         <el-breadcrumb :separator-icon="ArrowRight">
           <el-breadcrumb-item :to="{ path: '/' }">系统总览</el-breadcrumb-item>
@@ -13,7 +17,7 @@
       <el-dropdown>
         <div class="drop">
           <img src="@/assets/imgs/default.png" alt="" />
-          <span>admin</span>
+          <span>admin &ensp;</span>
           <el-icon><arrow-down /></el-icon>
         </div>
         <template #dropdown>
@@ -30,6 +34,7 @@
 
 <script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 import { localCache } from '@/utils/cache'
@@ -47,6 +52,17 @@ const handleLogoutBtn = () => {
 
   // 2、页面跳转
   router.push('/login')
+}
+
+// aside折叠功能
+const isCollapse = ref(false)
+
+const emit = defineEmits(['collapseChange'])
+
+const handleMenuIconClick = () => {
+  isCollapse.value = !isCollapse.value
+
+  emit('collapseChange', isCollapse.value)
 }
 </script>
 
@@ -67,6 +83,10 @@ const handleLogoutBtn = () => {
   }
 
   .right {
+    cursor: pointer;
+  }
+
+  .right {
     display: flex;
     align-items: center;
     height: 100%;
@@ -77,10 +97,11 @@ const handleLogoutBtn = () => {
         display: flex;
         align-items: center;
         height: 100%;
+        padding: 0px 10px;
 
         img {
           height: 60%;
-          margin: 0px 10px;
+          margin: 0px 10px 0px 0px;
         }
       }
     }
