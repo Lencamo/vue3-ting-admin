@@ -21,6 +21,9 @@ function loadLocalRoutes() {
   return localRoutes
 }
 
+// 记录第一个菜单
+export let firstMenuItem: any = null
+
 export function mapMenusToRoutes(userRoleMenu: any[]) {
   // 1、本地的全部路由
   const localRoutes = loadLocalRoutes()
@@ -31,7 +34,12 @@ export function mapMenusToRoutes(userRoleMenu: any[]) {
   for (const menu of userRoleMenu) {
     for (const subItem of menu.children) {
       const route = localRoutes.find((item) => item.path === subItem.url)
+
+      // 存储匹配的路由
       if (route) routes.push(route)
+
+      // 记录第一个菜单
+      if (!firstMenuItem && route) firstMenuItem = subItem
     }
   }
 

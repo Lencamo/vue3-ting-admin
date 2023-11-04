@@ -6,7 +6,11 @@
     </div>
 
     <div class="menu">
-      <el-menu :collapse-transition="false" :collapse="isCollapse">
+      <el-menu
+        :default-active="defaultMenuItemShow"
+        :collapse-transition="false"
+        :collapse="isCollapse"
+      >
         <!-- 一级 -->
         <template v-for="item in userRoleMenu" :key="item.id">
           <el-sub-menu :index="item.id + ''">
@@ -32,12 +36,21 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import useloginStore from '@/stores/login/login'
 const loginStore = useloginStore()
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { firstMenuItem } from '@/utils/map-menus.ts'
+import { mapPathToMenu } from '@/utils/map-path.ts'
 
 // 菜单树
 const userRoleMenu = loginStore.userRoleMenu
+
+// 设置页面加载时展开的菜单项
+// const defaultMenuItemShow = ref(firstMenuItem.id + '')
+const route = useRoute()
+const subItem = mapPathToMenu(route.path, userRoleMenu)
+const defaultMenuItemShow = ref(subItem.id + '')
 
 // aside折叠功能
 const props = defineProps({
