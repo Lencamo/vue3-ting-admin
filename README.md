@@ -27,3 +27,13 @@ nvm install && nvm use # 匹配并使用当前项目node版本
 - 页面跳转：
 
 > ---> App.vue ---> router --> views
+
+## 3、开发新模块
+
+&emsp;&emsp;示例：我们要在商品中心（product）下，新建一个订单管理（order）
+
+> 为确保执行sh命令不会遇到权限问题，建议在vscode中将Git Bash设置为默认终端
+
+```sh
+sh ting-module-generate.sh product order
+```

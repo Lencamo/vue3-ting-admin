@@ -10,6 +10,9 @@ import type { IAccount } from '@/types/login/login.ts'
 import { localCache } from '@/utils/cache.ts'
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 
+import type { RouteRecordRaw } from 'vue-router'
+import router from '@/router/index.ts'
+
 const useloginStore = defineStore('login', {
   state: () => ({
     token: (localCache.getCache(LOGIN_TOKEN) ?? '') as string,
@@ -49,6 +52,28 @@ const useloginStore = defineStore('login', {
 
       // 权限菜单树 缓存
       localCache.setCache(LOGIN_ROLE_MENU, this.userRoleMenu)
+
+      // =======
+
+      // 本地路由的批量注册
+      const localRoutes: RouteRecordRaw[] = []
+      const modules: Record<string, any> = import.meta.glob('../../router/**/*.ts', {
+        eager: true
+      })
+
+      for (const key in modules) {
+        const module = modules[key]
+
+        if (key !== '../../router/index.ts') {
+          // console.log(module.default)
+          localRoutes.push(module.default)
+        }
+      }
+
+      localRoutes.forEach((route) => {
+        // console.log(route)
+        router.addRoute('main', route)
+      })
     }
   }
 })

@@ -39,6 +39,7 @@ declare module 'vue' {
     Menu: typeof import('./src/components/system/menu/menu.vue')['default']
     NavAside: typeof import('./src/components/nav-aside/nav-aside.vue')['default']
     NavHeader: typeof import('./src/components/nav-header/nav-header.vue')['default']
+    Order: typeof import('./src/components/product/order/order.vue')['default']
     Overview: typeof import('./src/components/analysis/overview/overview.vue')['default']
     Role: typeof import('./src/components/system/role/role.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

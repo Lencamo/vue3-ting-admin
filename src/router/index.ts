@@ -14,19 +14,9 @@ const router = createRouter({
       component: () => import('../view/login/login.vue')
     },
     {
-      path: '/main',
+      path: '/home',
       name: 'main',
       component: () => import('../view/home/home.vue')
-      // children: [
-      //   {
-      //     path: '/main/analysis/overview',
-      //     component: () => import('../components/analysis/overview/overview.vue')
-      //   },
-      //   {
-      //     path: '/main/analysis/dashboard',
-      //     component: () => import('../components/analysis/dashboard/dashboard.vue')
-      //   }
-      // ]
     },
     {
       path: '/demo',
@@ -39,41 +29,6 @@ const router = createRouter({
     }
   ]
 })
-
-const localRoutes = [
-  {
-    path: '/main/analysis/overview',
-    component: () => import('../components/analysis/overview/overview.vue')
-  },
-  {
-    path: '/main/analysis/dashboard',
-    component: () => import('../components/analysis/dashboard/dashboard.vue')
-  },
-  // ======
-  {
-    path: '/main/system/user',
-    component: () => import('../components/system/user/user.vue')
-  },
-  {
-    path: '/main/system/department',
-    component: () => import('../components/system/department/department.vue')
-  },
-  {
-    path: '/main/system/menu',
-    component: () => import('../components/system/menu/menu.vue')
-  },
-  {
-    path: '/main/system/role',
-    component: () => import('../components/system/role/role.vue')
-  }
-]
-
-router.addRoute('main', localRoutes[0])
-router.addRoute('main', localRoutes[1])
-router.addRoute('main', localRoutes[2])
-router.addRoute('main', localRoutes[3])
-router.addRoute('main', localRoutes[4])
-router.addRoute('main', localRoutes[5])
 
 // 设置全局前置守卫
 router.beforeEach((to, from) => {
