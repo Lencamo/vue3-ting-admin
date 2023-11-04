@@ -14,9 +14,9 @@ import { initDynamicRoutes } from '@/utils/initDynamicRoutes.ts'
 
 const useloginStore = defineStore('login', {
   state: () => ({
-    token: (localCache.getCache(LOGIN_TOKEN) ?? '') as string,
-    userInfo: (localCache.getCache(LOGIN_USER_INFO) ?? {}) as any,
-    userRoleMenu: (localCache.getCache(LOGIN_ROLE_MENU) ?? []) as any
+    token: '' as string,
+    userInfo: {} as any,
+    userRoleMenu: [] as any
   }),
   getters: {
     //
@@ -56,6 +56,23 @@ const useloginStore = defineStore('login', {
 
       // 根据菜单-动态生成路由
       initDynamicRoutes(this.userRoleMenu)
+    },
+
+    dynamicRoutesCacheAction() {
+      const token = localCache.getCache(LOGIN_TOKEN)
+      const userInfo = localCache.getCache(LOGIN_USER_INFO)
+      const userRoleMenu = localCache.getCache(LOGIN_ROLE_MENU)
+
+      // 确保当前已经login
+      if (token && userInfo && userRoleMenu) {
+        // 使用缓存数据
+        this.token = token
+        this.userInfo = userInfo
+        this.userRoleMenu = userRoleMenu
+
+        // 根据缓存-动态复原路由
+        initDynamicRoutes(this.userRoleMenu)
+      }
     }
   }
 })
