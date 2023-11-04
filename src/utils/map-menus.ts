@@ -36,7 +36,14 @@ export function mapMenusToRoutes(userRoleMenu: any[]) {
       const route = localRoutes.find((item) => item.path === subItem.url)
 
       // 存储匹配的路由
-      if (route) routes.push(route)
+      if (route) {
+        // 追加父级菜单路由-重定向到第一个menuItem（供面包屑使用）
+        if (!routes.find((item) => item.path === menu.url)) {
+          routes.push({ path: menu.url, redirect: route.path })
+        }
+
+        routes.push(route)
+      }
 
       // 记录第一个菜单
       if (!firstMenuItem && route) firstMenuItem = subItem

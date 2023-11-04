@@ -8,8 +8,9 @@
       </div>
       <div class="bread">
         <el-breadcrumb :separator-icon="ArrowRight">
-          <el-breadcrumb-item :to="{ path: '/' }">系统总览</el-breadcrumb-item>
-          <el-breadcrumb-item>核心技术</el-breadcrumb-item>
+          <template v-for="item in breadcrumb">
+            <el-breadcrumb-item :to="item.path">{{ item.name }}</el-breadcrumb-item>
+          </template>
         </el-breadcrumb>
       </div>
     </div>
@@ -34,14 +35,24 @@
 
 <script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 import { localCache } from '@/utils/cache'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { mapPathToBreadcrumbs } from '@/utils/map-path'
+import useloginStore from '@/stores/login/login'
 
 const router = useRouter()
 
+// 面包屑部分
+const route = useRoute()
+const loginStore = useloginStore()
+const breadcrumb = computed(() => {
+  return mapPathToBreadcrumbs(route.path, loginStore.userRoleMenu)
+})
+
+// 退出登录
 const handleLogoutBtn = () => {
   // 1、清除部分storage缓存
   // 删除token

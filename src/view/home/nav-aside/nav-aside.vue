@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import useloginStore from '@/stores/login/login'
 const loginStore = useloginStore()
 import { useRouter, useRoute } from 'vue-router'
@@ -49,8 +49,11 @@ const userRoleMenu = loginStore.userRoleMenu
 // 设置页面加载时展开的菜单项
 // const defaultMenuItemShow = ref(firstMenuItem.id + '')
 const route = useRoute()
-const subItem = mapPathToMenu(route.path, userRoleMenu)
-const defaultMenuItemShow = ref(subItem.id + '')
+const defaultMenuItemShow = computed(() => {
+  const subItem = mapPathToMenu(route.path, userRoleMenu)
+
+  return subItem.id + ''
+})
 
 // aside折叠功能
 const props = defineProps({
