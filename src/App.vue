@@ -5,11 +5,7 @@
 </template>
 
 <script setup lang="ts">
-// import useloginStore from './stores/login/login'
-// const loginStore = useloginStore()
-
-// // 动态路由-防刷新处理
-// loginStore.dynamicRoutesCacheAction()
+//
 </script>
 
 <style lang="scss" scoped>
