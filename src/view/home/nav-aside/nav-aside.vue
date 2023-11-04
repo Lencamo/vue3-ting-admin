@@ -20,7 +20,7 @@
 
             <!-- 二级 -->
             <template v-for="subItem in item.children" :key="subItem.id">
-              <el-menu-item :index="subItem.id + ''">
+              <el-menu-item :index="subItem.id + ''" @click="handleMenuItemClick(subItem)">
                 <span>{{ subItem.name }}</span>
               </el-menu-item>
             </template>
@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import useloginStore from '@/stores/login/login'
 const loginStore = useloginStore()
+import { useRouter } from 'vue-router'
 
 // 菜单树
 const userRoleMenu = loginStore.userRoleMenu
@@ -45,6 +46,12 @@ const props = defineProps({
     default: false
   }
 })
+
+// 路由跳转
+const router = useRouter()
+const handleMenuItemClick = (subItem: any) => {
+  router.push(subItem.url)
+}
 </script>
 
 <style lang="scss" scoped>

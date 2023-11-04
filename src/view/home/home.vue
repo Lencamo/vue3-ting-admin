@@ -8,7 +8,9 @@
         <el-header height="50px">
           <nav-header @collapse-change="handleCollapse"></nav-header>
         </el-header>
-        <el-main>Main</el-main>
+        <el-main>
+          <main-container></main-container>
+        </el-main>
         <el-footer>Footer</el-footer>
       </el-container>
     </el-container>
@@ -18,6 +20,7 @@
 <script setup lang="ts">
 import navAside from './nav-aside/nav-aside.vue'
 import navHeader from './nav-header/nav-header.vue'
+import mainContainer from './main-container/main-container.vue'
 
 import { ref } from 'vue'
 

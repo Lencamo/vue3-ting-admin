@@ -7,6 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Category: typeof import('./src/components/product/category/category.vue')['default']
+    Dashboard: typeof import('./src/components/analysis/dashboard/dashboard.vue')['default']
+    Department: typeof import('./src/components/system/department/department.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -30,9 +33,16 @@ declare module 'vue' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    Goods: typeof import('./src/components/product/goods/goods.vue')['default']
+    List: typeof import('./src/components/moment/list/list.vue')['default']
+    Main: typeof import('./src/components/moment/main/main.vue')['default']
+    Menu: typeof import('./src/components/system/menu/menu.vue')['default']
     NavAside: typeof import('./src/components/nav-aside/nav-aside.vue')['default']
     NavHeader: typeof import('./src/components/nav-header/nav-header.vue')['default']
+    Overview: typeof import('./src/components/analysis/overview/overview.vue')['default']
+    Role: typeof import('./src/components/system/role/role.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    User: typeof import('./src/components/system/user/user.vue')['default']
   }
 }
