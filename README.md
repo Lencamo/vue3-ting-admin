@@ -22,7 +22,7 @@ nvm install && nvm use # 匹配并使用当前项目node版本
 
 - 数据流向：
 
-> ---> [types] ---> services ---> stores ---> views
+> ---> services ---> [types] ---> stores ---> views
 
 - 页面跳转：
 
