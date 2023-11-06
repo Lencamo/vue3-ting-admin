@@ -29,9 +29,14 @@
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="操作" min-width="120">
-          <template #default>
+          <template #default="scope">
             <el-button type="warning" size="small" icon="Edit" />
-            <el-button type="danger" size="small" icon="Delete" />
+            <el-button
+              type="danger"
+              size="small"
+              icon="Delete"
+              @click="handleDelectBtn(scope.row.id)"
+            />
           </template>
         </el-table-column>
       </el-table>
@@ -86,6 +91,17 @@ const handleSizeChange = (size: number) => {
 // 列表的当前页变化处理
 const handleCurrentChange = (page: number) => {
   // console.log(page)
+  getCurrentUserList()
+}
+
+// 用户删除按钮
+const handleDelectBtn = (userId: number) => {
+  // console.log(userId)
+  systemStore.delectUserAction(userId)
+
+  // 更新列表
+  currentPage.value = 1
+  pageSize.value = 5
   getCurrentUserList()
 }
 </script>

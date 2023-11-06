@@ -8,3 +8,9 @@ export function getUserListApi(listInfo: IUserListQuery) {
     data: listInfo
   })
 }
+
+export function delectUserApi(userId: number) {
+  return tingRequest.delete({
+    url: `/user/${userId}`
+  })
+}
