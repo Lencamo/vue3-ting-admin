@@ -4,7 +4,11 @@
       <userHeader @query-list="handleQueryList" @reset-list="handleResetList"></userHeader>
     </div>
     <div class="list-table">
-      <userBody ref="listTableRef" @add-click="handleAddClick"></userBody>
+      <userBody
+        ref="listTableRef"
+        @add-click="handleAddClick"
+        @edit-click="handleEditClick"
+      ></userBody>
     </div>
     <userDialog ref="userDialogRef"></userDialog>
   </div>
@@ -16,7 +20,7 @@ import userBody from './components/user-body.vue'
 import userDialog from './components/user-dialog.vue'
 
 import { ref } from 'vue'
-import type { IQueryInfo } from '@/types/main/system'
+import type { IQueryInfo, IUserList } from '@/types/main/system'
 
 const listTableRef = ref<InstanceType<typeof userBody>>()
 const userDialogRef = ref<InstanceType<typeof userDialog>>()
@@ -32,9 +36,20 @@ const handleResetList = () => {
   listTableRef.value?.getCurrentUserList()
 }
 
+// =======
+
+const isNew = ref<boolean>(true)
+
 // 新增按钮处理
 const handleAddClick = () => {
-  userDialogRef.value?.setUserDialogVisible()
+  isNew.value = true
+  userDialogRef.value?.setUserDialogVisible(isNew.value)
+}
+// 编辑按钮处理
+const handleEditClick = (payload: IUserList) => {
+  isNew.value = false
+  // console.log(payload)
+  userDialogRef.value?.setUserDialogVisible(isNew.value, payload)
 }
 </script>
 

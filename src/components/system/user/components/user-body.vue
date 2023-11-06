@@ -30,7 +30,7 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作" min-width="120">
           <template #default="scope">
-            <el-button type="warning" size="small" icon="Edit" />
+            <el-button type="warning" size="small" icon="Edit" @click="handleEditBtn(scope.row)" />
             <el-button
               type="danger"
               size="small"
@@ -62,7 +62,7 @@ import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import { ref } from 'vue'
-import type { IQueryInfo } from '@/types/main/system'
+import type { IQueryInfo, IUserList } from '@/types/main/system'
 
 // 分页器数据
 const systemStore = useSystemStore()
@@ -105,10 +105,15 @@ const handleDelectBtn = (userId: number) => {
   // getCurrentUserList()
 }
 
+const emit = defineEmits(['addClick', 'editClick'])
+
 // 新增用户按钮
-const emit = defineEmits(['addClick'])
 const handleAddBtn = () => {
   emit('addClick')
+}
+// 编辑用户按钮
+const handleEditBtn = (user: IUserList) => {
+  emit('editClick', user)
 }
 </script>
 

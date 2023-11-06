@@ -21,3 +21,10 @@ export function addUserApi(user: IUserOperate) {
     data: user
   })
 }
+
+export function editUserApi(userId: number, user: IUserOperate) {
+  return tingRequest.patch({
+    url: `/user/${userId}`,
+    data: user
+  })
+}

@@ -25,7 +25,7 @@
             </template>
           </el-select>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
+        <el-form-item v-if="isNewDialog" label="密码" prop="password">
           <el-input type="password" show-password v-model="dialogData.password" />
         </el-form-item>
       </el-form>
@@ -43,17 +43,12 @@ import type { FormRules } from 'element-plus'
 import useMainStore from '@/stores/main/entires/main.ts'
 import { storeToRefs } from 'pinia'
 import useSystemStore from '@/stores/main/system'
+// import type { IUserList } from '@/types/main/system'
 
 const dialogVisible = ref(false)
 
-// 显示弹窗
-const setUserDialogVisible = () => {
-  dialogVisible.value = true
-}
-defineExpose({ setUserDialogVisible })
-
 // 弹窗数据
-const dialogData = reactive({
+const dialogData = reactive<any>({
   name: '',
   realname: '',
   cellphone: '',
@@ -61,6 +56,32 @@ const dialogData = reactive({
   departmentId: '' as unknown as number,
   password: ''
 })
+
+// 显示弹窗
+const isNewDialog = ref(true)
+const editUserId = ref()
+
+const setUserDialogVisible = (isNew: boolean, user?: any) => {
+  dialogVisible.value = true
+
+  isNewDialog.value = isNew
+
+  // 初始化Dialog数据
+  if (!isNew && user) {
+    // 编辑
+    for (const key in dialogData) {
+      dialogData[key] = user[key]
+    }
+    editUserId.value = user.id
+  } else {
+    // 新增
+    for (const key in dialogData) {
+      dialogData[key] = ''
+    }
+    editUserId.value = null
+  }
+}
+defineExpose({ setUserDialogVisible })
 
 // 角色和部门数据
 const mainStore = useMainStore()
@@ -89,8 +110,13 @@ const systemStore = useSystemStore()
 const handleConfirmBtn = () => {
   dialogVisible.value = false
 
-  // 新增
-  systemStore.addUserAction(dialogData)
+  if (!isNewDialog && editUserId.value) {
+    // 编辑
+    systemStore.editUserAction(editUserId.value, dialogData)
+  } else {
+    // 新增
+    systemStore.addUserAction(dialogData)
+  }
 }
 </script>
 
