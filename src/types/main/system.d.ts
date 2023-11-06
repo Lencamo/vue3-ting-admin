@@ -11,3 +11,8 @@ export interface IUserList {
   createAt: string
   updateAt: string
 }
+
+export interface IUserListQuery {
+  offset: number
+  size: number
+}

@@ -1,11 +1,10 @@
 import { tingRequest } from '@/services'
 
-export function getUserListApi() {
+import type { IUserListQuery } from '@/types/main/system'
+
+export function getUserListApi(listInfo: IUserListQuery) {
   return tingRequest.post({
     url: '/user/list',
-    data: {
-      offset: 0,
-      size: 10
-    }
+    data: listInfo
   })
 }

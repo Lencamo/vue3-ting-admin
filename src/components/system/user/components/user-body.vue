@@ -45,6 +45,8 @@
         layout="sizes, prev, pager, next, jumper, total"
         small
         background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
       />
     </div>
   </div>
@@ -56,15 +58,33 @@ import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import { ref } from 'vue'
 
-// 获取user列表数据
-const systemStore = useSystemStore()
-systemStore.getUserListAction()
-const { userList } = storeToRefs(systemStore)
-
 // 分页器数据
-const { userTotalCount } = storeToRefs(systemStore)
+const systemStore = useSystemStore()
+const { userTotalCount, userList } = storeToRefs(systemStore)
 const currentPage = ref(1)
 const pageSize = ref(5)
+
+// 获取user列表数据
+const getCurrentUserList = () => {
+  const size = pageSize.value
+  const offset = (currentPage.value - 1) * size
+
+  systemStore.getUserListAction({ offset, size })
+}
+
+// 初次进入页面时
+getCurrentUserList()
+
+// 列表的size变化处理
+const handleSizeChange = (size: number) => {
+  // console.log(size)
+  getCurrentUserList()
+}
+// 列表的当前页变化处理
+const handleCurrentChange = (page: number) => {
+  // console.log(page)
+  getCurrentUserList()
+}
 </script>
 
 <style lang="scss" scoped>
