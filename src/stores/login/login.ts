@@ -11,6 +11,7 @@ import { localCache } from '@/utils/cache.ts'
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 
 import { initDynamicRoutes } from '@/utils/initDynamicRoutes.ts'
+import useMainStore from '../main/entires/main.ts'
 
 const useloginStore = defineStore('login', {
   state: () => ({
@@ -32,6 +33,12 @@ const useloginStore = defineStore('login', {
 
       // 2、token缓存
       localCache.setCache(LOGIN_TOKEN, this.token)
+
+      // =======
+
+      // 登录时获取roles、departments备用
+      const mainStore = useMainStore()
+      mainStore.getEntireDataAction()
 
       // =======
 
@@ -65,6 +72,10 @@ const useloginStore = defineStore('login', {
 
       // 确保当前已经login
       if (token && userInfo && userRoleMenu) {
+        // 刷新时重新获取roles、departments
+        const mainStore = useMainStore()
+        mainStore.getEntireDataAction()
+
         // 使用缓存数据
         this.token = token
         this.userInfo = userInfo

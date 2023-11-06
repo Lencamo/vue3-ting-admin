@@ -19,6 +19,7 @@ declare module 'vue' {
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
@@ -56,6 +57,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     User: typeof import('./src/components/system/user/user.vue')['default']
     UserBody: typeof import('./src/components/system/user/components/user-body.vue')['default']
+    UserDialog: typeof import('./src/components/system/user/components/user-dialog.vue')['default']
     UserHeader: typeof import('./src/components/system/user/components/user-header.vue')['default']
   }
 }

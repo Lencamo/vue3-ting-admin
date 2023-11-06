@@ -6,12 +6,15 @@
     <div class="list-table">
       <userBody ref="listTableRef"></userBody>
     </div>
+    <userDialog></userDialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import userHeader from './components/user-header.vue'
 import userBody from './components/user-body.vue'
+import userDialog from './components/user-dialog.vue'
+
 import { ref } from 'vue'
 import type { IQueryInfo } from '@/types/main/system'
 
