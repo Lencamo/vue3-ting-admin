@@ -2,7 +2,7 @@ export interface IUserList {
   id: number
   name: string
   realname: string
-  cellphone: number
+  cellphone: string
   enable: number
   departmentId: number
   departmentName: string
@@ -12,7 +12,15 @@ export interface IUserList {
   updateAt: string
 }
 
-export interface IUserListQuery {
+export interface IQueryInfo {
+  name?: string
+  realname?: string
+  cellphone?: string
+  enable?: number
+  createAt?: string
+}
+
+export interface IUserListQuery extends IQueryInfo {
   offset: number
   size: number
 }

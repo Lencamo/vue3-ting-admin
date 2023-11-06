@@ -1,10 +1,10 @@
 <template>
   <div class="user">
     <div class="search-box">
-      <userHeader></userHeader>
+      <userHeader @query-list="handleQueryList" @reset-list="handleResetList"></userHeader>
     </div>
     <div class="list-table">
-      <userBody></userBody>
+      <userBody ref="listTableRef"></userBody>
     </div>
   </div>
 </template>
@@ -12,6 +12,21 @@
 <script setup lang="ts">
 import userHeader from './components/user-header.vue'
 import userBody from './components/user-body.vue'
+import { ref } from 'vue'
+import type { IQueryInfo } from '@/types/main/system'
+
+const listTableRef = ref<InstanceType<typeof userBody>>()
+
+// 显示查询结果
+const handleQueryList = (payload: IQueryInfo) => {
+  // console.log(payload)
+  listTableRef.value?.getCurrentUserList(payload)
+}
+
+// 恢复默认列表
+const handleResetList = () => {
+  listTableRef.value?.getCurrentUserList()
+}
 </script>
 
 <style lang="scss" scoped>

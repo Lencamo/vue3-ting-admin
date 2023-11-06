@@ -57,6 +57,7 @@ import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import { ref } from 'vue'
+import type { IQueryInfo } from '@/types/main/system'
 
 // 分页器数据
 const systemStore = useSystemStore()
@@ -65,12 +66,14 @@ const currentPage = ref(1)
 const pageSize = ref(5)
 
 // 获取user列表数据
-const getCurrentUserList = () => {
+const getCurrentUserList = (payload: IQueryInfo = {}) => {
   const size = pageSize.value
   const offset = (currentPage.value - 1) * size
+  const queryInfo = { offset, size, ...payload }
 
-  systemStore.getUserListAction({ offset, size })
+  systemStore.getUserListAction(queryInfo)
 }
+defineExpose({ getCurrentUserList })
 
 // 初次进入页面时
 getCurrentUserList()

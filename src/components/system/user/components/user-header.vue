@@ -38,7 +38,7 @@
       </el-row>
     </el-form>
     <div class="btn-box">
-      <el-button type="primary" icon="Search">查询</el-button>
+      <el-button type="primary" icon="Search" @click="conditionSearch">查询</el-button>
       <el-button icon="Refresh" @click="resetForm(searchFormRef)">重置</el-button>
     </div>
   </div>
@@ -56,11 +56,23 @@ const searchForm = reactive({
   createAt: ''
 })
 
+// 自定义事件
+const emit = defineEmits(['resetList', 'queryList'])
+
 // 重置按钮
 const searchFormRef = ref<FormInstance>()
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
+
+  // 更新列表
+  emit('resetList')
+}
+
+// 查询按钮
+const conditionSearch = () => {
+  // console.log(searchForm)
+  emit('queryList', searchForm)
 }
 </script>
 
