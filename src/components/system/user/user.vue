@@ -4,9 +4,9 @@
       <userHeader @query-list="handleQueryList" @reset-list="handleResetList"></userHeader>
     </div>
     <div class="list-table">
-      <userBody ref="listTableRef"></userBody>
+      <userBody ref="listTableRef" @add-click="handleAddClick"></userBody>
     </div>
-    <userDialog></userDialog>
+    <userDialog ref="userDialogRef"></userDialog>
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import { ref } from 'vue'
 import type { IQueryInfo } from '@/types/main/system'
 
 const listTableRef = ref<InstanceType<typeof userBody>>()
+const userDialogRef = ref<InstanceType<typeof userDialog>>()
 
 // 显示查询结果
 const handleQueryList = (payload: IQueryInfo) => {
@@ -29,6 +30,11 @@ const handleQueryList = (payload: IQueryInfo) => {
 // 恢复默认列表
 const handleResetList = () => {
   listTableRef.value?.getCurrentUserList()
+}
+
+// 新增按钮处理
+const handleAddClick = () => {
+  userDialogRef.value?.setUserDialogVisible()
 }
 </script>
 

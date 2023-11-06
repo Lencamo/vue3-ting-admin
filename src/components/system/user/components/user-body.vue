@@ -2,7 +2,7 @@
   <div class="user-body">
     <div class="top-box">
       <h3>用户列表</h3>
-      <el-button type="primary" size="small">新增用户</el-button>
+      <el-button type="primary" size="small" @click="handleAddBtn()">新增用户</el-button>
     </div>
     <div class="center-box">
       <el-table :data="userList" style="width: 100%" border>
@@ -99,10 +99,16 @@ const handleDelectBtn = (userId: number) => {
   // console.log(userId)
   systemStore.delectUserAction(userId)
 
-  // 更新列表
-  currentPage.value = 1
-  pageSize.value = 5
-  getCurrentUserList()
+  // 更新列表（不跳转算了，自动变化）
+  // currentPage.value = 1
+  // pageSize.value = 5
+  // getCurrentUserList()
+}
+
+// 新增用户按钮
+const emit = defineEmits(['addClick'])
+const handleAddBtn = () => {
+  emit('addClick')
 }
 </script>
 

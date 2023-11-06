@@ -25,13 +25,13 @@
             </template>
           </el-select>
         </el-form-item>
-        <el-form-item label="密码" prop="pwd">
-          <el-input type="password" show-password v-model="dialogData.pwd" />
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" show-password v-model="dialogData.password" />
         </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确认</el-button>
+        <el-button type="primary" @click="handleConfirmBtn">确认</el-button>
       </template>
     </el-dialog>
   </div>
@@ -42,17 +42,24 @@ import { ref, reactive } from 'vue'
 import type { FormRules } from 'element-plus'
 import useMainStore from '@/stores/main/entires/main.ts'
 import { storeToRefs } from 'pinia'
+import useSystemStore from '@/stores/main/system'
 
-const dialogVisible = ref(true)
+const dialogVisible = ref(false)
+
+// 显示弹窗
+const setUserDialogVisible = () => {
+  dialogVisible.value = true
+}
+defineExpose({ setUserDialogVisible })
 
 // 弹窗数据
 const dialogData = reactive({
   name: '',
   realname: '',
   cellphone: '',
-  roleId: '',
-  departmentId: '',
-  pwd: ''
+  roleId: '' as unknown as number,
+  departmentId: '' as unknown as number,
+  password: ''
 })
 
 // 角色和部门数据
@@ -66,7 +73,7 @@ const formRules = reactive<FormRules>({
   cellphone: [
     { pattern: /^(?:(?:\+|00)86)?1\d{10}$/, message: '请输入正确的手机号格式', trigger: 'blur' }
   ],
-  pwd: [
+  password: [
     {
       pattern: /^(?=.*[a-zA-Z])(?=.*\d).+$/,
       message: '密码需要由数字和英文字母组成',
@@ -75,6 +82,16 @@ const formRules = reactive<FormRules>({
     { min: 6, max: 12, message: '密码长度范围为：6-12', trigger: 'change' }
   ]
 })
+
+// Dialog确认按钮
+const systemStore = useSystemStore()
+
+const handleConfirmBtn = () => {
+  dialogVisible.value = false
+
+  // 新增
+  systemStore.addUserAction(dialogData)
+}
 </script>
 
 <style lang="scss" scoped>

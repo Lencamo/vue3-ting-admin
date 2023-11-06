@@ -24,3 +24,12 @@ export interface IUserListQuery extends IQueryInfo {
   offset: number
   size: number
 }
+
+export interface IUserOperate {
+  name: string
+  realname: string
+  cellphone: string
+  roleId: number
+  departmentId: number
+  password: string
+}
