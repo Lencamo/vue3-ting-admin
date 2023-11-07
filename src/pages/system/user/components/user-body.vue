@@ -2,7 +2,10 @@
   <div class="user-body">
     <div class="top-box">
       <h3>用户列表</h3>
-      <el-button type="primary" size="small" @click="handleAddBtn()">新增用户</el-button>
+      <span>
+        <el-button type="danger" size="small" plain disabled><s>批量删除</s></el-button>
+        <el-button type="primary" size="small" @click="handleAddBtn()">新增用户</el-button>
+      </span>
     </div>
     <div class="center-box">
       <el-table :data="userList" style="width: 100%" border>

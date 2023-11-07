@@ -35,6 +35,24 @@
             />
           </el-form-item>
         </el-col>
+        <el-col :sm="12" :md="8" :lg="6">
+          <el-form-item label="部门归属" prop="departmentId">
+            <el-select placeholder="请选择用户所属部门" v-model="searchForm.departmentId">
+              <template v-for="department in departmentList" :key="department.id">
+                <el-option :label="department.name" :value="department.id" />
+              </template>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :sm="12" :md="8" :lg="6">
+          <el-form-item label="用户角色" prop="departmentId">
+            <el-select placeholder="请选择用户的角色" v-model="searchForm.roleId">
+              <template v-for="department in roleList" :key="department.id">
+                <el-option :label="department.name" :value="department.id" />
+              </template>
+            </el-select>
+          </el-form-item>
+        </el-col>
       </el-row>
     </el-form>
     <div class="btn-box">
@@ -47,14 +65,22 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
+import useMainStore from '@/stores/main/entires/main'
+import { storeToRefs } from 'pinia'
 
 const searchForm = reactive({
   name: '',
   realname: '',
   cellphone: '',
-  enable: 1,
-  createAt: ''
+  enable: '',
+  createAt: '',
+  departmentId: '',
+  roleId: ''
 })
+
+// 部门、角色列表数据
+const mainStore = useMainStore()
+const { departmentList, roleList } = storeToRefs(mainStore)
 
 // 自定义事件
 const emit = defineEmits(['resetList', 'queryList'])
