@@ -1,4 +1,4 @@
 export default {
   path: '/main/analysis/dashboard',
-  component: () => import('@/components/analysis/dashboard/dashboard.vue')
+  component: () => import('@/pages/analysis/dashboard/dashboard.vue')
 }

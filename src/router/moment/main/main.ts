@@ -1,4 +1,4 @@
 export default {
   path: '/main/moment/main',
-  component: () => import('@/components/moment/main/main.vue')
+  component: () => import('@/pages/moment/main/main.vue')
 }

@@ -1,4 +1,4 @@
 export default {
   path: '/main/product/goods',
-  component: () => import('@/components/product/goods/goods.vue')
+  component: () => import('@/pages/product/goods/goods.vue')
 }

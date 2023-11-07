@@ -26,7 +26,7 @@ nvm install && nvm use # 匹配并使用当前项目node版本
 
 - 页面跳转：
 
-> ---> App.vue ---> router --> views
+> ---> App.vue ---> router --> views ---> pages
 
 ## 3、开发新模块
 

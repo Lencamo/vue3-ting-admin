@@ -1,4 +1,4 @@
 export default {
   path: '/main/moment/list',
-  component: () => import('@/components/moment/list/list.vue')
+  component: () => import('@/pages/moment/list/list.vue')
 }
