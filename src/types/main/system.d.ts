@@ -1,3 +1,7 @@
+// ===================
+// ==== 用户管理
+// ===================
+
 export interface IUserList {
   id: number
   name: string
@@ -32,4 +36,17 @@ export interface IUserOperate {
   roleId: number
   departmentId: number
   password: string
+}
+
+// ===================
+// ==== 部门管理管理
+// ===================
+export interface IDepartmentList {
+  id: number
+  name: string
+  leader: string
+  parentId: number
+  enable: number
+  createAt: string
+  updateAt: string
 }
