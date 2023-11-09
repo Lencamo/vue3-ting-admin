@@ -40,11 +40,13 @@
           </el-select>
         </el-form-item>
         <el-form-item label="选择部门">
-          <el-select v-model="dialogData.departmentId" placeholder="请选择部门">
-            <template v-for="department in departmentList" :key="department.id">
-              <el-option :label="department.name" :value="department.id" />
-            </template>
-          </el-select>
+          <el-tree-select
+            placeholder="请选择部门"
+            v-model="dialogData.departmentId"
+            :data="departmentList"
+            :props="{ children: 'children', label: 'name', value: 'id' }"
+            check-strictly
+          />
         </el-form-item>
         <el-form-item v-if="isNewDialog" label="密码" prop="password">
           <el-input type="password" show-password v-model="dialogData.password" />

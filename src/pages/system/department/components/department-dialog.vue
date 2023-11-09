@@ -30,11 +30,12 @@
           />
         </el-form-item>
         <el-form-item label="上级部门">
-          <el-select v-model="dialogData.parentId" placeholder="请选择部门">
-            <template v-for="department in departmentList" :key="department.id">
-              <el-option :label="department.name" :value="department.id" />
-            </template>
-          </el-select>
+          <el-tree-select
+            placeholder="请选择部门"
+            v-model="dialogData.parentId"
+            :data="departmentList"
+            :props="{ children: 'children', label: 'name', value: 'id' }"
+          />
         </el-form-item>
       </el-form>
       <template #footer>

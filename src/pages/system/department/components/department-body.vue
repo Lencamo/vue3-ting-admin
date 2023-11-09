@@ -7,7 +7,7 @@
       </span>
     </div>
     <div class="center-box">
-      <el-table :data="departmentList" style="width: 100%">
+      <el-table :data="departmentList" row-key="id" default-expand-all style="width: 100%">
         <el-table-column prop="name" label="部门名称" width="200" />
         <el-table-column prop="leader" label="部门领导" width="120" />
         <el-table-column prop="parentId" label="上级部门" width="120" />

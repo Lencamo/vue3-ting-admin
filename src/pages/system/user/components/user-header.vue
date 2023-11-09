@@ -37,11 +37,13 @@
         </el-col>
         <el-col :sm="12" :md="8" :lg="6">
           <el-form-item label="部门归属" prop="departmentId">
-            <el-select placeholder="请选择用户所属部门" v-model="searchForm.departmentId">
-              <template v-for="department in departmentList" :key="department.id">
-                <el-option :label="department.name" :value="department.id" />
-              </template>
-            </el-select>
+            <el-tree-select
+              placeholder="请选择用户所属部门"
+              v-model="searchForm.departmentId"
+              :data="departmentList"
+              :props="{ children: 'children', label: 'name', value: 'id' }"
+              check-strictly
+            />
           </el-form-item>
         </el-col>
         <el-col :sm="12" :md="8" :lg="6">
