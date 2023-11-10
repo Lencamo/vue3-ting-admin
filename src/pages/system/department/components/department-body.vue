@@ -31,12 +31,15 @@
         <el-table-column fixed="right" label="操作" min-width="120">
           <template #default="scope">
             <el-button type="warning" size="small" icon="Edit" @click="handleEditBtn(scope.row)" />
-            <el-button
-              type="danger"
-              size="small"
-              icon="Delete"
-              @click="handleDelectBtn(scope.row.id)"
-            />
+            <el-popconfirm
+              title="你确定执行删除操作吗？"
+              @confirm="handleDelectBtn(scope.row.id)"
+              width="200px"
+            >
+              <template #reference>
+                <el-button type="danger" size="small" icon="Delete" />
+              </template>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
