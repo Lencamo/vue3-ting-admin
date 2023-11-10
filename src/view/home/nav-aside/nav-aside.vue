@@ -25,6 +25,10 @@
             <!-- 二级 -->
             <template v-for="subItem in item.children" :key="subItem.id">
               <el-menu-item :index="subItem.id + ''" @click="handleMenuItemClick(subItem)">
+                <el-icon>
+                  <!-- 动态图标组件 -->
+                  <component :is="subItem.icon" />
+                </el-icon>
                 <span>{{ subItem.name }}</span>
               </el-menu-item>
             </template>
@@ -71,9 +75,9 @@ const handleMenuItemClick = (subItem: any) => {
 </script>
 
 <style lang="scss" scoped>
-.el-menu-item {
+/* .el-menu-item {
   margin-left: 20px;
-}
+} */
 
 .nav-aside {
   .logo {

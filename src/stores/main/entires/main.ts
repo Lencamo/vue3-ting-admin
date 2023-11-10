@@ -1,5 +1,5 @@
 import { getDepartmentListApi, getRoleListApi } from '@/services/modules/main/entires/main'
-import { generateDepartmentListToTree } from '@/utils/generateTree'
+import { generateListToTree } from '@/utils/generateTree'
 import { defineStore } from 'pinia'
 
 const useMainStore = defineStore('Main', {
@@ -18,7 +18,7 @@ const useMainStore = defineStore('Main', {
       this.roleList = res.data
 
       // 转换为树形结构
-      this.departmentList = generateDepartmentListToTree(res2.data, null)
+      this.departmentList = generateListToTree(res2.data, null)
     }
   }
 })

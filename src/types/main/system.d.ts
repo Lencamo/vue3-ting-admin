@@ -39,14 +39,31 @@ export interface IUserOperate {
 }
 
 // ===================
-// ==== 部门管理管理
+// ==== 部门管理
 // ===================
+
 export interface IDepartmentList {
   id: number
   name: string
   leader: string
   parentId: number
   enable: number
+  createAt: string
+  updateAt: string
+}
+
+// ===================
+// ==== 菜单管理
+// ===================
+
+export interface IMenuList {
+  id: number
+  name: string
+  type: number
+  icon: string
+  url: string
+  sort: number
+  permission: null
   createAt: string
   updateAt: string
 }

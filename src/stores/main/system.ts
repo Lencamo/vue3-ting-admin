@@ -6,11 +6,19 @@ import {
   getDepartmentListApi,
   delectDepartmentApi,
   addDepartmentApi,
-  editDepartmentApi
+  editDepartmentApi,
+  getMenuListApi,
+  editMenuApi
 } from '@/services/modules/main/system'
 import { defineStore } from 'pinia'
-import type { IDepartmentList, IUserList, IUserListQuery, IUserOperate } from '@/types/main/system'
-import { generateDepartmentListToTree } from '@/utils/generateTree'
+import type {
+  IDepartmentList,
+  IMenuList,
+  IUserList,
+  IUserListQuery,
+  IUserOperate
+} from '@/types/main/system'
+import { generateListToTree } from '@/utils/generateTree'
 
 const useSystemStore = defineStore('System', {
   state: () => ({
@@ -18,14 +26,16 @@ const useSystemStore = defineStore('System', {
     userTotalCount: 0,
 
     departmentList: [] as IDepartmentList[],
-    departmentTotalCount: 0
+    departmentTotalCount: 0,
+
+    menuList: [] as IMenuList[],
+    menuTotalCount: 0
   }),
   getters: {
     //
   },
   actions: {
-    // 用户管理
-
+    // 1、用户管理
     async getUserListAction(listInfo: IUserListQuery) {
       const { data: res } = await getUserListApi(listInfo)
       const { list, totalCount } = res.data
@@ -57,11 +67,11 @@ const useSystemStore = defineStore('System', {
       this.getUserListAction({ offset: 0, size: 5 })
     },
 
-    // 部门管理
+    // 2、部门管理
     async getDepartmentListAction(listInfo?: any) {
       const { data: res } = await getDepartmentListApi(listInfo)
       const { list, totalCount } = res.data
-      this.departmentList = generateDepartmentListToTree(list, null)
+      this.departmentList = listInfo ? list : generateListToTree(list, null)
       this.departmentTotalCount = totalCount
     },
 
@@ -87,6 +97,22 @@ const useSystemStore = defineStore('System', {
 
       // 更新列表
       this.getDepartmentListAction()
+    },
+
+    // 3、菜单管理
+    async getMenuListAction(listInfo?: any) {
+      const { data: res } = await getMenuListApi(listInfo)
+      const { list, totalCount } = res.data
+      this.menuList = listInfo ? list : generateListToTree(list, null)
+      this.menuTotalCount = totalCount
+    },
+
+    async editMenuAction(menuId: number, menu: any) {
+      const { data: res } = await editMenuApi(menuId, menu)
+      // console.log(res)
+
+      // 更新列表
+      this.getMenuListAction()
     }
   }
 })

@@ -63,3 +63,21 @@ export function editDepartmentApi(departmentId: number, department: any) {
     data: department
   })
 }
+
+// ===================
+// ==== 菜单管理
+// ===================
+
+export function getMenuListApi(listInfo: any) {
+  return tingRequest.post({
+    url: '/menu/list',
+    data: listInfo
+  })
+}
+
+export function editMenuApi(menuId: number, menu: any) {
+  return tingRequest.patch({
+    url: `/menu/${menuId}`,
+    data: menu
+  })
+}
