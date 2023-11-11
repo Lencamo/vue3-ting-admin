@@ -67,3 +67,16 @@ export interface IMenuList {
   createAt: string
   updateAt: string
 }
+
+// ===================
+// ==== 角色管理
+// ===================
+
+export interface IRoleList {
+  id: number
+  name: string
+  intro: string
+  createAt: string
+  updateAt: string
+  menuList?: any
+}

@@ -81,3 +81,34 @@ export function editMenuApi(menuId: number, menu: any) {
     data: menu
   })
 }
+
+// ===================
+// ==== 角色管理
+// ===================
+
+export function getRoleListApi(listInfo: any) {
+  return tingRequest.post({
+    url: '/role/list',
+    data: listInfo
+  })
+}
+
+export function delectRoleApi(roleId: number) {
+  return tingRequest.delete({
+    url: `/role/${roleId}`
+  })
+}
+
+export function addRoleApi(role: any) {
+  return tingRequest.post({
+    url: `/role`,
+    data: role
+  })
+}
+
+export function editRoleApi(roleId: number, role: any) {
+  return tingRequest.patch({
+    url: `/role/${roleId}`,
+    data: role
+  })
+}

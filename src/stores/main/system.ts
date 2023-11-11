@@ -8,12 +8,17 @@ import {
   addDepartmentApi,
   editDepartmentApi,
   getMenuListApi,
-  editMenuApi
+  editMenuApi,
+  getRoleListApi,
+  delectRoleApi,
+  addRoleApi,
+  editRoleApi
 } from '@/services/modules/main/system'
 import { defineStore } from 'pinia'
 import type {
   IDepartmentList,
   IMenuList,
+  IRoleList,
   IUserList,
   IUserListQuery,
   IUserOperate
@@ -29,7 +34,10 @@ const useSystemStore = defineStore('System', {
     departmentTotalCount: 0,
 
     menuList: [] as IMenuList[],
-    menuTotalCount: 0
+    menuTotalCount: 0,
+
+    roleList: [] as IRoleList[],
+    roleTotalCount: 0
   }),
   getters: {
     //
@@ -113,6 +121,38 @@ const useSystemStore = defineStore('System', {
 
       // 更新列表
       this.getMenuListAction()
+    },
+
+    // 4、角色管理
+    async getRoleListAction(listInfo?: any) {
+      const { data: res } = await getRoleListApi(listInfo)
+      const { list, totalCount } = res.data
+      this.roleList = list
+      this.roleTotalCount = totalCount
+    },
+
+    async delectRoleAction(roleId: number) {
+      const { data: res } = await delectRoleApi(roleId)
+      // console.log(res)
+
+      // 更新列表
+      this.getRoleListAction({ offset: 0, size: 5 })
+    },
+
+    async addRoleAction(user: IUserOperate) {
+      const { data: res } = await addRoleApi(user)
+      // console.log(res)
+
+      // 更新列表
+      this.getRoleListAction({ offset: 0, size: 5 })
+    },
+
+    async editRoleAction(userId: number, user: IUserOperate) {
+      const { data: res } = await editRoleApi(userId, user)
+      // console.log(res)
+
+      // 更新列表
+      this.getRoleListAction({ offset: 0, size: 5 })
     }
   }
 })

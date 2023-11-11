@@ -1,10 +1,10 @@
 <template>
-  <div class="menu-header">
+  <div class="role-header">
     <el-form label-position="right" label-width="70px" :model="searchForm" ref="searchFormRef">
       <el-row :gutter="40">
         <el-col :sm="12" :md="8" :lg="6">
-          <el-form-item label="部门名称" prop="name">
-            <el-input placeholder="请输入部门名称" v-model="searchForm.name" />
+          <el-form-item label="角色名称" prop="name">
+            <el-input placeholder="请输入角色名称" v-model="searchForm.name" />
           </el-form-item>
         </el-col>
         <el-col :sm="12" :md="8" :lg="6">
@@ -46,7 +46,7 @@ const conditionSearch = () => {
 </script>
 
 <style lang="scss" scoped>
-.menu-header {
+.role-header {
   background: #ffffff;
   padding: 18px;
 

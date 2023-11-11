@@ -13,9 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import menuHeader from './menu-header.vue'
-import menuBody from './menu-body.vue'
-import menuDialog from './menu-dialog.vue'
+import menuHeader from './components/menu-header.vue'
+import menuBody from './components/menu-body.vue'
+import menuDialog from './components/menu-dialog.vue'
 
 import { ref } from 'vue'
 import type { IMenuList } from '@/types/main/system'
