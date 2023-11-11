@@ -52,3 +52,24 @@ export function mapMenusToRoutes(userRoleMenu: any[]) {
 
   return routes
 }
+
+// 将Global的menuList映射为id数组
+export function mapMenuToIds(roleMenu: any) {
+  const deepestMenuIds = [] as any
+  const allMenuIds = [] as any // 只获取根节点（供tree控件回显）
+
+  function getDeepestMenuId(menus) {
+    menus.forEach((item) => {
+      allMenuIds.push(item.id)
+
+      if (item.children) {
+        getDeepestMenuId(item.children)
+      } else {
+        deepestMenuIds.push(item.id)
+      }
+    })
+  }
+  getDeepestMenuId(roleMenu)
+
+  return { deepestMenuIds, allMenuIds }
+}

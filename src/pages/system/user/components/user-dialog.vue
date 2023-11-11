@@ -34,7 +34,7 @@
         </el-form-item>
         <el-form-item label="选择角色">
           <el-select v-model="dialogData.roleId" placeholder="请选择角色">
-            <template v-for="role in roleList" :key="role.id">
+            <template v-for="role in globalRoleList" :key="role.id">
               <el-option :label="role.name" :value="role.id" />
             </template>
           </el-select>
@@ -43,7 +43,7 @@
           <el-tree-select
             placeholder="请选择部门"
             v-model="dialogData.departmentId"
-            :data="departmentList"
+            :data="globalDepartmentList"
             :props="{ children: 'children', label: 'name', value: 'id' }"
             check-strictly
           />
@@ -113,7 +113,7 @@ defineExpose({ setUserDialogVisible })
 
 // 角色和部门数据
 const mainStore = useMainStore()
-const { roleList, departmentList } = storeToRefs(mainStore)
+const { globalRoleList, globalDepartmentList } = storeToRefs(mainStore)
 
 // 表单校验
 const formRules = reactive<FormRules>({

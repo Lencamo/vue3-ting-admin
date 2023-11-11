@@ -25,6 +25,16 @@
             :autosize="{ minRows: 2, maxRows: 4 }"
           />
         </el-form-item>
+        <el-form-item label="菜单权限">
+          <el-tree
+            ref="treeNodeRef"
+            :props="{ label: 'name', children: 'children' }"
+            :data="globalMenuList"
+            node-key="id"
+            show-checkbox
+            @check="handleTreeNodeCheck"
+          />
+        </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="dialogVisible = false">取消</el-button>
@@ -35,14 +45,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import type { FormRules, FormInstance } from 'element-plus'
+import { ref, reactive, nextTick } from 'vue'
+import type { FormRules, FormInstance, ElTree } from 'element-plus'
 import useMainStore from '@/stores/main/entires/main.ts'
 import { storeToRefs } from 'pinia'
 import useSystemStore from '@/stores/main/system'
+import { mapMenuToIds } from '@/utils/map-menus'
 
 const dialogVisible = ref(false)
 const dialogFormRef = ref<FormInstance>()
+
+// Tree控件
+const treeNodeRef = ref<InstanceType<typeof ElTree>>()
+const roleMenusIds = ref()
+
+// 监听节点选择
+const handleTreeNodeCheck = (arg1, arg2) => {
+  roleMenusIds.value = [...arg2.checkedKeys, ...arg2.halfCheckedKeys]
+  // console.log(roleMenusIds.value)
+}
+
+// 菜单数据
+const mainStore = useMainStore()
+const { globalMenuList } = storeToRefs(mainStore)
 
 // 弹窗数据
 const dialogData = reactive<any>({
@@ -65,23 +90,36 @@ const setRoleDialogVisible = (isNew: boolean, role?: any) => {
   // 初始化Dialog数据
   if (!isNew && role) {
     // 编辑
+
+    // -角色数据
     for (const key in dialogData) {
       dialogData[key] = role[key]
     }
     editRoleId.value = role.id
+
+    // - 菜单数据
+    nextTick(() => {
+      const { deepestMenuIds, allMenuIds } = mapMenuToIds(role.menuList)
+
+      roleMenusIds.value = allMenuIds // 初始化roleMenusIds值
+      treeNodeRef.value!.setCheckedKeys(deepestMenuIds, false) // node节点回显
+    })
   } else {
     // 新增
+
+    // -角色数据
     for (const key in dialogData) {
       dialogData[key] = ''
     }
     editRoleId.value = null
+
+    // - 菜单数据
+    nextTick(() => {
+      treeNodeRef.value!.setCheckedKeys([], false)
+    })
   }
 }
 defineExpose({ setRoleDialogVisible })
-
-// 角色、部门数据
-const mainStore = useMainStore()
-const { roleList, departmentList } = storeToRefs(mainStore)
 
 // 表单校验
 const formRules = reactive<FormRules>({
@@ -98,12 +136,15 @@ const systemStore = useSystemStore()
 const handlePassVerify = () => {
   dialogVisible.value = false
 
+  const payload = { ...dialogData, roleMenusIds: roleMenusIds.value }
+  // console.log(payload)
+
   if (!isNewDialog.value && editRoleId.value) {
     // 编辑
-    systemStore.editRoleAction(editRoleId.value, dialogData)
+    systemStore.editRoleAction(editRoleId.value, payload)
   } else {
     // 新增
-    systemStore.addRoleAction(dialogData)
+    systemStore.addRoleAction(payload)
   }
 }
 

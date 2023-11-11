@@ -40,7 +40,7 @@
             <el-tree-select
               placeholder="请选择用户所属部门"
               v-model="searchForm.departmentId"
-              :data="departmentList"
+              :data="globalDepartmentList"
               :props="{ children: 'children', label: 'name', value: 'id' }"
               check-strictly
             />
@@ -49,7 +49,7 @@
         <el-col :sm="12" :md="8" :lg="6">
           <el-form-item label="用户角色" prop="departmentId">
             <el-select placeholder="请选择用户的角色" v-model="searchForm.roleId">
-              <template v-for="department in roleList" :key="department.id">
+              <template v-for="department in globalRoleList" :key="department.id">
                 <el-option :label="department.name" :value="department.id" />
               </template>
             </el-select>
@@ -82,7 +82,7 @@ const searchForm = reactive({
 
 // 部门、角色列表数据
 const mainStore = useMainStore()
-const { departmentList, roleList } = storeToRefs(mainStore)
+const { globalDepartmentList, globalRoleList } = storeToRefs(mainStore)
 
 // 自定义事件
 const emit = defineEmits(['resetList', 'queryList'])

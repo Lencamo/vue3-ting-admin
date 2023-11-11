@@ -1,24 +1,33 @@
-import { getDepartmentListApi, getRoleListApi } from '@/services/modules/main/entires/main'
+import {
+  getGlobalDepartmentListApi,
+  getGlobalMenuListApi,
+  getGlobalRoleListApi
+} from '@/services/modules/main/entires/main'
 import { generateListToTree } from '@/utils/generateTree'
 import { defineStore } from 'pinia'
 
 const useMainStore = defineStore('Main', {
   state: () => ({
-    roleList: [] as any,
-    departmentList: [] as any
+    globalRoleList: [] as any,
+    globalDepartmentList: [] as any,
+    globalMenuList: [] as any
   }),
   getters: {
     //
   },
   actions: {
     async getEntireDataAction() {
-      const { data: res } = await getRoleListApi()
-      const { data: res2 } = await getDepartmentListApi()
+      const { data: res } = await getGlobalRoleListApi()
+      const { data: res2 } = await getGlobalDepartmentListApi()
+      const { data: res3 } = await getGlobalMenuListApi()
 
-      this.roleList = res.data
+      this.globalRoleList = res.data
 
       // 转换为树形结构
-      this.departmentList = generateListToTree(res2.data, null)
+      this.globalDepartmentList = generateListToTree(res2.data, null)
+
+      // 转换为树形结构
+      this.globalMenuList = generateListToTree(res3.data, null)
     }
   }
 })

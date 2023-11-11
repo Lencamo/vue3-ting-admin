@@ -33,7 +33,7 @@
           <el-tree-select
             placeholder="请选择部门"
             v-model="dialogData.parentId"
-            :data="departmentList"
+            :data="globalDepartmentList"
             :props="{ children: 'children', label: 'name', value: 'id' }"
           />
         </el-form-item>
@@ -95,7 +95,7 @@ defineExpose({ setDepartmentDialogVisible })
 
 // 角色和部门数据
 const mainStore = useMainStore()
-const { roleList, departmentList } = storeToRefs(mainStore)
+const { globalRoleList, globalDepartmentList } = storeToRefs(mainStore)
 
 // 表单校验
 const formRules = reactive<FormRules>({

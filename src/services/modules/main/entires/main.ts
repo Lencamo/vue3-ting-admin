@@ -1,13 +1,19 @@
 import { tingRequest } from '@/services'
 
-export function getRoleListApi() {
+export function getGlobalRoleListApi() {
   return tingRequest.get({
     url: '/role/list'
   })
 }
 
-export function getDepartmentListApi() {
+export function getGlobalDepartmentListApi() {
   return tingRequest.get({
     url: '/department/list'
+  })
+}
+
+export function getGlobalMenuListApi() {
+  return tingRequest.get({
+    url: '/menu/list'
   })
 }
