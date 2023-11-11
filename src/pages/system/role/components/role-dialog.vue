@@ -17,7 +17,13 @@
           <el-input v-model="dialogData.name" />
         </el-form-item>
         <el-form-item label="角色描述" prop="intro">
-          <el-input v-model="dialogData.intro" />
+          <el-input
+            v-model="dialogData.intro"
+            type="textarea"
+            maxlength="50"
+            show-word-limit
+            :autosize="{ minRows: 2, maxRows: 4 }"
+          />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -83,10 +89,7 @@ const formRules = reactive<FormRules>({
     { required: true, message: '角色名称不能为空', trigger: 'blur' },
     { min: 2, max: 12, message: '角色名长度范围应在 2 - 12 之间', trigger: 'blur' }
   ],
-  intro: [
-    { required: true, message: '角色介绍不能为空', trigger: 'blur' },
-    { min: 2, max: 24, message: '角色名长度范围应在 2 - 24 之间', trigger: 'blur' }
-  ]
+  intro: [{ required: true, message: '角色介绍不能为空', trigger: 'blur' }]
 })
 
 // Dialog确认按钮
