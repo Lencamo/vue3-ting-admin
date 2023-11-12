@@ -24,6 +24,9 @@ import type {
   IUserOperate
 } from '@/types/main/system'
 import { generateListToTree } from '@/utils/generateTree'
+import useMainStore from './entires/main'
+
+const mainStore = useMainStore()
 
 const useSystemStore = defineStore('System', {
   state: () => ({
@@ -97,6 +100,9 @@ const useSystemStore = defineStore('System', {
 
       // 更新列表
       this.getDepartmentListAction()
+
+      // 更新entires
+      mainStore.getEntireDataAction()
     },
 
     async editDepartmentAction(departmentId: number, department: any) {
@@ -145,6 +151,9 @@ const useSystemStore = defineStore('System', {
 
       // 更新列表
       this.getRoleListAction({ offset: 0, size: 5 })
+
+      // 更新entires
+      mainStore.getEntireDataAction()
     },
 
     async editRoleAction(userId: number, user: IUserOperate) {

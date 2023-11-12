@@ -119,6 +119,16 @@ const handleAddBtn = () => {
 const handleEditBtn = (role: IRoleList) => {
   emit('editClick', role)
 }
+
+// 增删改请求与分页器
+systemStore.$onAction(({ name, after }) => {
+  after(() => {
+    if (name === 'addRoleAction' || name === 'delectRoleAction' || name === 'editRoleAction') {
+      currentPage.value = 1
+      pageSize.value = 5
+    }
+  })
+})
 </script>
 
 <style lang="scss" scoped>

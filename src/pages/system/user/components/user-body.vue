@@ -104,11 +104,6 @@ const handleCurrentChange = (page: number) => {
 const handleDelectBtn = (userId: number) => {
   // console.log(userId)
   systemStore.delectUserAction(userId)
-
-  // 更新列表（不跳转算了，自动变化）
-  // currentPage.value = 1
-  // pageSize.value = 5
-  // getCurrentUserList()
 }
 
 const emit = defineEmits(['addClick', 'editClick'])
@@ -121,6 +116,16 @@ const handleAddBtn = () => {
 const handleEditBtn = (user: IUserList) => {
   emit('editClick', user)
 }
+
+// 增删改请求与分页器
+systemStore.$onAction(({ name, after }) => {
+  after(() => {
+    if (name === 'addUserAction' || name === 'delectUserAction' || name === 'editUserAction') {
+      currentPage.value = 1
+      pageSize.value = 5
+    }
+  })
+})
 </script>
 
 <style lang="scss" scoped>
