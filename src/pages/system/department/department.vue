@@ -1,6 +1,6 @@
 <template>
   <div class="department">
-    <div class="search-box">
+    <div class="search-box" v-permissions="{ route, action: 'query' }">
       <departmentHeader
         @query-list="handleQueryList"
         @reset-list="handleResetList"
@@ -23,6 +23,10 @@
 import departmentHeader from './components/department-header.vue'
 import departmentBody from './components/department-body.vue'
 import departmentDialog from './components/department-dialog.vue'
+
+// 权限操作控制
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 import { ref } from 'vue'
 import type { IDepartmentList } from '@/types/main/system'

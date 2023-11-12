@@ -1,6 +1,6 @@
 <template>
   <div class="role">
-    <div class="search-box">
+    <div class="search-box" v-permissions="{ route, action: 'query' }">
       <roleHeader @query-list="handleQueryList" @reset-list="handleResetList"></roleHeader>
     </div>
     <div class="list-table">
@@ -20,6 +20,10 @@
 import roleHeader from './components/role-header.vue'
 import roleBody from './components/role-body.vue'
 import roleDialog from './components/role-dialog.vue'
+
+// 权限操作控制
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 import { ref } from 'vue'
 import type { IRoleList } from '@/types/main/system'

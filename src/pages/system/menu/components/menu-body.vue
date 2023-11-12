@@ -27,9 +27,15 @@
             {{ utcFormatUtil(scope.row.updateAt) }}
           </template>
         </el-table-column>
-        <el-table-column fixed="right" label="操作" min-width="60">
+        <el-table-column fixed="right" label="操作" min-width="120" align="center">
           <template #default="scope">
-            <el-button type="warning" size="small" icon="Edit" @click="handleEditBtn(scope.row)" />
+            <el-button
+              type="warning"
+              size="small"
+              icon="Edit"
+              @click="handleEditBtn(scope.row)"
+              v-permissions="{ route, action: 'update', effect: 'disabled' }"
+            />
           </template>
         </el-table-column>
       </el-table>
@@ -42,6 +48,10 @@ import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import type { IMenuList } from '@/types/main/system'
+
+// 权限操作控制
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 // 获取Menu列表数据
 const systemStore = useSystemStore()

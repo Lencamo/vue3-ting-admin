@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <div class="search-box">
+    <div class="search-box" v-permissions="{ route, action: 'query' }">
       <userHeader @query-list="handleQueryList" @reset-list="handleResetList"></userHeader>
     </div>
     <div class="list-table">
@@ -18,6 +18,10 @@
 import userHeader from './components/user-header.vue'
 import userBody from './components/user-body.vue'
 import userDialog from './components/user-dialog.vue'
+
+// 权限操作控制
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 import { ref } from 'vue'
 import type { IQueryInfo, IUserList } from '@/types/main/system'

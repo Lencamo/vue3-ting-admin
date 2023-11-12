@@ -3,7 +3,13 @@
     <div class="top-box">
       <h3>部门列表</h3>
       <span>
-        <el-button type="primary" size="small" @click="handleAddBtn()">新增部门</el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="handleAddBtn()"
+          v-permissions="{ route, action: 'delete', effect: 'disabled' }"
+          >新增部门</el-button
+        >
       </span>
     </div>
     <div class="center-box">
@@ -28,16 +34,27 @@
             {{ utcFormatUtil(scope.row.updateAt) }}
           </template>
         </el-table-column>
-        <el-table-column fixed="right" label="操作" min-width="120">
+        <el-table-column fixed="right" label="操作" min-width="120" align="center">
           <template #default="scope">
-            <el-button type="warning" size="small" icon="Edit" @click="handleEditBtn(scope.row)" />
+            <el-button
+              type="warning"
+              size="small"
+              icon="Edit"
+              @click="handleEditBtn(scope.row)"
+              v-permissions="{ route, action: 'update', effect: 'disabled' }"
+            />
             <el-popconfirm
               title="你确定执行删除操作吗？"
               @confirm="handleDelectBtn(scope.row.id)"
               width="200px"
             >
               <template #reference>
-                <el-button type="danger" size="small" icon="Delete" />
+                <el-button
+                  type="danger"
+                  size="small"
+                  icon="Delete"
+                  v-permissions="{ route, action: 'delete', effect: 'disabled' }"
+                />
               </template>
             </el-popconfirm>
           </template>
@@ -52,6 +69,10 @@ import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import type { IDepartmentList } from '@/types/main/system'
+
+// 权限操作控制
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 // 获取department列表数据
 const systemStore = useSystemStore()

@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <div class="search-box">
+    <div class="search-box" v-permissions="{ route, action: 'query' }">
       <menuHeader @query-list="handleQueryList" @reset-list="handleResetList"></menuHeader>
     </div>
     <div class="list-table">
@@ -16,6 +16,10 @@
 import menuHeader from './components/menu-header.vue'
 import menuBody from './components/menu-body.vue'
 import menuDialog from './components/menu-dialog.vue'
+
+// 权限操作控制
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 import { ref } from 'vue'
 import type { IMenuList } from '@/types/main/system'

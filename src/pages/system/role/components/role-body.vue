@@ -4,7 +4,13 @@
       <h3>角色列表</h3>
       <span>
         <el-button type="danger" size="small" plain disabled><s>批量删除</s></el-button>
-        <el-button type="primary" size="small" @click="handleAddBtn()">新增角色</el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="handleAddBtn()"
+          v-permissions="{ route, action: 'create' }"
+          >新增角色</el-button
+        >
       </span>
     </div>
     <div class="center-box">
@@ -34,16 +40,27 @@
             {{ utcFormatUtil(scope.row.updateAt) }}
           </template>
         </el-table-column>
-        <el-table-column fixed="right" label="操作" min-width="120">
+        <el-table-column fixed="right" label="操作" min-width="120" align="center">
           <template #default="scope">
-            <el-button type="warning" size="small" icon="Edit" @click="handleEditBtn(scope.row)" />
+            <el-button
+              type="warning"
+              size="small"
+              icon="Edit"
+              @click="handleEditBtn(scope.row)"
+              v-permissions="{ route, action: 'update', effect: 'disabled' }"
+            />
             <el-popconfirm
               title="你确定执行删除操作吗？"
               @confirm="handleDelectBtn(scope.row.id)"
               width="200px"
             >
               <template #reference>
-                <el-button type="danger" size="small" icon="Delete" />
+                <el-button
+                  type="danger"
+                  size="small"
+                  icon="Delete"
+                  v-permissions="{ route, action: 'delete', effect: 'disabled' }"
+                />
               </template>
             </el-popconfirm>
           </template>
@@ -72,6 +89,10 @@ import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import { ref } from 'vue'
 import type { IQueryInfo, IRoleList } from '@/types/main/system'
+
+// 权限操作控制
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 // 分页器数据
 const systemStore = useSystemStore()

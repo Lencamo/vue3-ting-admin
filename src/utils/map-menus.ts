@@ -73,3 +73,21 @@ export function mapMenuToIds(roleMenu: any) {
 
   return { deepestMenuIds, allMenuIds }
 }
+
+// 将userRoleMenu树 映射为 permission数组
+export function mapMenuToPermission(userRoleMenu: any) {
+  const permissions: string[] = []
+
+  function getPermission(menus) {
+    menus.forEach((item) => {
+      if (item.permission) {
+        permissions.push(item.permission)
+      } else {
+        getPermission(item.children ?? []) // 没有children时预处理
+      }
+    })
+  }
+  getPermission(userRoleMenu)
+
+  return permissions
+}
