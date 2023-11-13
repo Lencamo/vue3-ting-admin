@@ -46,8 +46,10 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
+    FileUpload: typeof import('./src/components/file-upload/file-upload.vue')['default']
     PopoverConfirm: typeof import('./src/components/popover-confirm/popover-confirm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TagsView: typeof import('./src/components/tags-view/tags-view.vue')['default']
   }
 }

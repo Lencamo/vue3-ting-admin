@@ -47,7 +47,7 @@
           </el-form-item>
         </el-col>
         <el-col :sm="12" :md="8" :lg="6">
-          <el-form-item label="用户角色" prop="departmentId">
+          <el-form-item label="用户角色" prop="roleId">
             <el-select placeholder="请选择用户的角色" v-model="searchForm.roleId">
               <template v-for="department in globalRoleList" :key="department.id">
                 <el-option :label="department.name" :value="department.id" />

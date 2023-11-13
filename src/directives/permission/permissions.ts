@@ -5,7 +5,7 @@ type actionType = 'create' | 'delete' | 'update' | 'query'
 type effectType = 'disabled'
 
 function haspermissionHandle(route, action) {
-  // 按钮权限数据
+  // 用户操作权限 数组
   const loginStore = useloginStore()
   const { userRolePermission } = loginStore
 

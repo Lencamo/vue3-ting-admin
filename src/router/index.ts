@@ -36,7 +36,7 @@ router.beforeEach((to, from) => {
   const token = localCache.getCache(LOGIN_TOKEN)
 
   // 进入后台token判断
-  if (to.path.startsWith('/home') && !token) {
+  if (/^\/(home|main)/.test(to.path) && !token) {
     return '/login'
   }
 
