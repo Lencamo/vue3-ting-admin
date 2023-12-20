@@ -19,6 +19,9 @@ export function loadLocalRoutes() {
   return localRoutes
 }
 
+// 记录第一个菜单
+export let firstMenuItem: any = null
+
 export function initStaticRoutes() {
   // 1、本地的全部路由
   const localRoutes = loadLocalRoutes()
@@ -28,6 +31,8 @@ export function initStaticRoutes() {
 
   localRoutes.forEach((route) => {
     // console.log(route)
+    // 记录第一个菜单
+    if (!firstMenuItem && route) firstMenuItem = route
 
     // 视图数据
     const meta = { ...(route.meta as unknown as IMeta), url: route.path }

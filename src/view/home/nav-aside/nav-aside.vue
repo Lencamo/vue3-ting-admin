@@ -6,7 +6,11 @@
     </div>
 
     <div class="menu">
-      <el-menu default-active="1" :collapse-transition="false" :collapse="isCollapse">
+      <el-menu
+        :default-active="defaultMenuItemShow"
+        :collapse-transition="false"
+        :collapse="isCollapse"
+      >
         <template v-for="item in routeMetas" :key="item.id">
           <el-menu-item :index="item.id + ''" @click="handleMenuItemClick(item)">
             <el-icon>
@@ -24,12 +28,22 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import useloginStore from '@/stores/login/login'
 const loginStore = useloginStore()
 import { useRouter, useRoute } from 'vue-router'
+import { mapPathToMenu } from '@/utils/map-path.ts'
 
 // 本地路由meta信息
 const routeMetas = loginStore.routeMetas
+
+// 设置页面加载时展开的菜单项
+const route = useRoute()
+const defaultMenuItemShow = computed(() => {
+  const menuItem = mapPathToMenu(route.path, routeMetas)
+
+  return menuItem.id + ''
+})
 
 // 路由跳转
 const router = useRouter()

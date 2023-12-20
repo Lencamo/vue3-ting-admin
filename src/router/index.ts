@@ -1,6 +1,7 @@
 import { LOGIN_TOKEN } from '@/config/constants'
 import { localCache } from '@/utils/cache'
 import { createRouter, createWebHistory } from 'vue-router'
+import { firstMenuItem } from '@/utils/initStaticRoutes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,7 +49,8 @@ router.beforeEach((to, from) => {
   // 设置初次进入pages
   if (to.path === '/home' && token) {
     // 默认重定向到第一个菜单
-    return '/main/analysis'
+    // console.log(firstMenuItem)
+    return firstMenuItem.path
   }
 })
 
