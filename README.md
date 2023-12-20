@@ -1,29 +1,12 @@
-# vue3-ting-admin
+## 说明
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## 1、开发环境
-
-### -- [VSCode](https://code.visualstudio.com/)
-
-[Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vsco) + [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig).
-
-### -- [NVM](https://github.com/nvm-sh/nvm)
+&emsp;&emsp;你可以通过以下方式获取当前模板项目：
 
 ```sh
-nvm install && nvm use # 匹配并使用当前项目node版本
+# 安装脚手架
+npm install lencamo-cli -g
+
+# 获取基础模板
+lencamo-cli create project-name --template vue3-start
 ```
 
-## 2、项目流程
-
-- 项目入口：
-
-> ---> main.ts --> App.vue
-
-- 数据流向：
-
-> ---> [types] ---> services ---> stores ---> views
-
-- 页面跳转：
-
-> ---> App.vue ---> router --> views
