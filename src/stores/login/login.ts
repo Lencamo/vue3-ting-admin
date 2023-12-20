@@ -21,12 +21,17 @@ const useloginStore = defineStore('login', {
       const { data: res } = await pwdLoginApi(account)
       // 结果
       // console.log(res.data)
-      this.id = res.data.id
-      this.username = res.data.username
-      this.token = res.data.token
 
-      // 2、token缓存
-      localCache.setCache(LOGIN_TOKEN, this.token)
+      if (!res.code) {
+        this.id = res.data.id
+        this.username = res.data.username
+        this.token = res.data.token
+
+        // 2、token缓存
+        localCache.setCache(LOGIN_TOKEN, this.token)
+      } else {
+        ElMessage.error(res.message)
+      }
     }
   }
 })

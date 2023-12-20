@@ -1,12 +1,12 @@
 <template>
   <div class="login-panel">
-    <h2>权限管理系统</h2>
+    <h2>后台管理系统</h2>
     <div class="tabs">
       <el-tabs v-model="loginWays" type="border-card" stretch>
         <el-tab-pane label="帐号登录" name="pwd">
           <pwdForm ref="pwdFormRef"></pwdForm>
         </el-tab-pane>
-        <el-tab-pane label="手机登录" name="phone">
+        <el-tab-pane label="" name="phone" disabled>
           <phoneForm ref="phoneFormRef"></phoneForm>
         </el-tab-pane>
       </el-tabs>

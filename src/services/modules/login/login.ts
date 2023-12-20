@@ -10,7 +10,8 @@ export function getCodeSvgApi() {
 
 export function pwdLoginApi(account: IAccount) {
   return tingRequest.post({
-    url: '/login/pwd',
+    // url: '/login/pwd',
+    url: '/login',
     data: account
   })
 }
