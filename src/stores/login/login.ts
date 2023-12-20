@@ -6,15 +6,13 @@ import type { IAccount, IMeta } from '@/types/login/login.ts'
 import { localCache } from '@/utils/cache.ts'
 import { LOGIN_TOKEN } from '@/config/constants.ts'
 
-import type { RouteRecordRaw } from 'vue-router'
-import router from '@/router/index.ts'
+import { initStaticRoutes } from '@/utils/initStaticRoutes.ts'
 
 const useloginStore = defineStore('login', {
   state: () => ({
     id: '',
     username: '',
-    token: localCache.getCache(LOGIN_TOKEN) ?? '',
-    localRoutes: [] as RouteRecordRaw[],
+    token: '',
     routeMetas: [] as IMeta[]
   }),
   getters: {
@@ -35,38 +33,25 @@ const useloginStore = defineStore('login', {
         // 2、token缓存
         localCache.setCache(LOGIN_TOKEN, this.token)
 
-        // =======
-
-        // 1、获取 nav-side 数据
-        let localRoutes: RouteRecordRaw[] = []
-
-        const modules: Record<string, any> = import.meta.glob('../../router/nav-side.ts', {
-          eager: true,
-          import: 'default'
-        })
-
-        for (const key in modules) {
-          // console.log(modules[key])
-          localRoutes.push(...modules[key])
-        }
-        this.localRoutes = localRoutes
-
-        // 2、本地路由注册、视图渲染
-        let routeMetas: IMeta[] = []
-
-        localRoutes.forEach((route) => {
-          // console.log(route)
-          // 视图数据
-          const meta = { ...(route.meta as unknown as IMeta), url: route.path }
-          console.log(meta)
-          routeMetas.push(meta)
-
-          // 批量注册
-          router.addRoute('main', route)
-        })
+        // 3、本地静态路由-批量注册
+        const routeMetas = initStaticRoutes()
         this.routeMetas = routeMetas
       } else {
         ElMessage.error(res.message)
+      }
+    },
+
+    routesCacheAction() {
+      const token = localCache.getCache(LOGIN_TOKEN)
+
+      // 确保当前已经login
+      if (token) {
+        // 使用缓存数据
+        this.token = token
+
+        // 根据缓存-复原路由
+        const routeMetas = initStaticRoutes()
+        this.routeMetas = routeMetas
       }
     }
   }
