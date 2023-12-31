@@ -37,7 +37,10 @@ const useloginStore = defineStore('login', {
         const routeMetas = initStaticRoutes()
         this.routeMetas = routeMetas
       } else {
-        ElMessage.error(res.message)
+        ElMessage({
+          message: res.message,
+          type: 'error'
+        })
       }
     },
 
