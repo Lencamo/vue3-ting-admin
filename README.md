@@ -1,6 +1,12 @@
-# vue3-ting-admin
+## API 文档
 
-This template should help get you started developing with Vue 3 in Vite.
+&emsp;&emsp;[【lencamo】- 权限管理系统 Api 文档](https://apifox.com/apidoc/shared-cd8438ef-e681-4993-87aa-35100d3e566e)
+
+## 博文解读
+
+&emsp;&emsp;[【lencamo】- RBAC 权限管理](https://ren-sir.cn/2023/11/13/tagsPost/RBAC-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/)
+
+&emsp;&emsp;[【lencamo】- 项目代码规范](https://ren-sir.cn/2023/10/03/%E5%BC%80%E5%8F%91%E5%87%86%E5%A4%87/%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/)
 
 ## 项目后期规划
 
@@ -55,4 +61,3 @@ nvm install && nvm use # 匹配并使用当前项目node版本
 - 页面跳转：
 
 > ---> App.vue ---> router --> views ---> pages
-
