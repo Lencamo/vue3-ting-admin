@@ -11,6 +11,7 @@ declare module 'vue' {
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -50,6 +51,7 @@ declare module 'vue' {
     PopoverConfirm: typeof import('./src/components/popover-confirm/popover-confirm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StrengthBar: typeof import('./src/components/pwd-strength/strength-bar.vue')['default']
     TagsView: typeof import('./src/components/tags-view/tags-view.vue')['default']
   }
 }
