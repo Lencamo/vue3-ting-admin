@@ -7,13 +7,11 @@
       ></departmentHeader>
     </div>
     <div class="list-table">
-      <div class="list-table">
-        <departmentBody
-          ref="listTableRef"
-          @add-click="handleAddClick"
-          @edit-click="handleEditClick"
-        ></departmentBody>
-      </div>
+      <departmentBody
+        ref="listTableRef"
+        @add-click="handleAddClick"
+        @edit-click="handleEditClick"
+      ></departmentBody>
     </div>
     <departmentDialog ref="departmentDialogRef"></departmentDialog>
   </div>
