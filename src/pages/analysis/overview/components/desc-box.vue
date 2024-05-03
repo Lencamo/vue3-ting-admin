@@ -1,7 +1,7 @@
 <template>
   <div class="desc-box">
     <el-descriptions class="margin-top" :title="title" :column="2" border>
-      <el-descriptions-item v-for="item in descArr" :key="item">
+      <el-descriptions-item v-for="(item, index) in descArr" :key="index">
         <template #label>
           <div class="cell-item">{{ item.label }}</div>
         </template>
@@ -22,7 +22,14 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(['title', 'descArr'])
+import type { IDescItem } from '@/types/main/analysis'
+
+interface Props {
+  title: string
+  descArr: IDescItem[]
+}
+
+const props = defineProps<Props>()
 </script>
 
 <style lang="scss" scoped>

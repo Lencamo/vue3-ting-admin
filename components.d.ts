@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CountUp: typeof import('./src/components/count-up/count-up.vue')['default']
+    CountupJs: typeof import('./src/components/count-up/countup-js.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -56,5 +58,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     StrengthBar: typeof import('./src/components/pwd-strength/strength-bar.vue')['default']
     TagsView: typeof import('./src/components/tags-view/tags-view.vue')['default']
+    UseTransition: typeof import('./src/components/count-up/use-transition.vue')['default']
   }
 }
