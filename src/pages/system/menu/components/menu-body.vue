@@ -4,9 +4,9 @@
       <h3>菜单列表</h3>
     </div>
     <div class="center-box">
-      <el-table :data="menuList" row-key="id" style="width: 100%">
-        <el-table-column prop="name" label="菜单名称" width="140" />
-        <el-table-column prop="icon" label="菜单图标" width="80">
+      <el-table :data="menuList" row-key="id" :expand-row-keys="expandKeys" style="width: 100%">
+        <el-table-column prop="name" label="菜单名称" min-width="140" />
+        <el-table-column prop="icon" label="菜单图标" min-width="80">
           <template #default="scope">
             <el-icon size="16" color="#323435">
               <component :is="scope.row.icon"></component>
@@ -14,15 +14,15 @@
           </template>
         </el-table-column>
         <!-- <el-table-column prop="type" label="层级" width="80" /> -->
-        <el-table-column prop="sort" label="相对位置" width="80" />
-        <el-table-column prop="url" label="组件路径" width="210" />
-        <el-table-column prop="permission" label="权限" width="210" />
-        <el-table-column prop="createAt" label="创建时间" width="180">
+        <el-table-column prop="sort" label="相对位置" min-width="80" />
+        <el-table-column prop="url" label="组件路径" min-width="210" />
+        <el-table-column prop="permission" label="权限" min-width="210" />
+        <el-table-column prop="createAt" label="创建时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.createAt) }}
           </template>
         </el-table-column>
-        <el-table-column prop="updateAt" label="更新时间" width="180">
+        <el-table-column prop="updateAt" label="更新时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.updateAt) }}
           </template>
@@ -44,6 +44,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
@@ -65,6 +66,13 @@ defineExpose({ getCurrentMenuList })
 
 // 初次进入页面时
 getCurrentMenuList()
+
+// 设置table默认展开一级行
+const expandKeys = computed(() => {
+  return menuList.value.map((item: any) => {
+    return item.id + ''
+  })
+})
 
 const emit = defineEmits(['editClick'])
 

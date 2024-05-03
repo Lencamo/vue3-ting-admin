@@ -12,7 +12,7 @@
           <el-input v-model="dialogData.name" />
         </el-form-item>
         <el-form-item label="菜单图标">
-          <el-select v-model="dialogData.icon" placeholder="请选择菜单图标">
+          <el-select v-model="dialogData.icon" placeholder="请选择菜单图标" clearable>
             <template v-for="item in elementIcons" :key="item">
               <el-option :label="item" :value="item">
                 <el-icon size="16" color="#323435">

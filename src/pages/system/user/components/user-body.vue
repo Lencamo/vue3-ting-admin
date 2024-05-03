@@ -16,23 +16,23 @@
     <div class="center-box">
       <el-table :data="userList" style="width: 100%" border>
         <el-table-column type="selection" />
-        <el-table-column type="index" label="序号" width="60" />
-        <el-table-column prop="name" label="用户名" width="120" />
-        <el-table-column prop="realname" label="真实姓名" width="120" />
-        <el-table-column prop="cellphone" label="手机号码" width="120" />
-        <el-table-column prop="enable" label="状态" width="80">
+        <el-table-column type="index" label="序号" min-width="60" />
+        <el-table-column prop="name" label="用户名" min-width="120" />
+        <el-table-column prop="realname" label="真实姓名" min-width="120" />
+        <el-table-column prop="cellphone" label="手机号码" min-width="120" />
+        <el-table-column prop="enable" label="状态" min-width="80">
           <template #default="scope">
             <el-button :type="scope.row.enable ? 'success' : 'info'" plain size="small">
               {{ scope.row.enable ? '开启' : '禁用' }}
             </el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="createAt" label="创建时间" width="180">
+        <el-table-column prop="createAt" label="创建时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.createAt) }}
           </template>
         </el-table-column>
-        <el-table-column prop="updateAt" label="更新时间" width="180">
+        <el-table-column prop="updateAt" label="更新时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.updateAt) }}
           </template>

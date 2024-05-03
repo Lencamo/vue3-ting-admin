@@ -10,13 +10,7 @@
 <script setup lang="ts">
 import aboutBox from './components/about-box.vue'
 import descBox from './components/desc-box.vue'
-
-interface IDescItem {
-  label: string
-  value: string
-  linkUrl?: string
-  isTag?: boolean
-}
+import type { IDescItem } from '@/types/main/analysis'
 
 // package.json文件信息
 const { pkg, lastBuildTime } = __APP_INFO__

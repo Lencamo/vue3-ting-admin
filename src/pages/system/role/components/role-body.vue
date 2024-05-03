@@ -16,11 +16,11 @@
     <div class="center-box">
       <el-table :data="roleList" style="width: 100%" border>
         <el-table-column type="selection" />
-        <el-table-column type="index" label="序号" width="60" />
-        <el-table-column prop="name" label="角色名称" width="140" />
-        <el-table-column prop="intro" label="角色描述" width="120">
+        <el-table-column type="index" label="序号" min-width="60" />
+        <el-table-column prop="name" label="角色名称" min-width="140" />
+        <el-table-column prop="intro" label="角色描述" min-width="120">
           <template #default="scope">
-            <el-popover effect="light" trigger="hover" placement="top" width="200px">
+            <el-popover effect="light" trigger="hover" placement="top" min-width="200px">
               <template #default>
                 <div>简介：{{ scope.row.intro }}</div>
               </template>
@@ -30,12 +30,12 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column prop="createAt" label="创建时间" width="180">
+        <el-table-column prop="createAt" label="创建时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.createAt) }}
           </template>
         </el-table-column>
-        <el-table-column prop="updateAt" label="更新时间" width="180">
+        <el-table-column prop="updateAt" label="更新时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.updateAt) }}
           </template>

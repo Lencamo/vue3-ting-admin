@@ -33,7 +33,7 @@
           />
         </el-form-item>
         <el-form-item label="选择角色">
-          <el-select v-model="dialogData.roleId" placeholder="请选择角色">
+          <el-select v-model="dialogData.roleId" placeholder="请选择角色" clearable>
             <template v-for="role in globalRoleList" :key="role.id">
               <el-option :label="role.name" :value="role.id" />
             </template>
@@ -41,6 +41,7 @@
         </el-form-item>
         <el-form-item label="选择部门">
           <el-tree-select
+            clearable
             placeholder="请选择部门"
             v-model="dialogData.departmentId"
             :data="globalDepartmentList"

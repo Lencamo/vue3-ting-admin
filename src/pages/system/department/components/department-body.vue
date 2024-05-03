@@ -13,23 +13,28 @@
       </span>
     </div>
     <div class="center-box">
-      <el-table :data="departmentList" row-key="id" default-expand-all style="width: 100%">
-        <el-table-column prop="name" label="部门名称" width="140" />
-        <el-table-column prop="leader" label="部门领导" width="110" />
+      <el-table
+        :data="departmentList"
+        row-key="id"
+        :expand-row-keys="expandKeys"
+        style="width: 100%"
+      >
+        <el-table-column prop="name" label="部门名称" min-width="140" />
+        <el-table-column prop="leader" label="部门领导" min-width="110" />
         <!-- <el-table-column prop="parentId" label="上级部门" width="90" /> -->
-        <el-table-column prop="enable" label="状态" width="80">
+        <el-table-column prop="enable" label="状态" min-width="80">
           <template #default="scope">
             <el-button :type="scope.row.enable ? 'success' : 'info'" plain size="small">
               {{ scope.row.enable ? '开启' : '禁用' }}
             </el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="createAt" label="创建时间" width="180">
+        <el-table-column prop="createAt" label="创建时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.createAt) }}
           </template>
         </el-table-column>
-        <el-table-column prop="updateAt" label="更新时间" width="180">
+        <el-table-column prop="updateAt" label="更新时间" min-width="180">
           <template #default="scope">
             {{ utcFormatUtil(scope.row.updateAt) }}
           </template>
@@ -65,6 +70,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
@@ -86,6 +92,13 @@ defineExpose({ getCurrentDepartmentList })
 
 // 初次进入页面时
 getCurrentDepartmentList()
+
+// 设置table默认展开一级行
+const expandKeys = computed(() => {
+  return departmentList.value.map((item: any) => {
+    return item.id + ''
+  })
+})
 
 // 部门删除按钮
 const handleDelectBtn = (departmentId: number) => {

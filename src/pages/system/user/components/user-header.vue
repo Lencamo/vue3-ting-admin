@@ -19,7 +19,7 @@
         </el-col>
         <el-col :sm="12" :md="8" :lg="6">
           <el-form-item label="状态" prop="enable">
-            <el-select placeholder="请选择状态" v-model="searchForm.enable">
+            <el-select placeholder="请选择状态" v-model="searchForm.enable" clearable>
               <el-option label="启用" :value="1" />
               <el-option label="禁用" :value="0" />
             </el-select>
@@ -38,6 +38,7 @@
         <el-col :sm="12" :md="8" :lg="6">
           <el-form-item label="部门归属" prop="departmentId">
             <el-tree-select
+              clearable
               placeholder="请选择用户所属部门"
               v-model="searchForm.departmentId"
               :data="globalDepartmentList"
@@ -48,7 +49,7 @@
         </el-col>
         <el-col :sm="12" :md="8" :lg="6">
           <el-form-item label="用户角色" prop="roleId">
-            <el-select placeholder="请选择用户的角色" v-model="searchForm.roleId">
+            <el-select placeholder="请选择用户的角色" v-model="searchForm.roleId" clearable>
               <template v-for="department in globalRoleList" :key="department.id">
                 <el-option :label="department.name" :value="department.id" />
               </template>

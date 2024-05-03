@@ -31,6 +31,7 @@
         </el-form-item>
         <el-form-item label="上级部门">
           <el-tree-select
+            clearable
             placeholder="请选择部门"
             v-model="dialogData.parentId"
             :data="globalDepartmentList"
