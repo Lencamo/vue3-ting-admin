@@ -18,7 +18,7 @@
       <el-dropdown>
         <div class="drop">
           <img src="@/assets/imgs/default.png" alt="" />
-          <span>admin &ensp;</span>
+          <span>Ting Admin &ensp;</span>
           <el-icon><arrow-down /></el-icon>
         </div>
         <template #dropdown>

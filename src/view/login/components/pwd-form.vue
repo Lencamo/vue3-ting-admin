@@ -23,8 +23,8 @@ const loginStore = useloginStore()
 const router = useRouter()
 
 const pwdForm = reactive({
-  user: localCache.getCache(CACHE_USER)?.username ?? '',
-  pwd: localCache.getCache(CACHE_USER)?.password ?? ''
+  user: localCache.getCache(CACHE_USER)?.username ?? 'admin',
+  pwd: localCache.getCache(CACHE_USER)?.password ?? 'vue3-ting-admin'
 })
 
 // 表单校验
@@ -40,7 +40,7 @@ const formRules = reactive<FormRules>({
       message: '密码需要由数字和英文字母组成',
       trigger: 'blur'
     },
-    { min: 6, max: 12, message: '密码长度范围为：6-12', trigger: 'change' }
+    { min: 6, max: 20, message: '密码长度范围为：6-20', trigger: 'change' }
   ]
 })
 

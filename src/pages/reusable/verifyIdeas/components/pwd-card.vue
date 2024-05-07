@@ -1,12 +1,18 @@
 <template>
-  <div class="password">
+  <div class="pwd-card">
     <el-card class="box-card" shadow="hover">
       <template #header>
         <div class="top-box">
-          <h3>修改密码</h3>
+          <h3>密码修改</h3>
         </div>
       </template>
       <div class="core-box">
+        <p>
+          <el-text tag="b">1、拥有比较完善的密码校验</el-text>
+        </p>
+        <p>
+          <el-text tag="b">2、附加了密码强度验证进度条</el-text>
+        </p>
         <el-form
           ref="pwdFormRef"
           :model="pwdForm"
@@ -129,7 +135,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <style lang="scss" scoped>
-.password {
+.pwd-card {
   /* padding: 18px; */
 
   .core-box {

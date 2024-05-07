@@ -1,6 +1,6 @@
 <template>
-  <div class="tags-view">
-    <h2>tags-view</h2>
+  <div class="key-value">
+    <h2>key-value</h2>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 </script>
 
 <style lang="scss" scoped>
-.tags-view {
+.key-value {
   //
 }
 </style>

@@ -8,7 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CountUp: typeof import('./src/components/count-up/count-up.vue')['default']
-    CountupJs: typeof import('./src/components/count-up/countup-js.vue')['default']
+    CountupJs: typeof import('./src/components/data-comp/count/countup-js.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -52,12 +52,14 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
-    FileUpload: typeof import('./src/components/file-upload/file-upload.vue')['default']
+    FileUpload: typeof import('./src/components/form-comp/upload/file-upload.vue')['default']
+    KeyValue: typeof import('./src/components/form-comp/input/key-value.vue')['default']
+    MsgBox: typeof import('./src/components/layout-tool/msg-box/msg-box.vue')['default']
     PopoverConfirm: typeof import('./src/components/popover-confirm/popover-confirm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    StrengthBar: typeof import('./src/components/pwd-strength/strength-bar.vue')['default']
-    TagsView: typeof import('./src/components/tags-view/tags-view.vue')['default']
-    UseTransition: typeof import('./src/components/count-up/use-transition.vue')['default']
+    StrengthBar: typeof import('./src/components/verify-comp/pwd-strength/strength-bar.vue')['default']
+    TagsView: typeof import('./src/components/layout-tool/tags-view/tags-view.vue')['default']
+    UseTransition: typeof import('./src/components/data-comp/count/use-transition.vue')['default']
   }
 }

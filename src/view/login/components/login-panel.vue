@@ -52,7 +52,7 @@ const handleLoginBtn = () => {
 
 <style lang="scss" scoped>
 .login-panel {
-  width: 300px;
+  width: 400px;
 
   display: flex;
   flex-direction: column;
