@@ -1,5 +1,5 @@
 <template>
-  <div class="others">
+  <div class="data-show">
     <el-card class="box-card" shadow="hover">
       <template #header>
         <div class="top-box">
@@ -24,7 +24,7 @@ const jsonData = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.others {
+.data-show {
   //
 }
 </style>

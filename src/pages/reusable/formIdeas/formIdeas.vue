@@ -2,18 +2,18 @@
   <div class="formIdeas">
     <el-row :gutter="20">
       <el-col :span="16">
-        <inputCard @check-data="handleCheck"></inputCard>
+        <formCard @check-data="handleCheck"></formCard>
       </el-col>
       <el-col :span="8">
-        <others :checkData="checkData"></others>
+        <dataShow :checkData="checkData"></dataShow>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script setup lang="ts">
-import inputCard from './components/input-card.vue'
-import others from './components/others.vue'
+import formCard from './components/form-card.vue'
+import dataShow from './components/data-show.vue'
 
 import { ref } from 'vue'
 

@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AreaCascader: typeof import('./src/components/form-comp/cascader/area-cascader/area-cascader.vue')['default']
+    AreaSelect: typeof import('./src/components/form-comp/cascader/area-cascader/area-select.vue')['default']
     CountUp: typeof import('./src/components/count-up/count-up.vue')['default']
     CountupJs: typeof import('./src/components/data-comp/count/countup-js.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
@@ -15,6 +17,7 @@ declare module 'vue' {
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElCascader: typeof import('element-plus/es')['ElCascader']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']

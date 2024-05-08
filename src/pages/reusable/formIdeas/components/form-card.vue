@@ -1,5 +1,5 @@
 <template>
-  <div class="input-card">
+  <div class="form-card">
     <el-card class="box-card" shadow="hover">
       <template #header>
         <div class="top-box">
@@ -10,6 +10,12 @@
         <el-form :model="formDate">
           <el-form-item label="扩展属性">
             <key-value v-model:value="formDate.extraAttr" :del-limit="0"></key-value>
+          </el-form-item>
+          <el-form-item label="所属地区">
+            <area-cascader
+              v-model:value="formDate.regionData"
+              type-use="pcaValueCode"
+            ></area-cascader>
           </el-form-item>
         </el-form>
       </div>
@@ -27,7 +33,8 @@ const formDate = reactive({
       attrKey: '像素',
       attrValue: '4000万'
     }
-  ]
+  ],
+  regionData: ['51', '5101', '510107']
 })
 
 // ========
@@ -45,7 +52,7 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.input-card {
+.form-card {
   margin-bottom: 18px;
 
   .core-box {
