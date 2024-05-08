@@ -40,4 +40,3 @@ const props = defineProps<Props>()
   margin-top: 20px;
 }
 </style>
-@/pages/analysis/analysis

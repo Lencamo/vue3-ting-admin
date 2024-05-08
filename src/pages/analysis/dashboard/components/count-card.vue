@@ -69,4 +69,3 @@ const props = defineProps<ICountCard>()
   }
 }
 </style>
-@/pages/analysis/analysis

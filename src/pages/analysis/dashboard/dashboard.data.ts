@@ -1,4 +1,4 @@
-import type { ICountCard } from '@/pages/analysis/analysis'
+import type { ICountCard } from './dashboard'
 
 export const countCartList: ICountCard[] = [
   {
