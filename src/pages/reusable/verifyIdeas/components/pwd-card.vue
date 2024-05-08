@@ -149,6 +149,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
     .el-form {
       width: 280px;
+      width: 80%;
       padding: 15px 20px 0px;
       border: 1px solid #e4e7ed;
 
