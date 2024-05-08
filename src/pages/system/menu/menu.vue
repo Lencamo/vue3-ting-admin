@@ -22,7 +22,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 import { ref } from 'vue'
-import type { IMenuList } from '@/types/main/system'
+import type { IMenuList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof menuBody>>()
 const menuDialogRef = ref<InstanceType<typeof menuDialog>>()
@@ -52,3 +52,4 @@ const handleEditClick = (payload: IMenuList) => {
   //
 }
 </style>
+@/types/system

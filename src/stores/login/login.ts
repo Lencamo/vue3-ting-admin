@@ -6,7 +6,7 @@ import {
   getUserRoleMenuApi
 } from '../../services/modules/login/login.ts'
 
-import type { IAccount } from '@/types/login/login.ts'
+import type { IAccount } from '@/types/login.js'
 import { localCache } from '@/utils/cache.ts'
 import {
   LOGIN_TOKEN,

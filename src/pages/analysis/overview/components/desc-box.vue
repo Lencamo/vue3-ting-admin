@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IDescItem } from '@/types/main/analysis'
+import type { IDescItem } from '../overview'
 
 interface Props {
   title: string
@@ -40,3 +40,4 @@ const props = defineProps<Props>()
   margin-top: 20px;
 }
 </style>
+@/pages/analysis/analysis

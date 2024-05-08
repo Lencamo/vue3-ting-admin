@@ -26,7 +26,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 import { ref } from 'vue'
-import type { IRoleList } from '@/types/main/system'
+import type { IRoleList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof roleBody>>()
 const roleDialogRef = ref<InstanceType<typeof roleDialog>>()
@@ -64,3 +64,4 @@ const handleEditClick = (payload: IRoleList) => {
   //
 }
 </style>
+@/types/system

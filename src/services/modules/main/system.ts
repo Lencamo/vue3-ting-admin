@@ -1,6 +1,6 @@
 import { tingRequest } from '@/services'
 
-import type { IUserListQuery, IUserOperate } from '@/types/main/system'
+import type { IUserListQuery, IUserOperate } from '@/types/system'
 
 // ===================
 // ==== 用户管理

@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import aboutBox from './components/about-box.vue'
 import descBox from './components/desc-box.vue'
-import type { IDescItem } from '@/types/main/analysis'
+import type { IDescItem } from './overview'
 
 // package.json文件信息
 const { pkg, lastBuildTime } = __APP_INFO__

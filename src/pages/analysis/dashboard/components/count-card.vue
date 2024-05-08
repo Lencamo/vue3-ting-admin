@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ICountCard } from '@/types/main/analysis'
+import type { ICountCard } from '../dashboard'
 
 const props = defineProps<ICountCard>()
 </script>
@@ -69,3 +69,4 @@ const props = defineProps<ICountCard>()
   }
 }
 </style>
+@/pages/analysis/analysis

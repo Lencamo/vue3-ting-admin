@@ -88,7 +88,7 @@ import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import { ref } from 'vue'
-import type { IQueryInfo, IRoleList } from '@/types/main/system'
+import type { IQueryInfo, IRoleList } from '@/types/system'
 
 // 权限操作控制
 import { useRoute } from 'vue-router'
@@ -177,3 +177,4 @@ systemStore.$onAction(({ name, after }) => {
   }
 }
 </style>
+@/types/system

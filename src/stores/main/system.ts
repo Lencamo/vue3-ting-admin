@@ -22,7 +22,7 @@ import type {
   IUserList,
   IUserListQuery,
   IUserOperate
-} from '@/types/main/system'
+} from '@/types/system'
 import { generateListToTree } from '@/utils/generateTree'
 import useMainStore from './entires/main'
 

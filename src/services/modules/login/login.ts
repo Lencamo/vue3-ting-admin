@@ -1,6 +1,6 @@
 import { tingRequest } from '../../index.ts'
 
-import type { IAccount } from '@/types/login/login.ts'
+import type { IAccount } from '@/types/login.js'
 
 export function getCodeSvgApi() {
   return tingRequest.get({

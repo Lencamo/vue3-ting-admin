@@ -24,7 +24,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 import { ref } from 'vue'
-import type { IQueryInfo, IUserList } from '@/types/main/system'
+import type { IQueryInfo, IUserList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof userBody>>()
 const userDialogRef = ref<InstanceType<typeof userDialog>>()
@@ -62,3 +62,4 @@ const handleEditClick = (payload: IUserList) => {
   //
 }
 </style>
+@/types/system

@@ -48,7 +48,7 @@ import { computed } from 'vue'
 import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
-import type { IMenuList } from '@/types/main/system'
+import type { IMenuList } from '@/types/system'
 
 // 权限操作控制
 import { useRoute } from 'vue-router'
@@ -100,3 +100,4 @@ const handleEditBtn = (menu: IMenuList) => {
   }
 }
 </style>
+@/types/system

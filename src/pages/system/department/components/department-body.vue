@@ -74,7 +74,7 @@ import { computed } from 'vue'
 import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
-import type { IDepartmentList } from '@/types/main/system'
+import type { IDepartmentList } from '@/types/system'
 
 // 权限操作控制
 import { useRoute } from 'vue-router'
@@ -136,3 +136,4 @@ const handleEditBtn = (department: IDepartmentList) => {
   }
 }
 </style>
+@/types/system

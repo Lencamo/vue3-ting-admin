@@ -27,7 +27,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 import { ref } from 'vue'
-import type { IDepartmentList } from '@/types/main/system'
+import type { IDepartmentList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof departmentBody>>()
 const departmentDialogRef = ref<InstanceType<typeof departmentDialog>>()
@@ -66,3 +66,4 @@ const handleEditClick = (payload: IDepartmentList) => {
   //
 }
 </style>
+@/types/system
