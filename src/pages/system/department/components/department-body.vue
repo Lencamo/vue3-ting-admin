@@ -136,4 +136,3 @@ const handleEditBtn = (department: IDepartmentList) => {
   }
 }
 </style>
-@/types/system

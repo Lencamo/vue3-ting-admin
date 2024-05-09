@@ -16,6 +16,7 @@
     "china-division": "^2.7.0",
     "countup.js": "^2.8.0",
     "dayjs": "^1.11.10",
+    "echarts": "^5.5.0",
     "element-plus": "^2.4.1",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",

@@ -52,4 +52,3 @@ const handleEditClick = (payload: IMenuList) => {
   //
 }
 </style>
-@/types/system

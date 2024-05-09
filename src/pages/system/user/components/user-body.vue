@@ -174,4 +174,3 @@ systemStore.$onAction(({ name, after }) => {
   }
 }
 </style>
-@/types/system

@@ -62,4 +62,3 @@ const handleEditClick = (payload: IUserList) => {
   //
 }
 </style>
-@/types/system

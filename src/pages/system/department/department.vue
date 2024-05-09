@@ -66,4 +66,3 @@ const handleEditClick = (payload: IDepartmentList) => {
   //
 }
 </style>
-@/types/system

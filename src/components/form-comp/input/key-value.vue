@@ -18,7 +18,7 @@
       </el-button>
     </div>
     <div>
-      <el-button style="width: 40%" @click="addItem">
+      <el-button style="width: 40%; border: 1px dashed var(--el-border-color)" @click="addItem">
         <el-icon><Plus /></el-icon>
         <el-text>新增</el-text>
       </el-button>

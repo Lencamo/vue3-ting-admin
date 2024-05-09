@@ -64,4 +64,3 @@ const handleEditClick = (payload: IRoleList) => {
   //
 }
 </style>
-@/types/system

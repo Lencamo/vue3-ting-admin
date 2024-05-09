@@ -1,6 +1,6 @@
 import type { ICountCard } from './dashboard'
 
-export const countCartList: ICountCard[] = [
+export const countCardList: ICountCard[] = [
   {
     name: 'visit',
     title: '访问数',
@@ -34,3 +34,66 @@ export const countCartList: ICountCard[] = [
     color: '#00cae9'
   }
 ]
+
+// const { xAxis, legend, series } = res.data;
+export const lineOptions = {
+  title: {
+    text: '油耗（L/100km）'
+  },
+  legend: {
+    data: ['川A666666', '川E123456']
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  dataZoom: [
+    {
+      type: 'inside', // 缩放的🚩类型  slide代表滑块  inside代表依靠鼠标滚轮
+      xAxisIndex: 0
+    }
+  ],
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    boundaryGap: false,
+    data: [
+      '2024-01',
+      '2024-02',
+      '2024-03',
+      '2024-04',
+      '2024-05',
+      '2024-06',
+      '2024-07',
+      '2024-08',
+      '2024-09',
+      '2024-10',
+      '2024-11',
+      '2024-12'
+    ],
+    type: 'category'
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: [0, 0, 0, 7.14, 11.24, 12.17, 0, 0, 0, 0, 0, 0],
+      name: '川A666666',
+      type: 'line'
+    },
+    {
+      data: [0, 0, 0, 0, 9.62, 10.53, 8.32, 0, 0, 0, 0, 0],
+      name: '川E123456',
+      type: 'line'
+    }
+  ]
+}

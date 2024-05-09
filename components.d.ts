@@ -11,6 +11,7 @@ declare module 'vue' {
     AreaSelect: typeof import('./src/components/form-comp/cascader/area-cascader/area-select.vue')['default']
     CountUp: typeof import('./src/components/count-up/count-up.vue')['default']
     CountupJs: typeof import('./src/components/data-comp/count/countup-js.vue')['default']
+    EchartBase: typeof import('./src/components/data-comp/echart/echart-base.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
