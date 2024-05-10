@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vueuse/core": "^10.9.0",
     "axios": "^1.6.0",
     "china-division": "^2.7.0",
     "countup.js": "^2.8.0",

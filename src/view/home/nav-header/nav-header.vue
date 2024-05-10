@@ -15,6 +15,14 @@
       </div>
     </div>
     <div class="right">
+      <el-switch
+        v-model="isDark"
+        :active-icon="Moon"
+        :inactive-icon="Sunny"
+        style="--el-switch-on-color: #323233; --el-switch-off-color: #3f91fb"
+        inline-prompt
+        @change="toggleDark"
+      />
       <el-dropdown>
         <div class="drop">
           <img src="@/assets/imgs/default.png" alt="" />
@@ -36,6 +44,8 @@
 <script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue'
 import { ref, computed } from 'vue'
+import { useDark, useToggle } from '@vueuse/core'
+import { Moon, Sunny } from '@element-plus/icons-vue'
 
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 import { localCache } from '@/utils/cache'
@@ -75,6 +85,10 @@ const handleMenuIconClick = () => {
 
   emit('collapseChange', isCollapse.value)
 }
+
+// 亮色暗色主题切换
+const isDark = useDark()
+const toggleDark = () => useToggle(isDark)
 </script>
 
 <style lang="scss" scoped>
@@ -111,7 +125,7 @@ const handleMenuIconClick = () => {
         padding: 0px 10px;
 
         img {
-          height: 60%;
+          height: 50%;
           margin: 0px 10px 0px 0px;
         }
       }

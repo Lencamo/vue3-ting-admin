@@ -84,7 +84,7 @@ const handleEditBtn = (menu: IMenuList) => {
 
 <style lang="scss" scoped>
 .menu-body {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 18px;
 
   margin-top: 20px;

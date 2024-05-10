@@ -57,7 +57,7 @@ const handleLoginBtn = () => {
   display: flex;
   flex-direction: column;
 
-  background-color: #c2c7cc;
+  background-color: var(--homeAsideBgColor);
   padding: 20px;
 
   h2 {

@@ -34,7 +34,7 @@ const props = defineProps<Props>()
 
 <style lang="scss" scoped>
 .desc-box {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 18px;
 
   margin-top: 20px;

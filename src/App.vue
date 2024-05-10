@@ -15,6 +15,6 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 .app {
   width: 100vw;
   height: 100vh;
-  background-color: #e8eaed;
+  background-color: var(--appBgColor);
 }
 </style>

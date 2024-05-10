@@ -107,7 +107,7 @@ const conditionSearch = () => {
 
 <style lang="scss" scoped>
 .user-header {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 18px;
 
   .btn-box {

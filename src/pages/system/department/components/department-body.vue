@@ -120,7 +120,7 @@ const handleEditBtn = (department: IDepartmentList) => {
 
 <style lang="scss" scoped>
 .department-body {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 18px;
 
   margin-top: 20px;

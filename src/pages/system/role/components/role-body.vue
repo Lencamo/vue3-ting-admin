@@ -154,7 +154,7 @@ systemStore.$onAction(({ name, after }) => {
 
 <style lang="scss" scoped>
 .role-body {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 18px;
 
   margin-top: 20px;

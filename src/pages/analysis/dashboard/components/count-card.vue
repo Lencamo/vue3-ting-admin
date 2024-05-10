@@ -37,7 +37,7 @@ const props = defineProps<ICountCard>()
 
 <style lang="scss" scoped>
 .count-card {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 10px 18px;
   padding-bottom: 0px;
 

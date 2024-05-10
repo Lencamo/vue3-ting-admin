@@ -151,7 +151,7 @@ defineExpose({ phoneLoginAction })
       border: 1px solid #dcdfe6;
       margin: 0px 5px;
       text-align: center;
-      background-color: #c2c7cc;
+      background-color: var(--homeAsideBgColor);
 
       svg {
         width: 100%;

@@ -11,7 +11,7 @@
         <el-main>
           <main-container></main-container>
         </el-main>
-        <!-- <el-footer>Footer</el-footer> -->
+        <el-footer>Copyright ©2023-present vue3-ting-admin</el-footer>
       </el-container>
     </el-container>
   </div>
@@ -40,20 +40,26 @@ const handleCollapse = (payload: boolean) => {
     height: 100%;
 
     .el-header {
-      background-color: #cdd2d6;
+      background-color: var(--homeHeaderBgColor);
     }
     .el-aside {
-      background-color: #c2c7cc;
+      background-color: var(--homeAsideBgColor);
 
       transition: all 0.2s ease !important;
     }
 
     .el-main {
-      background-color: #f5f7fa;
+      background-color: var(--homeMainBgColor);
     }
 
     .el-footer {
-      background-color: #e5e6e9;
+      /* background-color: var(--homeFooterBgColor); */
+      background-color: var(--homeMainBgColor);
+      color: #acaeb2;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

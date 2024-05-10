@@ -12,7 +12,7 @@ const lineData = lineOptions as any
 
 <style lang="scss" scoped>
 .echart-line {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 18px;
 
   margin-top: 20px;

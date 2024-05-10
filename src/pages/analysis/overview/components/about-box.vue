@@ -26,7 +26,7 @@ const props = defineProps(['name'])
 
 <style lang="scss" scoped>
 .about-box {
-  background: #ffffff;
+  background: var(--mainBoxBgColor);
   padding: 18px;
 
   .center-box {
