@@ -9,6 +9,11 @@
 <script setup lang="ts">
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import { useDark, useToggle } from '@vueuse/core'
+
+// 亮色暗色主题切换
+const isDark = useDark()
+useToggle(isDark)
 </script>
 
 <style lang="scss" scoped>

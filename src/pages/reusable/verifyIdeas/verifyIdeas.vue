@@ -5,7 +5,7 @@
         <pwdCard></pwdCard>
       </el-col>
       <el-col :span="12">
-        <others></others>
+        <behaviorCard></behaviorCard>
       </el-col>
     </el-row>
   </div>
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import pwdCard from './components/pwd-card.vue'
-import others from './components/others.vue'
+import behaviorCard from './components/behavior-card.vue'
 //
 </script>
 

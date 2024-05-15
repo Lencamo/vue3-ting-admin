@@ -7,12 +7,6 @@
         </div>
       </template>
       <div class="core-box">
-        <p>
-          <el-text tag="b">1、拥有比较完善的密码校验</el-text>
-        </p>
-        <p>
-          <el-text tag="b">2、附加了密码强度验证进度条</el-text>
-        </p>
         <el-form
           ref="pwdFormRef"
           :model="pwdForm"
@@ -153,7 +147,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
       padding: 15px 20px 0px;
       border: 1px solid #e4e7ed;
 
-      margin: 20px 0px;
+      margin: 10px 0px;
 
       .btn-box :deep(.el-form-item__content) {
         justify-content: space-around;
