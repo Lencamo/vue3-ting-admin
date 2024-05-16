@@ -15,28 +15,22 @@
       </div>
     </div>
     <div class="right">
-      <el-switch
-        v-model="isDark"
-        :active-icon="Moon"
-        :inactive-icon="Sunny"
-        style="--el-switch-on-color: #323233; --el-switch-off-color: #3f91fb"
-        inline-prompt
-        @change="toggleDark"
-      />
-      <el-dropdown>
-        <div class="drop">
-          <img src="@/assets/imgs/default.png" alt="" />
-          <span>Ting Admin &ensp;</span>
-          <el-icon><arrow-down /></el-icon>
-        </div>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item divided>
-              <el-button type="primary" size="default" @click="handleLogoutBtn">退出系统</el-button>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <span><screen-full></screen-full></span>
+      <span><toggle-dark></toggle-dark></span>
+      <span>
+        <el-dropdown>
+          <div class="drop">
+            <img :src="avatars" alt="" />
+            <p>Ting Admin &ensp;</p>
+            <el-icon><arrow-down /></el-icon>
+          </div>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item divided @click="handleLogoutBtn"> 退出系统 </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </span>
     </div>
   </div>
 </template>
@@ -44,8 +38,7 @@
 <script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue'
 import { ref, computed } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
-import { Moon, Sunny } from '@element-plus/icons-vue'
+import avatars from '@/assets/imgs/default.png'
 
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 import { localCache } from '@/utils/cache'
@@ -85,13 +78,14 @@ const handleMenuIconClick = () => {
 
   emit('collapseChange', isCollapse.value)
 }
-
-// 亮色暗色主题切换
-const isDark = useDark()
-const toggleDark = () => useToggle(isDark)
 </script>
 
 <style lang="scss" scoped>
+/* drop下拉框border问题修复 */
+:focus-visible {
+  outline: none !important;
+}
+
 .nav-header {
   height: 100%;
   display: flex;
@@ -108,24 +102,23 @@ const toggleDark = () => useToggle(isDark)
   }
 
   .right {
-    cursor: pointer;
-  }
-
-  .right {
     display: flex;
     align-items: center;
     height: 100%;
 
-    .el-dropdown {
+    span {
+      display: flex;
+      align-items: center;
       height: 100%;
+      padding: 0px 10px;
+      cursor: pointer;
+
       .drop {
         display: flex;
         align-items: center;
-        height: 100%;
-        padding: 0px 10px;
 
         img {
-          height: 50%;
+          height: 25px;
           margin: 0px 10px 0px 0px;
         }
       }

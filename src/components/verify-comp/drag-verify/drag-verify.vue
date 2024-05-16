@@ -52,7 +52,7 @@ const props = defineProps({
   radius: { type: String, default: '5px' }
 })
 
-const emit = defineEmits(['update:value', 'drag-success'])
+const emit = defineEmits(['drag-success'])
 
 const dragBoxRef = ref()
 const progressItemRef = ref()
