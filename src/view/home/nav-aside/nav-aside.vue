@@ -1,7 +1,7 @@
 <template>
   <div class="nav-aside">
     <div class="logo">
-      <img src="@/assets/imgs/title.jpg" alt="" />
+      <img src="@/assets/imgs/vite.png" alt="" />
       <h3 class="title" v-if="!isCollapse">权限管理系统</h3>
     </div>
 
@@ -75,25 +75,18 @@ const handleMenuItemClick = (subItem: any) => {
 </script>
 
 <style lang="scss" scoped>
-/* .el-menu-item {
-  margin-left: 20px;
-} */
-
 .nav-aside {
   .logo {
     display: flex;
+    justify-content: center;
     height: 30px;
-    padding: 10px 0px 10px 15px;
+    padding: 10px 0px;
 
     background-color: #15181b;
     color: #ffffff;
 
-    img {
-      height: 100%;
-    }
-
     .title {
-      margin: 0px auto;
+      margin-left: 10px;
       line-height: 30px;
     }
   }

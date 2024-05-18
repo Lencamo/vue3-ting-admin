@@ -1,7 +1,7 @@
 <template>
   <div class="canvas-verify">
     <!-- canvas验证码 -->
-    <canvas id="canvas" :width="width" :height="height"></canvas>
+    <canvas id="canvas" :width="width" :height="height" @click="handleCanvasClick"></canvas>
   </div>
 </template>
 
@@ -52,6 +52,11 @@ const canvasStart = () => {
 
 // 初次渲染时执行
 canvasStart()
+
+// 点击canvas执行
+const handleCanvasClick = () => {
+  canvasStart()
+}
 
 // 父组件调用执行
 defineExpose({ canvasStart })
@@ -147,6 +152,7 @@ const drawCode = (selector, width, height, charNum = 5, lineNum = 5, dotNum = 40
 
 <style lang="scss" scoped>
 .canvas-verify {
-  //
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -17,7 +17,6 @@
       ></div>
       <!-- 3、文字 -->
       <div class="tip-item">
-        <!--  -->
         {{ dragStatus ? '验证通过' : '请按住滑块，拖动到最右侧' }}
       </div>
       <!-- 4、图标 -->
@@ -44,7 +43,7 @@ const props = defineProps({
   background: { type: String, default: '#eee' }, // 整体背景色
 
   // background配置
-  iconBoxBg: { type: String, default: '#7c58c9' }, // 图标盒子背景色
+  iconBoxBg: { type: String, default: '#409eff' }, // 图标盒子背景色
   progressBg: { type: String, default: '#76c61d' }, // 拖拽进度条背景色
 
   // border-radius配置
@@ -187,9 +186,9 @@ defineExpose({ dragReset })
     top: 0px;
     user-select: none;
 
-    /* color: transparent; */
+    color: #595b60;
     text-align: center;
-    font-size: 12px;
+    font-size: inherit;
     width: 100%;
   }
 }

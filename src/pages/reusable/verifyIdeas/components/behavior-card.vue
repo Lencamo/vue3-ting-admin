@@ -35,16 +35,10 @@
             </el-input>
           </el-form-item>
           <el-form-item label="canvas验证码">
-            <el-input
-              v-model="formDate.authCode"
-              @change="handleChangeValidate"
-              placeholder="请输入验证码"
-              size="large"
-            >
+            <el-input v-model="formDate.authCode" placeholder="请输入验证码" size="large">
               <template #append>
                 <el-button
                   type="primary"
-                  @click="chanegCanvasClick"
                   style="width: 100px; height: 40px; padding: 0px; border: none; overflow: hidden"
                 >
                   <canvas-verify
@@ -113,6 +107,16 @@ const btnValue = ref('获取验证码')
 const countdown = ref(60)
 const isBtnDisable = ref(true)
 
+const handleChangeValidate = () => {
+  formRef.value?.validateField('authValue', (valid: boolean) => {
+    if (valid && countdown.value === 60) {
+      isBtnDisable.value = false
+    } else {
+      isBtnDisable.value = true
+    }
+  })
+}
+
 const handleSendClick = () => {
   isBtnDisable.value = true
 
@@ -134,26 +138,11 @@ const handleSendClick = () => {
   const timer = setInterval(countdownAction, 1000)
 }
 
-const handleChangeValidate = () => {
-  console.log('handleChangeValidate')
-  formRef.value?.validateField('authValue', (valid: boolean) => {
-    if (valid && countdown.value === 60) {
-      isBtnDisable.value = false
-    } else {
-      isBtnDisable.value = true
-    }
-  })
-}
-
 // ====================
 // canvas验证码
 // ====================
 
 const canvasRef = ref()
-
-const chanegCanvasClick = () => {
-  canvasRef.value?.canvasStart()
-}
 
 const handleVerifyCode = (code: string) => {
   formDate.authCode = code
@@ -202,7 +191,6 @@ const onSuccess = () => {
 
 <style lang="scss" scoped>
 /* TODO: validateIcon位置不正确bug修复 */
-
 :deep(.el-input__validateIcon) {
   display: none;
 }

@@ -1,28 +1,38 @@
 <template>
   <div class="phone-form">
-    <el-form :model="phoneForm" :rules="formRules" ref="phoneFormRef" label-width="70px">
-      <el-form-item label="手机号" prop="phone">
-        <el-input v-model="phoneForm.phone" />
+    <el-form :model="formData" :rules="formRules" ref="formDataRef">
+      <el-form-item prop="phone">
+        <el-input
+          :prefix-icon="Iphone"
+          placeholder="手机号"
+          v-model="formData.phone"
+          size="large"
+          @change="handleChangeValidate"
+        />
       </el-form-item>
-      <el-form-item label="验证码" prop="codeSvg">
-        <div class="codeBox">
-          <el-input v-model="phoneForm.codeSvg" />
-          <div class="code" ref="svgParentRef" @click="getsvgPic"></div>
-        </div>
+      <el-form-item>
+        <drag-verify :height="40" ref="dragRef" @drag-success="passcallback"></drag-verify>
       </el-form-item>
-      <el-form-item label="短信码" prop="codeSMS">
-        <div class="codeBox">
-          <el-input v-model="phoneForm.codeSMS">
-            <template #append>
-              <el-button
-                type="primary"
-                size="small"
-                :disabled="isBtnDisable"
-                @click="handleSendSMS"
-                >{{ btnValue }}</el-button
-              >
-            </template>
-          </el-input>
+      <el-form-item prop="code">
+        <el-input placeholder="请输入验证码(1234)" v-model="formData.code" size="large">
+          <template #append>
+            <el-button
+              type="primary"
+              :disabled="isBtnDisable"
+              :style="{ color: isBtnDisable ? '#9ea1a8' : '#3f91fb' }"
+              @click="handleSendClick"
+              style="width: 100px; font-weight: normal"
+            >
+              {{ btnValue }}
+            </el-button>
+          </template>
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        <div class="check">
+          <el-checkbox label="我已阅读并同意" size="large" />
+          <el-link type="primary">《用户协议》</el-link>
+          <el-link type="primary">《隐私政策》</el-link>
         </div>
       </el-form-item>
     </el-form>
@@ -30,104 +40,122 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue'
+import { Iphone } from '@element-plus/icons-vue'
+import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
+import useloginStore from '@/stores/login/login.ts'
+import { useRouter } from 'vue-router'
 
-const phoneForm = reactive({
-  phone: '',
-  codeSvg: '',
-  codeSMS: ''
-})
+const loginStore = useloginStore()
+const router = useRouter()
 
-const svgParentRef = ref() // 验证码svg的父盒子
-const svgValue = ref() // 验证码值
+// ======== 拖拽验证 =========
 
-onMounted(() => {
-  getsvgPic()
-})
+const dragRef = ref()
+const isPass = ref(false)
 
-// 获取验证码svg
-const getsvgPic = () => {
-  //
-  // TODO: 获取验证码svg ==> 后端可以使用 svg-svgPic 包
+const passcallback = (value) => {
+  // alert('验证结果：', value)
+  isPass.value = value
 
-  svgValue.value = 'cvoq'
-  svgParentRef.value.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="75" height="32" viewBox="0,0,150,50"><path fill="#444" d="M92.78 21.54L92.65 21.41L92.70 21.46Q91.01 20.07 89.38 19.69L89.47 19.78L89.44 19.75Q88.44 19.60 85.66 19.56L85.53 19.42L85.58 19.48Q80.38 19.41 78.32 21.43L78.40 21.51L78.42 21.52Q76.80 23.11 76.91 26.80L76.77 26.65L76.73 26.62Q76.88 30.42 77.03 31.37L77.01 31.35L77.06 31.40Q78.11 37.47 85.84 37.47L85.79 37.43L85.89 37.52Q90.58 37.54 92.67 35.14L92.68 35.14L92.67 35.13Q94.63 33.02 94.86 28.26L94.89 28.30L94.80 28.20Q94.97 23.31 92.65 21.41ZM85.85 40.50L85.78 40.43L85.87 40.52Q79.29 40.60 76.32 38.24L76.43 38.34L76.35 38.27Q74.31 36.15 74.19 31.08L74.18 31.07L74.19 31.08Q74.22 30.62 74.07 27.34L74.03 27.30L73.94 27.22Q73.91 24.71 73.95 23.64L73.88 23.58L73.81 23.51Q73.91 20.60 75.32 18.89L75.38 18.94L75.43 18.99Q77.93 16.67 82.81 16.51L82.76 16.47L82.89 16.60Q84.56 16.44 85.44 16.48L85.47 16.51L85.40 16.44Q95.39 16.57 97.14 20.91L97.25 21.02L97.32 21.09Q98.04 23.03 97.88 25.77L97.79 25.67L97.91 25.79Q97.85 27.44 97.66 30.72L97.59 30.64L97.72 30.78Q97.45 33.51 96.53 35.57L96.51 35.55L96.63 35.67Q94.45 40.26 85.80 40.45ZM98.26 40.53L98.17 40.45L98.30 40.57Q99.65 38.76 99.77 35.68L99.72 35.64L99.65 35.56Q99.84 34.65 99.80 33.05L99.67 32.92L99.75 33.00Q99.78
-32.30 99.74 30.47L99.75 30.49L99.58 30.32Q99.56 23.21 97.62 20.74L97.67 20.79L97.58 20.71Q97.27 19.78 96.16 18.68L96.24 18.76L96.08 18.59Q92.90 16.21 85.44 16.06L85.36 15.98L85.53 16.15Q78.11 16.01 75.07 18.60L75.06 18.58L74.97 18.50Q73.53 20.37 73.53 23.30L73.54 23.31L73.60
-23.37Q73.49 24.56 73.64 25.89L73.75 25.99L73.58 25.82Q73.60 26.91 73.64 28.36L73.76 28.48L73.72 28.44Q73.78 32.31 73.93 33.49L74.09 33.64L73.92 33.47Q74.47 36.58 75.80 38.37L75.63 38.19L75.75 38.31Q76.15 39.55 77.21 40.31L77.21 40.31L77.20 40.30Q80.52 42.71 88.29 42.90L88.26
-42.87L88.27 42.87Q95.46 42.95 98.13 40.40ZM94.60 28.27L94.50 28.17L94.53 28.20Q94.21 32.64 92.30 34.73L92.37 34.79L92.33 34.76Q90.24 37.01 85.79 37.04L85.90 37.16L85.92 37.18Q81.64 37.27 79.51 35.37L79.42 35.29L79.45 35.31Q78.70 33.65 78.77 30.75L78.75 30.73L78.71 30.69Q78.90 26.16 80.91 23.99L80.91 23.98L80.84 23.92Q82.93 21.81 87.54 21.81L87.40 21.68L87.58 21.86Q91.77 21.86 93.87 23.73L93.68 23.54L93.82 23.68Q94.57 25.35 94.46 28.13Z"/><path fill="#222"
-d="M56.40 41.08L56.25 40.94L56.38 41.06Q52.22 29.82 47.08 24.84L47.02 24.77L46.99 24.74Q48.50 25.41 51.47 26.06L51.43 26.02L51.42 26.01Q55.07 30.04 57.62 36.70L57.48 36.56L57.59 36.67Q60.29 29.36 62.91 26.31L62.84 26.24L62.83 26.23Q64.81 26.12 67.25 25.43L67.11 25.30L67.27 25.46Q63.95 28.03 61.78 32.60L61.83 32.65L61.96 32.78Q61.51 33.37 58.12 40.98L58.23 41.08L58.13 40.98Q57.51 41.05 56.29 40.97ZM61.00 43.47L61.01 43.49L60.95 43.42Q64.22 31.04 68.78 26.36L68.88 26.46L67.36 26.91L67.44 27.00Q66.55 27.14 65.72 27.25L65.80 27.34L65.76 27.29Q66.20 26.86 67.01 25.98L67.00 25.97L66.95 25.92Q67.86 25.14 68.32 24.72L68.24 24.64L68.39 24.78Q66.15 25.40 62.72 25.90L62.59 25.77L62.76 25.93Q60.06 29.13 58.00 34.73L57.85 34.57L57.85 34.58Q56.31 30.48 54.48 28.01L54.41 27.94L53.92 27.98L53.87 27.93Q53.63 27.96 53.40 27.96L53.42 27.97L53.31 27.87Q53.27 27.72 51.56 25.66L51.57 25.67L51.44 25.54Q48.15 25.11 45.91 23.97L45.96 24.02L45.89 23.94Q51.99 29.63 55.98 41.35L56.10 41.47L57.00 41.38L57.00 41.38Q57.47 42.15 58.31 43.45L58.25 43.39L59.65 43.42L59.50 43.27Q60.32 43.37 60.97 43.44Z"/><path fill="#222" d="M114.76 29.81L114.83 29.88L114.90 29.96Q114.58 29.86 114.28 29.86L114.33 29.91L114.31 29.89Q112.99 29.91 111.54 30.74L111.40 30.61L111.49 30.70Q110.13 31.77 110.13 33.67L110.06 33.60L110.14 33.68Q110.09 37.06 111.62 38.39L111.57 38.35L111.65 38.42Q112.58 39.58 114.86 39.58L114.89 39.61L114.82 39.54Q115.23 39.73 115.54 39.73L115.41 39.60L115.53 39.71Q117.20 39.68 118.34 38.04L118.33 38.02L118.36 38.06Q119.40 36.54 119.32 34.75L119.29 34.72L119.31 34.74Q119.27 34.17 119.27 33.75L119.44 33.92L119.38 33.86Q119.41 32.10 118.04 30.94L117.91 30.81L118.08 30.98Q116.59 29.70 114.80 29.85ZM119.24 39.97L119.25 39.98L119.40 40.12Q118.31 41.97
-114.58 42.08L114.61 42.11L114.52 42.02Q111.11 42.12 109.52 40.52L109.66 40.66L109.52 40.52Q108.17 38.87 107.37 34.07L107.25 33.95L107.41 34.11Q106.93 32.18 106.93 30.92L106.96 30.95L107.08 31.07Q106.98 29.18 107.70 28.12L107.67 28.09L107.70 28.12Q109.21 26.89 112.18 26.89L111.99 26.70L112.08 26.78Q118.34 26.73 120.24 29.32L120.21 29.29L120.29 29.36Q120.51 28.59 120.93 26.99L120.92 26.99L120.89 26.95Q122.23 26.74 124.67 25.94L124.54 25.81L124.56 25.83Q122.15 31.50 121.93 37.81L121.88 37.77L121.99 37.88Q121.78 44.06 123.91 49.89L123.94 49.91L123.82 49.80Q122.14 49.23 120.36 48.96L120.39 48.99L120.24 48.85Q119.42 44.98 119.31 40.03ZM120.00 49.17L120.06 49.23L119.98 49.16Q120.71 49.32 122.12 49.62L122.12 49.62L122.23 49.73Q122.42
-50.42 122.99 51.83L123.05 51.89L122.93 51.76Q125.61 52.57 127.89 53.87L127.86 53.84L127.82 53.79Q123.82 47.24 123.82 38.71L123.90 38.80L123.84 38.74Q123.85 32.39 126.32 26.60L126.26 26.54L126.36 26.64Q125.60 26.87 124.23 27.52L124.29 27.57L124.26 27.55Q124.65 26.83 125.30 25.27L125.13 25.11L125.19 25.16Q123.76 25.83 120.56 26.70L120.59 26.73L120.56 26.70Q120.37 27.20 120.07 28.38L120.00 28.31L120.15 28.46Q118.07 26.50 111.94 26.35L111.97 26.37L111.84 26.24Q108.79 26.31 107.42 27.80L107.35 27.73L107.33 27.71Q106.56 28.85 106.60 30.75L106.60 30.75L106.63 30.78Q106.77 33.81 107.76 37.58L107.64 37.46L107.79 37.61Q108.48 40.06 109.40 41.01L109.31 40.92L109.69 41.30L109.70 41.31Q110.89 44.10 116.33 44.33L116.24 44.23L116.31 44.30Q117.37 44.37 119.19 44.07L119.08 43.96L119.16 44.03Q119.49 46.99 120.10 49.28ZM116.66 32.13L116.62 32.09L116.60 32.07Q117.72 32.12 118.55 32.42L118.60 32.47L118.61 32.48Q118.88 33.09 118.99 33.70L118.88 33.59L118.95 33.65Q118.92 34.09 118.84 34.70L118.86 34.71L118.99 34.84Q118.99 36.75 117.97 38.04L117.87 37.95L117.83 37.90Q116.74 39.40 114.87 39.21L114.88 39.22L114.98 39.32Q113.58 39.22 112.63 38.80L112.61 38.78L112.67 38.84Q112.32 38.03 112.32 36.82L112.37 36.86L112.27 36.76Q112.33 36.52 112.33 36.22L112.33 36.21L112.24 36.13Q112.32 34.46 113.66
-33.30L113.58 33.22L113.68 33.32Q114.99 32.14 116.74 32.21Z"/><path fill="#333" d="M25.65 39.95L25.56 39.86L25.53 39.83Q21.52 39.44 19.70 37.99L19.58 37.88L19.70 38.00Q17.87 36.55 17.45 33.54L17.42 33.51L17.36 33.45Q17.32 33.07 16.98 28.31L16.89 28.23L16.96 28.29Q17.01 27.12 16.93 25.87L16.90 25.83L16.92 25.85Q16.72 20.78 18.92 19.03L18.95 19.05L19.03 19.13Q21.63 16.97 29.40 16.29L29.41 16.31L29.49 16.38Q30.74 16.15 32.38 16.18L32.42 16.23L32.36 16.17Q32.40 16.21 35.37 16.21L35.33 16.17L35.35 16.19Q36.14 16.14 37.86 16.30L37.89 16.33L37.95 16.39Q37.52 17.40 36.49 20.49L36.31 20.31L36.46 20.46Q34.35 19.22 31.34 19.22L31.24 19.12L31.36 19.25Q30.45 19.09 29.65 19.17L29.65 19.17L29.83 19.35Q24.69 19.77 22.18 21.75L22.14 21.71L22.15 21.72Q20.17 23.35 20.01 26.70L20.01 26.69L19.87 26.56Q20.00 27.34 20.04 28.59L19.96 28.51L19.87 28.42Q20.02 33.30 22.42 35.39L22.50 35.47L22.49 35.46Q24.63 37.37 29.62 37.68L29.67 37.73L29.66 37.71Q32.80 37.88 35.80 36.09L35.75 36.05L35.79 36.08Q36.34 38.77 36.95 40.14L36.95 40.13L37.07 40.25Q34.87 40.41 33.23 40.38L33.26 40.41L33.29 40.44Q28.72 40.28 25.60 39.90ZM40.69 43.61L40.68 43.60L40.71 43.63Q39.01 40.71 38.33 38.12L38.24 38.04L38.22 38.02Q37.85 38.34 36.86 38.72L36.82 38.67L36.93 38.78Q36.59 37.99 36.40 37.15L36.37 37.12L35.85 35.27L35.90 35.32Q32.67 37.41 29.55 37.30L29.61 37.36L29.54 37.30Q25.28 37.11 22.96 35.36L22.91 35.31L22.87 35.27Q21.75 33.46 21.83 30.53L21.98 30.68L21.93 30.63Q22.03 26.09 24.51 23.96L24.43 23.88L24.49 23.94Q26.58 22.00 31.27 21.39L31.40 21.52L31.36 21.49Q32.09 21.30 32.81 21.30L32.86 21.35L32.89 21.38Q35.73 21.44 37.82 22.96L37.77 22.91L37.82 22.96Q38.31 20.83 39.53 17.59L39.51 17.57L39.43 17.49Q39.17 17.49 38.62 17.44L38.57 17.39L38.60 17.42Q38.04 17.36 37.77 17.36L37.85 17.44L37.79 17.37Q38.07 16.93 38.53 15.94L38.50 15.91L38.47 15.88Q38.26 15.90 35.77 15.83L35.64 15.70L35.83 15.88Q33.25 15.73 32.60 15.76L32.50 15.66L32.60 15.76Q22.02 16.03
-18.56 18.62L18.65 18.72L18.64 18.70Q16.65 20.56 16.65 24.48L16.67 24.50L16.59 24.42Q16.70 25.63 16.81 28.33L16.73 28.25L16.63 28.15Q16.74 31.69 16.97 33.40L17.05 33.49L17.10 33.53Q17.39 36.57 18.99 38.09L19.02 38.12L19.13 38.23Q19.46 38.75 20.71 39.89L20.84 40.02L20.74 39.91Q24.09 41.78 29.35 42.54L29.29 42.49L29.27 42.47Q35.68 43.40 40.67 43.59Z"/><path d="M9 25 C80 8,89 1,139 24" stroke="#666" fill="none"/></svg>`
-}
+  // 验证成功的操作
+  if (value) {
+    ElMessage.success('验证成功，请点击获取验证码')
 
-// 验证码校验
-const svgVerify = (rule: any, value: any, callback: any) => {
-  if (value === '') {
-    callback(new Error('验证码不能为空'))
-  } else if (value !== svgValue.value) {
-    callback(new Error('验证码错误，请重新输入！'))
-
-    // 刷新验证码
-    getsvgPic()
+    // ElMessage.success('验证成功，2秒后重置')
+    // setTimeout(() => {
+    //   dragRef.value?.dragReset()
+    // }, 2000)
   } else {
-    callback()
+    ElMessage.error('验证失败，请重试')
   }
 }
+
+// ======= 发送验证码 =======
+
+const btnValue = ref('获取验证码')
+const countdown = ref(60)
+const isBtnDisable = ref(true)
+
+// 前提1
+const handleChangeValidate = () => {
+  formDataRef.value?.validateField('phone', (valid: boolean) => {
+    if (valid && countdown.value === 60) {
+      isBtnDisable.value = false
+    } else {
+      isBtnDisable.value = true
+    }
+  })
+}
+
+const handleSendClick = () => {
+  // 前提2
+  if (isPass.value) {
+    isBtnDisable.value = true
+
+    const countdownAction = () => {
+      if (countdown.value >= 0) {
+        btnValue.value = '重新发送(' + countdown.value + ')'
+        countdown.value--
+      } else {
+        countdown.value = 60
+        isBtnDisable.value = false
+        btnValue.value = '重新发送'
+        clearInterval(timer)
+      }
+    }
+
+    // 立即执行一次
+    countdownAction()
+
+    const timer = setInterval(countdownAction, 1000)
+  } else {
+    ElMessage.error('请先完成拖拽验证')
+  }
+}
+
+// ===========================
+
+const formData = reactive({
+  phone: '',
+  code: ''
+})
 
 // 表单校验
 const formRules = reactive<FormRules>({
   phone: [
     { required: true, message: '手机号不能为空', trigger: 'blur' },
     { pattern: /^(?:(?:\+|00)86)?1\d{10}$/, message: '请输入正确的手机号格式', trigger: 'blur' }
-  ],
-  codeSvg: [{ required: true, validator: svgVerify, trigger: 'blur' }],
-  codeSMS: [{ required: true, message: '短信码不能为空', trigger: 'blur' }]
+  ]
 })
 
-// ==============
+const formDataRef = ref<FormInstance>()
 
-const btnValue = ref('点击发送')
-const countdown = ref(60)
-const isBtnDisable = ref(false)
-
-// 短信发送按钮
-const handleSendSMS = () => {
-  isBtnDisable.value = true
-
-  // TODO: 发送短信请求
-
-  const timer = setInterval(() => {
-    if (countdown.value >= 0) {
-      btnValue.value = '（ ' + countdown.value + 's ）'
-      countdown.value--
-    } else {
-      countdown.value = 60
-      isBtnDisable.value = false
-      btnValue.value = '重新发送'
-      clearInterval(timer)
-    }
-  }, 1000)
-}
-
-// 手机号登录
-const smsLogin = () => {
-  console.log(phoneForm)
-
-  // TODO: 发送登录请求
-}
-
-// 待调用函数
-const phoneFormRef = ref<FormInstance>()
 const phoneLoginAction = () => {
-  phoneFormRef.value?.validate((valid, fields) => {
-    if (valid) {
-      ElMessage.success('表单校验成功！')
+  formDataRef.value?.validate((valid, fields) => {
+    const { phone, code } = formData
 
-      // 短信登录
-      smsLogin()
+    // 验证码校验
+    if (code != '1234') {
+      ElMessage.error('验证码错误')
+      dragRef.value?.dragReset()
+      formData.code = ''
+      return
+    }
+
+    if (valid) {
+      // TODO: 暂时使用密码登陆逻辑
+      loginStore.pwdLoginAction({ username: 'TingAdmin', password: 'TingAdmin123' }).then(() => {
+        // 登陆提示
+        ElNotification({
+          type: 'success',
+          title: '登录成功',
+          message: '欢迎回来，' + 'TingAdmin' + '！'
+        })
+
+        // 页面跳转
+        router.push('/home')
+      })
     } else {
       ElMessage.error('表单校验失败.')
     }
@@ -139,6 +167,11 @@ defineExpose({ phoneLoginAction })
 <style lang="scss" scoped>
 .phone-form {
   margin-top: 10px;
+
+  .check {
+    display: flex;
+    align-items: center;
+  }
 
   .codeBox {
     display: flex;

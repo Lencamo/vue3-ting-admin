@@ -1,5 +1,5 @@
 <template>
-  <div class="screen-full" @click="toggle()">
+  <div @click="toggle()">
     <el-icon :size="21"><component :is="isFullscreen ? Crop : FullScreen" /></el-icon>
   </div>
 </template>
@@ -13,6 +13,6 @@ const { toggle, isFullscreen } = useFullscreen()
 
 <style lang="scss" scoped>
 .screen-full {
-  margin: auto 0px;
+  //
 }
 </style>

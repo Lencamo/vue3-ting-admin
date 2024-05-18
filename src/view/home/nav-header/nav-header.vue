@@ -21,7 +21,7 @@
         <el-dropdown>
           <div class="drop">
             <img :src="avatars" alt="" />
-            <p>Ting Admin &ensp;</p>
+            <p>TingAdmin &ensp;</p>
             <el-icon><arrow-down /></el-icon>
           </div>
           <template #dropdown>
@@ -119,7 +119,9 @@ const handleMenuIconClick = () => {
 
         img {
           height: 25px;
-          margin: 0px 10px 0px 0px;
+          width: 25px;
+          border-radius: 50%;
+          margin-right: 10px;
         }
       }
     }
