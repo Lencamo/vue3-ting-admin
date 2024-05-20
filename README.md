@@ -56,6 +56,41 @@ docker build -t vue3-ting-admin .
 docker run -p 8080:8080 -d vue3-ting-admin
 ```
 
+## 提交规范
+
+&emsp;&emsp;本项目使用 Angular 提交规范，具体可阅读：[Angular提交规范](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
+
+```
+<type>(<scope>): <subject>
+
+- type：用于说明 commit 的类别，只允许使用下面的几个type标识
+- scope：用于说明 commit 影响的范围，比如数据层、控制层、视图层等等（可以为空）
+- subject：commit 目的的简短描述，不超过50个字符
+```
+
+<details>
+  <summary>type标识说明</summary>
+
+| 标识     | 说明                                               |
+| -------- | -------------------------------------------------- |
+| feat     | 新功能（feature）                                  |
+| fix      | 修复bug                                            |
+| docs     | 文档（documentation）                              |
+| dx       | 提升开发体验（developer experience）               |
+| style    | 不影响代码含义的修改（空格、格式化、缺失的分号等） |
+| refactor | 重构（refactoring，没有加新功能或修复bug）         |
+| perf     | 提升性能（performance）                            |
+| test     | 增加测试                                           |
+| workflow | 工作流（workflows）                                |
+| build    | 构建流程、外部依赖变动（如webpack、npm等）         |
+| ci       | 持续集成（continuous integration）                 |
+| chore    | 不属于以上类型的其他修改                           |
+| types    | 类型定义文件更改                                   |
+| wip      | 开发中                                             |
+| release  | 发布版本                                           |
+
+</details>
+
 ## 项目使用
 
 - 自动导入、自动注册组件
@@ -116,36 +151,222 @@ lencamo-cli generate product order --module ting
 ## 项目结构
 
 ```
-├── public
-├── src
-│   ├── assets
-│   ├── components
-│   ├── config
-│   ├── directives
-│   ├── filters
-│   ├── icons
-│   ├── locales
-│   ├── mock
-│   ├── plugins
-│   ├── router
-│   ├── services
-│   ├── styles
-│   ├── store
-│   ├── utils
-│   ├── views
-│   ├── App.vue
-│   ├── main.ts
-│   └── shims-vue.d.ts
-├── .editorconfig
-├── .env.development
-├── .env.production
-├── .env.staging
-├── .eslintrc.js
-├── .gitignore
-├──  babel.config.js
-├──  package.json
-├──  package-lock.json
-├──  README.md
-├──  tsconfig.json
-└──  vue.config.js
+vue3-ting-admin
+├─ public
+│  └─ favicon.ico
+├─ scripts
+│  └─ verify-commit-msg.mjs
+├─ src
+│  ├─ assets
+│  │  ├─ imgs
+│  │  │  ├─ default.png
+│  │  │  └─ vite.png
+│  │  ├─ styles
+│  │  │  ├─ common.scss
+│  │  │  ├─ index.scss
+│  │  │  ├─ reset.scss
+│  │  │  └─ variable.scss
+│  │  └─ theme
+│  │     ├─ index.scss
+│  │     ├─ theme-dark.scss
+│  │     └─ theme-light.scss
+│  ├─ components
+│  │  ├─ data-comp
+│  │  │  ├─ count
+│  │  │  │  ├─ countup-js.vue
+│  │  │  │  └─ use-transition.vue
+│  │  │  └─ echart
+│  │  │     └─ echart-base.vue
+│  │  ├─ form-comp
+│  │  │  ├─ cascader
+│  │  │  │  ├─ area-cascader
+│  │  │  │  │  ├─ area-cascader.vue
+│  │  │  │  │  ├─ china-division.d.ts
+│  │  │  │  │  └─ china-divisions.data.ts
+│  │  │  │  └─ other
+│  │  │  ├─ input
+│  │  │  │  └─ key-value.vue
+│  │  │  ├─ select
+│  │  │  └─ upload
+│  │  ├─ layout-tool
+│  │  │  ├─ msg-box
+│  │  │  ├─ screen-full
+│  │  │  │  └─ screen-full.vue
+│  │  │  ├─ tags-view
+│  │  │  │  └─ tags-view.vue
+│  │  │  └─ toggle-dark
+│  │  │     └─ toggle-dark.vue
+│  │  └─ verify-comp
+│  │     ├─ canvas-verify
+│  │     │  └─ canvas-verify.vue
+│  │     ├─ drag-verify
+│  │     │  └─ drag-verify.vue
+│  │     ├─ puzzle-verify
+│  │     │  └─ puzzle-verify.vue
+│  │     └─ pwd-strength
+│  │        └─ strength-bar.vue
+│  ├─ config
+│  │  └─ constants.ts
+│  ├─ directives
+│  │  ├─ permission
+│  │  │  └─ permissions.ts
+│  │  └─ index.ts
+│  ├─ global
+│  │  ├─ element-icons-list.ts
+│  │  ├─ register-element-icons.ts
+│  │  └─ register-pinia.ts
+│  ├─ pages
+│  │  ├─ analysis                             # 系统总览
+│  │  │  ├─ dashboard
+│  │  │  │  ├─ components
+│  │  │  │  │  ├─ count-card.vue
+│  │  │  │  │  └─ echart-line.vue
+│  │  │  │  ├─ dashboard.d.ts
+│  │  │  │  ├─ dashboard.data.ts
+│  │  │  │  └─ dashboard.vue
+│  │  │  └─ overview
+│  │  │     ├─ components
+│  │  │     │  ├─ about-box.vue
+│  │  │     │  └─ desc-box.vue
+│  │  │     ├─ overview.d.ts
+│  │  │     ├─ overview.data.ts
+│  │  │     └─ overview.vue
+│  │  ├─ moment                               # 动态
+│  │  │  ├─ list
+│  │  │  │  └─ list.vue
+│  │  │  └─ main
+│  │  │     └─ main.vue
+│  │  ├─ reusable                             # 组件复用
+│  │  │  ├─ formIdeas
+│  │  │  │  ├─ components
+│  │  │  │  │  ├─ data-show.vue
+│  │  │  │  │  └─ form-card.vue
+│  │  │  │  └─ formIdeas.vue
+│  │  │  ├─ others
+│  │  │  │  └─ others.vue
+│  │  │  └─ verifyIdeas
+│  │  │     ├─ components
+│  │  │     │  ├─ behavior-card.vue
+│  │  │     │  └─ pwd-card.vue
+│  │  │     └─ verifyIdeas.vue
+│  │  └─ system                               # 系统管理
+│  │     ├─ department
+│  │     │  ├─ components
+│  │     │  │  ├─ department-body.vue
+│  │     │  │  ├─ department-dialog.vue
+│  │     │  │  └─ department-header.vue
+│  │     │  └─ department.vue
+│  │     ├─ menu
+│  │     │  ├─ components
+│  │     │  │  ├─ menu-body.vue
+│  │     │  │  ├─ menu-dialog.vue
+│  │     │  │  └─ menu-header.vue
+│  │     │  └─ menu.vue
+│  │     ├─ role
+│  │     │  ├─ components
+│  │     │  │  ├─ role-body.vue
+│  │     │  │  ├─ role-dialog.vue
+│  │     │  │  └─ role-header.vue
+│  │     │  └─ role.vue
+│  │     └─ user
+│  │        ├─ components
+│  │        │  ├─ user-body.vue
+│  │        │  ├─ user-dialog.vue
+│  │        │  └─ user-header.vue
+│  │        └─ user.vue
+│  ├─ router
+│  │  ├─ analysis                             # 系统总览
+│  │  │  ├─ dashboard
+│  │  │  │  └─ dashboard.ts
+│  │  │  └─ overview
+│  │  │     └─ overview.ts
+│  │  ├─ moment                               # 动态
+│  │  │  ├─ list
+│  │  │  │  └─ list.ts
+│  │  │  └─ main
+│  │  │     └─ main.ts
+│  │  ├─ reusable                             # 组件复用
+│  │  │  ├─ formIdeas
+│  │  │  │  └─ formIdeas.ts
+│  │  │  ├─ others
+│  │  │  │  └─ others.ts
+│  │  │  └─ verifyIdeas
+│  │  │     └─ verifyIdeas.ts
+│  │  ├─ system                               # 系统管理
+│  │  │  ├─ department
+│  │  │  │  └─ department.ts
+│  │  │  ├─ menu
+│  │  │  │  └─ menu.ts
+│  │  │  ├─ role
+│  │  │  │  └─ role.ts
+│  │  │  └─ user
+│  │  │     └─ user.ts
+│  │  └─ index.ts
+│  ├─ services
+│  │  ├─ modules
+│  │  │  ├─ login
+│  │  │  │  └─ login.ts
+│  │  │  ├─ main
+│  │  │  │  ├─ entires
+│  │  │  │  │  └─ main.ts
+│  │  │  │  └─ system.ts # 系统管理
+│  │  │  └─ demo.ts
+│  │  ├─ request
+│  │  │  ├─ config.ts
+│  │  │  ├─ index.ts
+│  │  │  └─ types.ts
+│  │  └─ index.ts
+│  ├─ stores
+│  │  ├─ login
+│  │  │  └─ login.ts
+│  │  ├─ main
+│  │  │  ├─ entires
+│  │  │  │  └─ main.ts
+│  │  │  └─ system.ts # 系统管理
+│  │  ├─ demo.ts
+│  │  └─ index.ts
+│  ├─ types
+│  │  ├─ login.d.ts
+│  │  └─ system.d.ts
+│  ├─ utils
+│  │  ├─ cache.ts
+│  │  ├─ data-format.ts
+│  │  ├─ generateTree.ts
+│  │  ├─ initDynamicRoutes.ts
+│  │  ├─ is.ts
+│  │  ├─ map-menus.ts
+│  │  └─ map-path.ts
+│  ├─ view
+│  │  ├─ 404
+│  │  │  └─ not-found.vue
+│  │  ├─ demo
+│  │  │  └─ demo.vue
+│  │  ├─ home
+│  │  │  ├─ main-container
+│  │  │  │  └─ main-container.vue
+│  │  │  ├─ nav-aside
+│  │  │  │  └─ nav-aside.vue
+│  │  │  ├─ nav-header
+│  │  │  │  └─ nav-header.vue
+│  │  │  └─ home.vue
+│  │  └─ login
+│  │     ├─ components
+│  │     │  ├─ login-panel.vue
+│  │     │  ├─ phone-form.vue
+│  │     │  └─ pwd-form.vue
+│  │     └─ login.vue
+│  ├─ App.vue
+│  └─ main.ts
+├─ README.md
+├─ auto-imports.d.ts
+├─ components.d.ts
+├─ env.d.ts
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ ting-module-generate.sh
+├─ tsconfig.app.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+└─ vite.config.ts
 ```
