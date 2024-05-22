@@ -16,9 +16,9 @@
     "commit-msg": "node scripts/verify-commit-msg.mjs"
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint",
-      "prettier --write"
+    "*": [
+      "prettier --write",
+      "eslint --fix"
     ]
   },
   "dependencies": {
