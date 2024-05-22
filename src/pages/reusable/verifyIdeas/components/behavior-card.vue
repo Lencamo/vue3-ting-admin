@@ -52,11 +52,11 @@
             </el-input>
           </el-form-item>
           <el-form-item label="滑动验证">
-            <drag-verify ref="dragRef" @drag-success="passcallback"></drag-verify>
+            <drag-verify :width="450" ref="dragRef" @drag-success="passcallback"></drag-verify>
           </el-form-item>
           <el-form-item label="拼图验证">
             <puzzle-verify :show="isShow" @success="onSuccess" @close="onClose"></puzzle-verify>
-            <el-button style="width: 350px" type="primary" @click="onShow">确认</el-button>
+            <el-button style="width: 450px" type="primary" @click="onShow">确认</el-button>
           </el-form-item>
         </el-form>
       </div>
