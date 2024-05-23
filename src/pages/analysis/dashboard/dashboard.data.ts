@@ -35,6 +35,113 @@ export const countCardList: ICountCard[] = [
   }
 ]
 
+// ============ 双x轴柱状图 ============
+
+// 样式优化：https://www.isqqw.com/viewer?id=42724
+
+const xData = [
+  '04-18',
+  '04-19',
+  '04-20',
+  '04-21',
+  '04-22',
+  '04-23',
+  '04-24',
+  '04-25',
+  '04-26',
+  '04-27',
+  '04-28',
+  '04-29',
+  '04-30',
+  '05-01',
+  '05-02',
+  '05-03',
+  '05-04',
+  '05-05',
+  '05-06',
+  '05-07',
+  '05-08',
+  '05-09',
+  '05-10',
+  '05-11',
+  '05-12',
+  '05-13',
+  '05-14',
+  '05-15',
+  '05-16',
+  '05-17'
+]
+
+const moenyData = [
+  3500, 4200, 3800, 4100, 3900, 4100, 4500, 4800, 5200, 5100, 4900, 5200, 5400, 5800, 6000, 6200,
+  6400, 6700, 7000, 7300, 7000, 6800, 7100, 7500, 7800, 8100, 8200, 8400, 8600, 8800
+]
+const profitData = [
+  0, 20.0, -9.5, 7.9, -4.9, 5.1, 9.8, 6.7, 8.3, -2.0, -3.9, 6.1, 3.8, 7.4, 3.4, 3.3, 3.2, 4.7, 4.5,
+  4.1, -4.1, -2.9, 4.4, 5.6, 4.0, 3.8, 1.2, 2.4, 2.3, 2.3
+]
+
+export const barOptions_1 = {
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '15%',
+    top: '4%',
+    containLabel: true
+  },
+  legend: {
+    data: ['营业额', '毛利率'],
+    bottom: '2%'
+  },
+  xAxis: {
+    type: 'category',
+    data: xData
+  },
+  tooltip: {
+    trigger: 'item' // 注意这里是item，不是axis
+  },
+  yAxis: [
+    // 双y轴设置
+    {
+      type: 'value',
+      name: '营业额',
+      position: 'left',
+      axisLabel: {
+        formatter: '{value}元'
+      }
+    },
+    {
+      type: 'value',
+      name: '毛利率',
+      position: 'right',
+      axisLabel: {
+        formatter: '{value}%'
+      }
+    }
+  ],
+  series: [
+    {
+      name: '营业额',
+      yAxisIndex: 0,
+      data: moenyData,
+      type: 'bar',
+      color: '#e9608f',
+      itemStyle: {
+        normal: {
+          barBorderRadius: [20, 20, 0, 0]
+        }
+      }
+    },
+    {
+      name: '毛利率',
+      yAxisIndex: 1,
+      data: profitData,
+      type: 'line',
+      color: '#6ee584'
+    }
+  ]
+}
+
 // ============ 饼图 1 ============
 
 const proportion = 90
@@ -349,7 +456,7 @@ export const lineOptions = {
   ]
 }
 
-// ============ 折线图 ============
+// ============ 柱状图 ============
 
 const xAxis2 = [
   '2024-01',
