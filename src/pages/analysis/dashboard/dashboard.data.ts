@@ -90,7 +90,7 @@ export const barOptions_1 = {
     containLabel: true
   },
   legend: {
-    data: ['营业额', '毛利率'],
+    data: ['毛利（元）', '增速（%）'],
     bottom: '2%'
   },
   xAxis: {
@@ -104,7 +104,7 @@ export const barOptions_1 = {
     // 双y轴设置
     {
       type: 'value',
-      name: '营业额',
+      name: '毛利（元）',
       position: 'left',
       axisLabel: {
         formatter: '{value}元'
@@ -112,7 +112,7 @@ export const barOptions_1 = {
     },
     {
       type: 'value',
-      name: '毛利率',
+      name: '增速（%）',
       position: 'right',
       axisLabel: {
         formatter: '{value}%'
@@ -121,11 +121,11 @@ export const barOptions_1 = {
   ],
   series: [
     {
-      name: '营业额',
+      name: '毛利（元）',
       yAxisIndex: 0,
       data: moenyData,
       type: 'bar',
-      color: '#e9608f',
+      color: '#f4af72',
       itemStyle: {
         normal: {
           barBorderRadius: [20, 20, 0, 0]
@@ -133,11 +133,11 @@ export const barOptions_1 = {
       }
     },
     {
-      name: '毛利率',
+      name: '增速（%）',
       yAxisIndex: 1,
       data: profitData,
       type: 'line',
-      color: '#6ee584'
+      color: '#e9608f'
     }
   ]
 }
