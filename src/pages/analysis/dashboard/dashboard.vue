@@ -14,11 +14,21 @@
     <!-- echart-图表 -->
     <div class="echart-box">
       <el-row :gutter="20">
-        <el-col :span="24">
+        <el-col :span="12">
           <!-- 双x轴图表 -->
           <div class="echart-card">
-            <echartHead @select-change="handleSelectChange">
-              <template #title>双x轴图表</template>
+            <echartHead title="双x轴图表" @date-select="dateSelectChange"></echartHead>
+            <EchartBase :options="barData_1"></EchartBase>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <!-- 双x轴图表 -->
+          <div class="echart-card">
+            <echartHead :data-select="false">
+              <template #title>
+                <span style="color: red">#title插槽</span>
+              </template>
+              <template #right>#right插槽</template>
             </echartHead>
             <EchartBase :options="barData_1"></EchartBase>
           </div>
@@ -97,7 +107,7 @@ const pieData_3 = pieOptions_3 as any
 const pieData_4 = pieOptions_4 as any
 const radarData = radarOptions as any
 
-const handleSelectChange = (val: string) => {
+const dateSelectChange = (val: string) => {
   // 更新option的值即可
   // console.log('数据发生变化', val)
   // 提示（仅供测试）
