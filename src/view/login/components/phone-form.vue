@@ -30,7 +30,7 @@
       </el-form-item>
       <el-form-item>
         <div class="check">
-          <el-checkbox label="我已阅读并同意" size="large" />
+          <el-checkbox v-model="isAccept" label="我已阅读并同意" size="large" />
           <el-link type="primary">《用户协议》</el-link>
           <el-link type="primary">《隐私政策》</el-link>
         </div>
@@ -48,6 +48,8 @@ import { useRouter } from 'vue-router'
 
 const loginStore = useloginStore()
 const router = useRouter()
+
+const isAccept = ref(false)
 
 // ======== 拖拽验证 =========
 
@@ -90,28 +92,30 @@ const handleChangeValidate = () => {
 
 const handleSendClick = () => {
   // 前提2
-  if (isPass.value) {
-    isBtnDisable.value = true
-
-    const countdownAction = () => {
-      if (countdown.value >= 0) {
-        btnValue.value = '重新发送(' + countdown.value + ')'
-        countdown.value--
-      } else {
-        countdown.value = 60
-        isBtnDisable.value = false
-        btnValue.value = '重新发送'
-        clearInterval(timer)
-      }
-    }
-
-    // 立即执行一次
-    countdownAction()
-
-    const timer = setInterval(countdownAction, 1000)
-  } else {
+  if (!isPass.value) {
     ElMessage.error('请先完成拖拽验证')
+    return
   }
+
+  // 发送验证码
+  isBtnDisable.value = true
+
+  const countdownAction = () => {
+    if (countdown.value >= 0) {
+      btnValue.value = '重新发送(' + countdown.value + ')'
+      countdown.value--
+    } else {
+      countdown.value = 60
+      isBtnDisable.value = false
+      btnValue.value = '重新发送'
+      clearInterval(timer)
+    }
+  }
+
+  // 立即执行一次
+  countdownAction()
+
+  const timer = setInterval(countdownAction, 1000)
 }
 
 // ===========================
@@ -135,9 +139,22 @@ const phoneLoginAction = () => {
   formDataRef.value?.validate((valid, fields) => {
     const { phone, code } = formData
 
+    // 滑块验证
+    if (!isPass.value) {
+      ElMessage.error('请先完成拖拽验证')
+      return
+    }
+
+    // 同意验证
+    if (!isAccept.value) {
+      ElMessage.error('请先阅读并同意用户协议和隐私政策')
+      return
+    }
+
     // 验证码校验
     if (code != '1234') {
       ElMessage.error('验证码错误')
+      isPass.value = false
       dragRef.value?.dragReset()
       formData.code = ''
       return

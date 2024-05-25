@@ -12,7 +12,7 @@
     "format": "prettier --write src/"
   },
   "simple-git-hooks": {
-    "pre-commit": "lint-staged",
+    "pre-commit": "npx lint-staged",
     "commit-msg": "node scripts/verify-commit-msg.mjs"
   },
   "lint-staged": {

@@ -15,5 +15,5 @@
     "source.fixAll.eslint": "explicit"
   },
 
-  "vetur.format.enable": false
+  "vetur.enable": false
 }
