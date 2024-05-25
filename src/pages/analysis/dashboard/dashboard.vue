@@ -14,14 +14,14 @@
     <!-- echart-图表 -->
     <div class="echart-box">
       <el-row :gutter="20">
-        <el-col :span="12">
+        <el-col :span="16">
           <!-- 双x轴图表 -->
           <div class="echart-card">
             <echartHead title="双x轴图表" @date-select="dateSelectChange"></echartHead>
             <EchartBase :options="barData_1"></EchartBase>
           </div>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="8">
           <!-- 双x轴图表 -->
           <div class="echart-card">
             <echartHead :data-select="false">
@@ -30,7 +30,7 @@
               </template>
               <template #right>#right插槽</template>
             </echartHead>
-            <EchartBase :options="barData_1"></EchartBase>
+            <EchartBase :options="barData_2"></EchartBase>
           </div>
         </el-col>
       </el-row>
@@ -91,6 +91,7 @@ import {
   lineOptions,
   barOptions,
   barOptions_1,
+  barOptions_2,
   pieOptions_1,
   pieOptions_2,
   pieOptions_3,
@@ -101,6 +102,7 @@ import {
 const lineData = lineOptions as any
 const barData = barOptions as any
 const barData_1 = barOptions_1 as any
+const barData_2 = barOptions_2 as any
 const pieData_1 = pieOptions_1 as any
 const pieData_2 = pieOptions_2 as any
 const pieData_3 = pieOptions_3 as any

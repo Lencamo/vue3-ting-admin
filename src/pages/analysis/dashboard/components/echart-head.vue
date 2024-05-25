@@ -65,14 +65,14 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 .echart-head {
+  height: 48px;
+
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    margin: 5px;
-    margin-bottom: 20px;
-    margin-top: -5px;
+    margin: 0px 5px;
 
     .title {
       /* 和echart默认值保持一致 */

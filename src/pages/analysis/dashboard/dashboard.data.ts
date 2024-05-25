@@ -39,7 +39,7 @@ export const countCardList: ICountCard[] = [
 
 // 样式优化：https://www.isqqw.com/viewer?id=42724
 
-const xData = [
+const xData1 = [
   '04-18',
   '04-19',
   '04-20',
@@ -95,7 +95,7 @@ export const barOptions_1 = {
   },
   xAxis: {
     type: 'category',
-    data: xData
+    data: xData1
   },
   tooltip: {
     trigger: 'item' // 注意这里是item，不是axis
@@ -128,7 +128,24 @@ export const barOptions_1 = {
       color: '#f4af72',
       itemStyle: {
         normal: {
-          barBorderRadius: [20, 20, 0, 0]
+          barBorderRadius: [20, 20, 0, 0],
+          color: {
+            type: 'linear',
+            x: 0, // 渐变方向坐标A
+            y: 1,
+            x2: 0, // 渐变方向坐标B
+            y2: 0,
+            colorStops: [
+              {
+                offset: 0,
+                color: '#f4af72' // 初始位置颜色
+              },
+              {
+                offset: 1,
+                color: '#fdd75d'
+              }
+            ]
+          }
         }
       }
     },
@@ -138,6 +155,81 @@ export const barOptions_1 = {
       data: profitData,
       type: 'line',
       color: '#e9608f'
+    }
+  ]
+}
+
+// ============ 纵向排序柱状图 ============
+
+// https://blog.csdn.net/seeeeeeeeeee/article/details/119238244
+
+// 各国航母数量
+const xData2 = ['美国', '中国', '俄罗斯', '印度', '日本', '英国', '德国', '法国', '巴西']
+
+const aircraftCounts = [13398, 4311, 3794, 2086, 1564, 1231, 1079, 1057, 981]
+
+export const barOptions_2 = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    left: '3%',
+    bottom: '3%',
+    top: '0%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    splitLine: {
+      show: false
+    },
+    axisLabel: {
+      show: false
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: xData2,
+    inverse: true, // 升序展示 ✨
+    axisLine: {
+      show: false
+    },
+    axisTick: {
+      show: false
+    }
+  },
+  series: [
+    {
+      type: 'bar',
+      data: aircraftCounts,
+      barWidth: 15,
+
+      label: {
+        normal: {
+          show: true,
+          position: 'right'
+        }
+      },
+      itemStyle: {
+        normal: {
+          barBorderRadius: 20,
+          color: {
+            colorStops: [
+              {
+                offset: 0,
+                color: '#f4af72' // 初始位置颜色
+              },
+              {
+                offset: 1,
+                color: '#fdd75d'
+              }
+            ]
+          }
+        }
+      }
     }
   ]
 }
@@ -165,13 +257,7 @@ export const pieOptions_1 = {
       radius: ['65%', '80%'],
       itemStyle: {
         normal: {
-          color: '#f4f6f9',
-          label: {
-            show: false
-          },
-          labelLine: {
-            show: false
-          }
+          color: '#f4f6f9'
         }
       },
       animation: false,
@@ -201,11 +287,11 @@ export const pieOptions_1 = {
                 colorStops: [
                   {
                     offset: 0,
-                    color: '#00cae9' // 0% 处的颜色
+                    color: '#00cae9' // 初始位置颜色
                   },
                   {
                     offset: 1,
-                    color: '#f4f6f9' // 100% 处的颜色
+                    color: '#f4f6f9'
                   }
                 ]
               },
@@ -271,7 +357,7 @@ export const pieOptions_2 = {
       type: 'pie',
       radius: ['65%', '90%'],
       center: ['50%', '50%'],
-      padAngle: 3, // item间间距
+      padAngle: 3, // item间间距 ✨
       itemStyle: {
         borderRadius: 6
       },
