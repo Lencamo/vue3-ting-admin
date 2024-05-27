@@ -5,7 +5,7 @@
         <nav-aside :is-collapse="isCollapse"></nav-aside>
       </el-aside>
       <el-container>
-        <el-header height="50px">
+        <el-header height="85px">
           <nav-header @collapse-change="handleCollapse"></nav-header>
         </el-header>
         <el-main>
@@ -33,6 +33,11 @@ const handleCollapse = (payload: boolean) => {
 </script>
 
 <style lang="scss" scoped>
+/* 根据tags-view需求调整 */
+:deep(.el-header) {
+  padding: 0px;
+}
+
 .home {
   height: 100%;
 

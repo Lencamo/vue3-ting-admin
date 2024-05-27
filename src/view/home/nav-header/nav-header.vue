@@ -1,36 +1,41 @@
 <template>
   <div class="nav-header">
-    <div class="left">
-      <div class="exchange" @click="handleMenuIconClick">
-        <el-icon size="25" color="#323435">
-          <component :is="isCollapse ? 'Expand' : 'Fold'"></component>
-        </el-icon>
+    <div class="header">
+      <div class="left">
+        <div class="exchange" @click="handleMenuIconClick">
+          <el-icon size="25" color="#323435">
+            <component :is="isCollapse ? 'Expand' : 'Fold'"></component>
+          </el-icon>
+        </div>
+        <div class="bread">
+          <el-breadcrumb :separator-icon="ArrowRight">
+            <template v-for="item in breadcrumb" :key="item.path">
+              <el-breadcrumb-item :to="item.path">{{ item.name }}</el-breadcrumb-item>
+            </template>
+          </el-breadcrumb>
+        </div>
       </div>
-      <div class="bread">
-        <el-breadcrumb :separator-icon="ArrowRight">
-          <template v-for="item in breadcrumb">
-            <el-breadcrumb-item :to="item.path">{{ item.name }}</el-breadcrumb-item>
-          </template>
-        </el-breadcrumb>
+      <div class="right">
+        <span><screen-full></screen-full></span>
+        <span><toggle-dark></toggle-dark></span>
+        <span>
+          <el-dropdown>
+            <div class="drop">
+              <img :src="avatars" alt="" />
+              <p>TingAdmin &ensp;</p>
+              <el-icon><arrow-down /></el-icon>
+            </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item divided @click="handleLogoutBtn"> 退出系统 </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </span>
       </div>
     </div>
-    <div class="right">
-      <span><screen-full></screen-full></span>
-      <span><toggle-dark></toggle-dark></span>
-      <span>
-        <el-dropdown>
-          <div class="drop">
-            <img :src="avatars" alt="" />
-            <p>TingAdmin &ensp;</p>
-            <el-icon><arrow-down /></el-icon>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item divided @click="handleLogoutBtn"> 退出系统 </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </span>
+    <div class="tabs">
+      <tags-view></tags-view>
     </div>
   </div>
 </template>
@@ -88,43 +93,57 @@ const handleMenuIconClick = () => {
 
 .nav-header {
   height: 100%;
-  display: flex;
-  justify-content: space-between;
 
-  .left {
+  .header {
     display: flex;
-    align-items: center;
-    height: 100%;
+    justify-content: space-between;
 
-    .bread {
-      margin-left: 10px;
-    }
-  }
+    height: 50px;
+    padding: 0px 20px;
 
-  .right {
-    display: flex;
-    align-items: center;
-    height: 100%;
-
-    span {
+    .left {
       display: flex;
       align-items: center;
       height: 100%;
-      padding: 0px 10px;
-      cursor: pointer;
 
-      .drop {
+      .bread {
+        margin-left: 10px;
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      span {
         display: flex;
         align-items: center;
+        height: 100%;
+        padding: 0px 10px;
+        cursor: pointer;
 
-        img {
-          height: 25px;
-          width: 25px;
-          border-radius: 50%;
-          margin-right: 10px;
+        .drop {
+          display: flex;
+          align-items: center;
+
+          img {
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
         }
       }
     }
+  }
+
+  .tabs {
+    background-color: var(--mainBoxBgColor);
+
+    height: 35px;
+    width: 100%;
+    /* padding: 0px 20px; */
   }
 }
 </style>
