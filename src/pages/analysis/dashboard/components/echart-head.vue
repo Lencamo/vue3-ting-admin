@@ -25,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
 import dayjs from 'dayjs'
 
 interface Prop {

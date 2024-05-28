@@ -25,7 +25,6 @@ import roleDialog from './components/role-dialog.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
-import { ref } from 'vue'
 import type { IRoleList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof roleBody>>()

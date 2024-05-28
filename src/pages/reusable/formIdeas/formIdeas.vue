@@ -15,8 +15,6 @@
 import formCard from './components/form-card.vue'
 import dataShow from './components/data-show.vue'
 
-import { ref } from 'vue'
-
 let checkData = ref({})
 
 const handleCheck = (value) => {

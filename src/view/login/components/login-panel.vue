@@ -20,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import pwdForm from './pwd-form.vue'
 import phoneForm from './phone-form.vue'
 

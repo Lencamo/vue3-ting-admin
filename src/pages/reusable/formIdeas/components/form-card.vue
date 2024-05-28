@@ -24,9 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
-import { reactive } from 'vue'
-
 const formDate = reactive({
   extraAttr: [
     {

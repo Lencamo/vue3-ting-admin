@@ -42,7 +42,6 @@
 
 <script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue'
-import { ref, computed } from 'vue'
 import avatars from '@/assets/imgs/default.png'
 
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'

@@ -87,7 +87,6 @@
 import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
-import { ref } from 'vue'
 import type { IQueryInfo, IRoleList } from '@/types/system'
 import { Edit, Delete } from '@element-plus/icons-vue'
 

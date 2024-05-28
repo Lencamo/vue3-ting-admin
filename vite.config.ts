@@ -53,6 +53,9 @@ export default defineConfig(async () => {
     plugins: [
       vue(),
       AutoImport({
+        // Vue 相关函数，如：ref, computed
+        imports: ['vue'],
+
         resolvers: [
           // Element Plus 相关函数，如：ElMessage, ElMessageBox
           ElementPlusResolver()

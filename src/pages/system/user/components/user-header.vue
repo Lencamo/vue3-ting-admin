@@ -66,7 +66,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import useMainStore from '@/stores/main/entires/main'
 import { storeToRefs } from 'pinia'

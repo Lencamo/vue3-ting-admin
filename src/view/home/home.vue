@@ -22,8 +22,6 @@ import navAside from './nav-aside/nav-aside.vue'
 import navHeader from './nav-header/nav-header.vue'
 import mainContainer from './main-container/main-container.vue'
 
-import { ref } from 'vue'
-
 // aside折叠功能
 const isCollapse = ref(false)
 

@@ -65,7 +65,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import puzzleVerify from 'vue3-puzzle-vcode'
 

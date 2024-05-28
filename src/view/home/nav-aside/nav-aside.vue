@@ -40,7 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import useloginStore from '@/stores/login/login'
 const loginStore = useloginStore()
 import { useRouter, useRoute } from 'vue-router'

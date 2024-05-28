@@ -23,7 +23,6 @@ import userDialog from './components/user-dialog.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
-import { ref } from 'vue'
 import type { IQueryInfo, IUserList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof userBody>>()

@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive, ref, watch } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import useloginStore from '@/stores/login/login.ts'
 import { useRouter } from 'vue-router'

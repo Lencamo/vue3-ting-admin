@@ -89,17 +89,69 @@ lencamo-cli generate product order --module ting
 lencamo-cli generate project-name
 ```
 
-- 自动导入、自动注册组件
+- 组件、函数自动导入
 
-```ts
+&emsp;&emsp;本项目集成的vue、element-plus、iconify等可以直接使用，无需手动导入。
 
+<details>
+  <summary>代码使用示例</summary>
+
+- 手动导入
+
+```vue
+<template>
+  <div>
+    <el-button @click="open">按钮</el-button>
+  </div>
+</template>
+
+<script lang="ts">
+import { ref } from 'vue'
+import { ElButton, ElMessage } from 'element-plus'
+
+const open = () => {
+  ElMessage({
+    message: 'Congrats, this is a success message.',
+    type: 'success'
+  })
+}
+</script>
 ```
+
+- 自动导入
+
+```vue
+<template>
+  <div>
+    <el-button @click="open">按钮</el-button>
+  </div>
+</template>
+
+<script lang="ts">
+const open = () => {
+  ElMessage({
+    message: 'Congrats, this is a success message.',
+    type: 'success'
+  })
+}
+</script>
+```
+
+</details>
 
 - svg图标组件快捷使用
 
+&emsp;&emsp;本项目集成了Iconify图标库，可以自由选择图标, 图标名称格式为：
+
+```sh
+# collection - 图标集
+# icon - 图标名称
+{collection}-{icon}
+```
+
 <details>
-  <summary>代码示例</summary>
-  
+  <summary>代码使用示例</summary>
+
 ```vue
 <template>
   <!-- 一、动态引入图标 -->
@@ -126,12 +178,9 @@ lencamo-cli generate project-name
 </template>
 
 <script lang="ts">
-
 const icons = ref(['ep:arrow-left', 'ant-design:arrow-left-outlined', 'bi:arrow-left'])
-
 </script>
-
-````
+```
 
 </details>
 
@@ -173,7 +222,7 @@ const icons = ref(['ep:arrow-left', 'ant-design:arrow-left-outlined', 'bi:arrow-
 
 ```sh
 npm run deploy
-````
+```
 
 2. 使用docker部署
 

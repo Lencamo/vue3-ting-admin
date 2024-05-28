@@ -21,7 +21,6 @@ import menuDialog from './components/menu-dialog.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
-import { ref } from 'vue'
 import type { IMenuList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof menuBody>>()

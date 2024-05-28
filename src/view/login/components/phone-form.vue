@@ -41,7 +41,6 @@
 
 <script setup lang="ts">
 import { Iphone } from '@element-plus/icons-vue'
-import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import useloginStore from '@/stores/login/login.ts'
 import { useRouter } from 'vue-router'

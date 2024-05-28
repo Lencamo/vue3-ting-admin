@@ -7,7 +7,7 @@
     <button @click="getDemoListFn">axios请求测试</button>
     <p>{{ demoList }}</p>
     <hr />
-    <el-button type="primary" size="default" @click="">Primary</el-button>
+    <el-button type="primary" size="default">Primary</el-button>
     <el-button :plain="true" @click="open">success</el-button>
   </div>
 </template>
@@ -17,7 +17,6 @@ import useDemoStore from '@/stores/demo.ts'
 import { storeToRefs } from 'pinia'
 
 import { getDemoList } from '@/services/modules/demo.ts'
-import { ref } from 'vue'
 
 const demoStore = useDemoStore()
 const { counter, doubleCounter } = storeToRefs(demoStore)

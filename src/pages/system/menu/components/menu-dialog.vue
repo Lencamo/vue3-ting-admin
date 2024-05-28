@@ -36,7 +36,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import useSystemStore from '@/stores/main/system'
 import { elementIcons } from '@/pages/system/menu/menu.data'

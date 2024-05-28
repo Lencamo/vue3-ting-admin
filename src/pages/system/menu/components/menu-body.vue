@@ -44,7 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'

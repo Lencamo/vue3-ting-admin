@@ -26,7 +26,6 @@ import departmentDialog from './components/department-dialog.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
-import { ref } from 'vue'
 import type { IDepartmentList } from '@/types/system'
 
 const listTableRef = ref<InstanceType<typeof departmentBody>>()
