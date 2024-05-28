@@ -16,7 +16,7 @@
             <template v-for="item in elementIcons" :key="item">
               <el-option :label="item" :value="item">
                 <el-icon size="16" color="#323435">
-                  <component :is="item"></component>
+                  <svgIcon :icon="item"></svgIcon>
                 </el-icon>
                 <span>&emsp;{{ item }}</span>
               </el-option>
@@ -39,7 +39,7 @@
 import { ref, reactive } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import useSystemStore from '@/stores/main/system'
-import { elementIcons } from '@/global/element-icons-list'
+import { elementIcons } from '@/pages/system/menu/menu.data'
 
 const dialogVisible = ref(false)
 const dialogFormRef = ref<FormInstance>()

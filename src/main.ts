@@ -7,7 +7,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import registerPinia from './global/register-pinia.ts'
 import router from './router/index.ts'
-import registerIcons from './global/register-element-icons.ts'
+
+// 更改全局图标组件方案
+// import registerIcons from './global/register-element-icons.ts'
+import registerIcons from './global/register-iconify-icons.ts'
+
 import registerDirective from './directives/index.ts'
 
 const app = createApp(App)

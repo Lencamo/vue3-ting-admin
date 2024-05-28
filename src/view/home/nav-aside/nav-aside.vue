@@ -17,7 +17,7 @@
             <template #title>
               <el-icon>
                 <!-- 动态图标组件 -->
-                <component :is="item.icon" />
+                <svgIcon :icon="item.icon"></svgIcon>
               </el-icon>
               <span>{{ item.name }}</span>
             </template>
@@ -27,7 +27,7 @@
               <el-menu-item :index="subItem.id + ''" @click="handleMenuItemClick(subItem)">
                 <el-icon>
                   <!-- 动态图标组件 -->
-                  <component :is="subItem.icon" />
+                  <svgIcon :icon="subItem.icon"></svgIcon>
                 </el-icon>
                 <span>{{ subItem.name }}</span>
               </el-menu-item>

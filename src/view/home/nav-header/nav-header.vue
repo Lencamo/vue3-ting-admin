@@ -4,7 +4,7 @@
       <div class="left">
         <div class="exchange" @click="handleMenuIconClick">
           <el-icon size="25" color="#323435">
-            <component :is="isCollapse ? 'Expand' : 'Fold'"></component>
+            <svgIcon :icon="isCollapse ? 'ep:expand' : 'ep:fold'"></svgIcon>
           </el-icon>
         </div>
         <div class="bread">

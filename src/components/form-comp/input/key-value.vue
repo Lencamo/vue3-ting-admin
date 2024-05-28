@@ -14,7 +14,7 @@
         style="width: 40%; margin-right: 5px"
       />
       <el-button v-if="extraAttrList.length > props.delLimit" @click="removeItem(item)" link>
-        <el-icon :size="18"><CircleClose /></el-icon>
+        <el-icon :size="18"><EpCircleClose /></el-icon>
       </el-button>
     </div>
     <div>

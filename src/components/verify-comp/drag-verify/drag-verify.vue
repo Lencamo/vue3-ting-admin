@@ -27,7 +27,9 @@
         ref="iconItemRef"
         :style="iconBoxStyle"
       >
-        <el-icon><component :is="dragStatus ? 'CircleCheck' : 'DArrowRight'"></component></el-icon>
+        <el-icon>
+          <svgIcon :icon="dragStatus ? 'ep:circle-check' : 'ep:d-arrow-right'"></svgIcon>
+        </el-icon>
       </div>
     </div>
   </div>

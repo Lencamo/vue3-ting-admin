@@ -44,7 +44,7 @@
             <el-button
               type="warning"
               size="small"
-              icon="Edit"
+              :icon="Edit"
               @click="handleEditBtn(scope.row)"
               v-permissions="{ route, action: 'update', effect: 'disabled' }"
             />
@@ -57,7 +57,7 @@
                 <el-button
                   type="danger"
                   size="small"
-                  icon="Delete"
+                  :icon="Delete"
                   v-permissions="{ route, action: 'delete', effect: 'disabled' }"
                 />
               </template>
@@ -75,6 +75,7 @@ import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import type { IDepartmentList } from '@/types/system'
+import { Edit, Delete } from '@element-plus/icons-vue'
 
 // 权限操作控制
 import { useRoute } from 'vue-router'

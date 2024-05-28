@@ -15,7 +15,7 @@
       </div>
       <div class="right">
         <el-icon :size="35" :color="color">
-          <component :is="icon" />
+          <svgIcon :icon="icon"></svgIcon>
         </el-icon>
       </div>
     </div>

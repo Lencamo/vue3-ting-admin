@@ -15,8 +15,8 @@
       </el-row>
     </el-form>
     <div class="btn-box">
-      <el-button type="primary" icon="Search" @click="conditionSearch">查询</el-button>
-      <el-button icon="Refresh" @click="resetForm(searchFormRef)">重置</el-button>
+      <el-button type="primary" :icon="Search" @click="conditionSearch">查询</el-button>
+      <el-button :icon="Refresh" @click="resetForm(searchFormRef)">重置</el-button>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
+import { Search, Refresh } from '@element-plus/icons-vue'
 
 const searchForm = reactive({
   name: '',

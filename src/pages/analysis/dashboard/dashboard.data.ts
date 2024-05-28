@@ -6,7 +6,7 @@ export const countCardList: ICountCard[] = [
     title: '访问数',
     value: '435',
     total: '23423',
-    icon: 'Bell',
+    icon: 'ep:bell',
     color: '#f4af72'
   },
   {
@@ -14,7 +14,7 @@ export const countCardList: ICountCard[] = [
     title: '营业额',
     value: '9533',
     total: '8343423',
-    icon: 'Money',
+    icon: 'ep:money',
     color: '#6ee584'
   },
   {
@@ -22,7 +22,7 @@ export const countCardList: ICountCard[] = [
     title: '订单量',
     value: '1323',
     total: '645324',
-    icon: 'ShoppingCart',
+    icon: 'ep:shopping-cart',
     color: '#e9608f'
   },
   {
@@ -30,7 +30,7 @@ export const countCardList: ICountCard[] = [
     title: '成交率',
     value: '93',
     total: '89',
-    icon: 'PieChart',
+    icon: 'ep:pie-chart',
     color: '#00cae9'
   }
 ]

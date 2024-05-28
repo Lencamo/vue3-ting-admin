@@ -9,7 +9,7 @@
         <el-table-column prop="icon" label="菜单图标" min-width="80">
           <template #default="scope">
             <el-icon size="16" color="#323435">
-              <component :is="scope.row.icon"></component>
+              <svgIcon :icon="scope.row.icon"></svgIcon>
             </el-icon>
           </template>
         </el-table-column>
@@ -32,7 +32,7 @@
             <el-button
               type="warning"
               size="small"
-              icon="Edit"
+              :icon="Edit"
               @click="handleEditBtn(scope.row)"
               v-permissions="{ route, action: 'update', effect: 'disabled' }"
             />
@@ -49,6 +49,7 @@ import useSystemStore from '@/stores/main/system'
 import { storeToRefs } from 'pinia'
 import { utcFormatUtil } from '@/utils/data-format'
 import type { IMenuList } from '@/types/system'
+import { Edit } from '@element-plus/icons-vue'
 
 // 权限操作控制
 import { useRoute } from 'vue-router'

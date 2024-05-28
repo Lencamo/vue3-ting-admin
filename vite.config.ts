@@ -3,10 +3,20 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+// 自动导入API
 import AutoImport from 'unplugin-auto-import/vite'
+
+// 自动导入样式
+import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
+
+// 自动导入组件
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
+
+// iconify 组件
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 // ================
 
@@ -43,10 +53,26 @@ export default defineConfig(async () => {
     plugins: [
       vue(),
       AutoImport({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [
+          // Element Plus 相关函数，如：ElMessage, ElMessageBox
+          ElementPlusResolver()
+        ]
       }),
       Components({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [
+          // 1、element-plus组件
+          ElementPlusResolver(),
+
+          // 2、iconify图标组件
+          IconsResolver({
+            prefix: false, // 不要默认的前缀
+
+            // 本地图标集
+            customCollections: ['ting'],
+            // 在线图标集
+            enabledCollections: ['ep']
+          })
+        ]
       }),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
@@ -59,6 +85,16 @@ export default defineConfig(async () => {
             }
           }
         ]
+      }),
+      Icons({
+        autoInstall: true,
+
+        // 定义本地图标集
+        customCollections: {
+          ting: FileSystemIconLoader('src/assets/svg/icon', (svg) =>
+            svg.replace(/^<svg /, '<svg fill="currentColor" ')
+          )
+        }
       })
     ],
     resolve: {
