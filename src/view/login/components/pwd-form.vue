@@ -21,6 +21,7 @@
               ref="canvasRef"
               :width="100"
               :height="38"
+              :char-num="4"
               @verify-code="handleVerifyCode"
             ></canvas-verify>
           </template>
