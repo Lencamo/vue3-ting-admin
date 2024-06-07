@@ -1,0 +1,37 @@
+name: release
+
+on:
+  push:
+    branches: main # master 分支提交时触发（触发时机是和传统的脚本部署不同的一点）
+
+jobs:
+  build:
+    # 指定 job任务运行的环境 (必填字段)
+    runs-on: ubuntu-latest
+
+    # 任务步骤
+    steps:
+      - name: 签出代码
+        # 使用action库  actions/checkout获取源码
+        uses: actions/checkout@v4
+
+      - name: 安装 nodejs
+        # 使用action库  actions/setup-node安装node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.18.2'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 前端打包
+        run: npm run build-only
+
+      - name: 上传打包文件
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SOURCE: 'dist/*'
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}

@@ -178,7 +178,7 @@ const open = () => {
 </template>
 
 <script lang="ts">
-const icons = ref(['ep:arrow-left', 'ant-design:arrow-left-outlined', 'bi:arrow-left'])
+const iconList = ref(['ep:arrow-left', 'ant-design:arrow-left-outlined', 'bi:arrow-left'])
 </script>
 ```
 
@@ -218,17 +218,27 @@ const icons = ref(['ep:arrow-left', 'ant-design:arrow-left-outlined', 'bi:arrow-
 
 ## 打包部署
 
-1. 使用github CICD自动部署
+1. 使用docker部署
+
+&emsp;&emsp;本项目提供了docker快速部署脚本，可以一键部署到自己的服务器上
 
 ```sh
-npm run deploy
+# 先保证自己服务器安装了docker环境
+# 然后拷贝tign-docker-build.sh脚本到服务器上
+# 运行脚本
+sh ting-docker-build.sh
+
+# 最后访问项目地址
+http://服务器ip地址:81
 ```
 
-2. 使用docker部署
+2. 使用github CICD自动部署
+
+&emsp;&emsp;本项目支持CICD自动部署，只需要在github上创建仓库，并配置CICD，即可自动部署到服务器上。
 
 ```sh
-docker build -t vue3-ting-admin .
-docker run -p 8080:8080 -d vue3-ting-admin
+# 使用示例
+略
 ```
 
 ## 项目结构
