@@ -4,7 +4,8 @@
       <h3>关于</h3>
     </div>
     <div class="center-box">
-      <el-text style="line-height: 27px; text-indent: 2em">
+      &emsp;&emsp;
+      <el-text style="line-height: 27px">
         <el-link :href="`https://github.com/Lencamo/${name}`" target="_blank" type="primary">
           {{ name }}
         </el-link>

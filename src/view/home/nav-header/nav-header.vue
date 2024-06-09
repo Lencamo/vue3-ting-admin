@@ -23,7 +23,7 @@
             <div class="drop">
               <img :src="avatars" alt="" />
               <p>TingAdmin &ensp;</p>
-              <el-icon><arrow-down /></el-icon>
+              <el-icon><EpArrowDown /></el-icon>
             </div>
             <template #dropdown>
               <el-dropdown-menu>

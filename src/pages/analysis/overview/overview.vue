@@ -52,14 +52,19 @@ const projectDetails: IDescItem[] = [
     value: '待开发……'
   },
   {
-    label: '在线预览',
-    value: 'Vercel演示',
-    linkUrl: 'https://vue3-ting-admin.vercel.app'
+    label: '项目接口',
+    value: 'Apifox文档',
+    linkUrl: 'https://apifox.com/apidoc/shared-cd8438ef-e681-4993-87aa-35100d3e566e'
   },
   {
     label: '项目地址',
     value: 'Github地址',
     linkUrl: 'https://github.com/Lencamo/vue3-ting-admin'
+  },
+  {
+    label: '在线预览',
+    value: 'Vercel演示',
+    linkUrl: 'https://vue3-ting-admin.vercel.app'
   }
 ]
 
