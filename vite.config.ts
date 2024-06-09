@@ -3,6 +3,10 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+// 解析Markdown
+import Markdown from 'unplugin-vue-markdown/vite'
+import hljs from 'highlight.js'
+
 // 自动导入API
 import AutoImport from 'unplugin-auto-import/vite'
 
@@ -51,7 +55,29 @@ export default defineConfig(async () => {
     // 使用共享选项
     define: defineData,
     plugins: [
-      vue(),
+      vue({
+        include: [/\.vue$/, /\.md$/]
+      }),
+      Markdown({
+        markdownItSetup(md) {
+          md.set({
+            highlight: function (str, lang) {
+              if (lang && hljs.getLanguage(lang)) {
+                try {
+                  return (
+                    '<pre><code class="hljs">' +
+                    hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+                    '</code></pre>'
+                  )
+                } catch (__) {
+                  //
+                }
+              }
+              return '<pre><code class="hljs">' + md.utils.escapeHtml(str) + '</code></pre>'
+            }
+          })
+        }
+      }),
       AutoImport({
         // Vue 相关函数，如：ref, computed
         imports: ['vue'],

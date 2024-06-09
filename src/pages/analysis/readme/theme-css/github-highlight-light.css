@@ -1,0 +1,85 @@
+.markdown-light pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+.markdown-light code.hljs {
+  padding: 3px 5px;
+}
+.markdown-light .hljs {
+  color: #24292e;
+  /* background: #ffffff; */
+}
+.markdown-light .hljs-doctag,
+.markdown-light .hljs-keyword,
+.markdown-light .hljs-meta .hljs-keyword,
+.markdown-light .hljs-template-tag,
+.markdown-light .hljs-template-variable,
+.markdown-light .hljs-type,
+.markdown-light .hljs-variable.language_ {
+  color: #d73a49;
+}
+.markdown-light .hljs-title,
+.markdown-light .hljs-title.class_,
+.markdown-light .hljs-title.class_.inherited__,
+.markdown-light .hljs-title.function_ {
+  color: #6f42c1;
+}
+.markdown-light .hljs-attr,
+.markdown-light .hljs-attribute,
+.markdown-light .hljs-literal,
+.markdown-light .hljs-meta,
+.markdown-light .hljs-number,
+.markdown-light .hljs-operator,
+.markdown-light .hljs-variable,
+.markdown-light .hljs-selector-attr,
+.markdown-light .hljs-selector-class,
+.markdown-light .hljs-selector-id {
+  color: #005cc5;
+}
+.markdown-light .hljs-regexp,
+.markdown-light .hljs-string,
+.markdown-light .hljs-meta .hljs-string {
+  color: #032f62;
+}
+.markdown-light .hljs-built_in,
+.markdown-light .hljs-symbol {
+  color: #e36209;
+}
+.markdown-light .hljs-comment,
+.markdown-light .hljs-code,
+.markdown-light .hljs-formula {
+  color: #6a737d;
+}
+.markdown-light .hljs-name,
+.markdown-light .hljs-quote,
+.markdown-light .hljs-selector-tag,
+.markdown-light .hljs-selector-pseudo {
+  color: #22863a;
+}
+.markdown-light .hljs-subst {
+  color: #24292e;
+}
+.markdown-light .hljs-section {
+  color: #005cc5;
+  font-weight: bold;
+}
+.markdown-light .hljs-bullet {
+  color: #735c0f;
+}
+.markdown-light .hljs-emphasis {
+  color: #24292e;
+  font-style: italic;
+}
+.markdown-light .hljs-strong {
+  color: #24292e;
+  font-weight: bold;
+}
+.markdown-light .hljs-addition {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+.markdown-light .hljs-deletion {
+  color: #b31d28;
+  background-color: #ffeef0;
+}

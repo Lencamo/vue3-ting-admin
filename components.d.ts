@@ -58,6 +58,7 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
+    EpArrowDown: typeof import('~icons/ep/arrow-down')['default']
     EpCircleClose: typeof import('~icons/ep/circle-close')['default']
     KeyValue: typeof import('./src/components/form-comp/input/key-value.vue')['default']
     PuzzleVerify: typeof import('./src/components/verify-comp/puzzle-verify/puzzle-verify.vue')['default']
