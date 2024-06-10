@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ICountCard } from '../dashboard'
+import type { ICountCard } from '../echarts.d'
 
 const props = defineProps<ICountCard>()
 </script>

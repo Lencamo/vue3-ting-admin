@@ -1,5 +1,5 @@
 <template>
-  <div class="overview">
+  <div class="analysis">
     <aboutBox :name="name"></aboutBox>
     <descBox title="项目信息" :descArr="projectDetails"></descBox>
     <descBox title="生产环境依赖" :descArr="dependDetails"></descBox>
@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import aboutBox from './components/about-box.vue'
 import descBox from './components/desc-box.vue'
-import type { IDescItem } from './overview'
+import type { IDescItem } from './analysis.d'
 
 // package.json文件信息
 const { pkg, lastBuildTime } = __APP_INFO__
@@ -73,6 +73,6 @@ const devDependDetails = objToDescArr(devDependencies)
 </script>
 
 <style lang="scss" scoped>
-.overview {
+.analysis {
 }
 </style>

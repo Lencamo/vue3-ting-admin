@@ -1,5 +1,5 @@
 <template>
-  <div class="readme">
+  <div class="overview">
     <Readme :class="isDark ? 'markdown-dark' : 'markdown-light'"></Readme>
   </div>
 </template>
@@ -22,7 +22,7 @@ const isDark = useDark()
   list-style: disc;
 }
 
-.readme {
+.overview {
   background: var(--mainBoxBgColor);
   padding: 18px;
 }

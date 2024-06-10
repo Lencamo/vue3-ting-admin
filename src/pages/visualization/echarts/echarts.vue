@@ -97,7 +97,7 @@ import {
   pieOptions_3,
   pieOptions_4,
   radarOptions
-} from './dashboard.data'
+} from './echarts.data'
 
 const lineData = lineOptions as any
 const barData = barOptions as any

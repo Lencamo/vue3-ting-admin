@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IDescItem } from '../overview'
+import type { IDescItem } from '../analysis.d'
 
 interface Props {
   title: string

@@ -1,4 +1,4 @@
-import type { ICountCard } from './dashboard'
+import type { ICountCard } from './echarts.d'
 
 export const countCardList: ICountCard[] = [
   {
