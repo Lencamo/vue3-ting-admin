@@ -15,9 +15,9 @@ import {
   LOGIN_ROLE_PERMISSION
 } from '@/config/constants.ts'
 
-import { initDynamicRoutes } from '@/utils/initDynamicRoutes.ts'
+import { initDynamicRoutes } from '@/utils/main/initDynamicRoutes.ts'
 import useMainStore from '../main/entires/main.ts'
-import { mapMenuToPermission } from '@/utils/map-menus.ts'
+import { mapMenuToPermission } from '@/utils/main/map-menus.ts'
 
 const useloginStore = defineStore('login', {
   state: () => ({

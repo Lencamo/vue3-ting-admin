@@ -49,7 +49,7 @@ import type { FormRules, FormInstance, ElTree } from 'element-plus'
 import useMainStore from '@/stores/main/entires/main.ts'
 import { storeToRefs } from 'pinia'
 import useSystemStore from '@/stores/main/system'
-import { mapMenuToIds } from '@/utils/map-menus'
+import { mapMenuToIds } from '@/utils/main/map-menus'
 
 const dialogVisible = ref(false)
 const dialogFormRef = ref<FormInstance>()

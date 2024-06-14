@@ -43,8 +43,8 @@
 import useloginStore from '@/stores/login/login'
 const loginStore = useloginStore()
 import { useRouter, useRoute } from 'vue-router'
-import { firstMenuItem } from '@/utils/map-menus.ts'
-import { mapPathToMenu } from '@/utils/map-path.ts'
+import { firstMenuItem } from '@/utils/main/map-menus'
+import { mapPathToMenu } from '@/utils/main/map-path'
 
 // 菜单树
 const userRoleMenu = loginStore.userRoleMenu

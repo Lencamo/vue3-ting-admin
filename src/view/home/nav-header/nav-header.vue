@@ -47,7 +47,7 @@ import avatars from '@/assets/imgs/default.png'
 import { LOGIN_TOKEN, LOGIN_USER_INFO, LOGIN_ROLE_MENU } from '@/config/constants.ts'
 import { localCache } from '@/utils/cache'
 import { useRouter, useRoute } from 'vue-router'
-import { mapPathToBreadcrumbs } from '@/utils/map-path'
+import { mapPathToBreadcrumbs } from '@/utils/main/map-path'
 import useloginStore from '@/stores/login/login'
 
 const router = useRouter()

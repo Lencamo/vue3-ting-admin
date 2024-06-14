@@ -3,7 +3,7 @@ import {
   getGlobalMenuListApi,
   getGlobalRoleListApi
 } from '@/services/modules/main/entires/main'
-import { generateListToTree } from '@/utils/generateTree'
+import { generateListToTree } from '@/utils/main/generateTree'
 import { defineStore } from 'pinia'
 
 const useMainStore = defineStore('Main', {

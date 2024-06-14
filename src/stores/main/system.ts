@@ -23,7 +23,7 @@ import type {
   IUserListQuery,
   IUserOperate
 } from '@/types/system'
-import { generateListToTree } from '@/utils/generateTree'
+import { generateListToTree } from '@/utils/main/generateTree'
 import useMainStore from './entires/main'
 
 const mainStore = useMainStore()
