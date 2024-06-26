@@ -2,7 +2,7 @@
 
 &emsp;&emsp;vue3-ting-admin 是一个基于 vue3 + Element Plus 的、可以快速开发的、轻量级的RBAC权限管理系统基础模板。
 
-&emsp;&emsp;本项目提供了多套项目模板，可以根据自己的需求选择不同的模板。项目还可以配合个人脚手架 lencmo-cli，快速获取项目模板，快速开发新模块。
+&emsp;&emsp;本项目提供了多套项目模板，可以根据自己的需求选择不同的模板。项目还可以配合个人脚手架 lencamo-cli，快速获取项目模板，快速开发新模块。
 
 ## 在线预览
 
@@ -240,6 +240,12 @@ http://服务器ip地址:81
 
 ```
 vue3-ting-admin
+├─ .github
+│  └─ workflows
+│     └─ release.yml
+├─ .vscode
+│  ├─ extensions.json
+│  └─ settings.json
 ├─ dist
 ├─ public
 ├─ scripts
