@@ -14,7 +14,7 @@
         <drag-verify :height="40" ref="dragRef" @drag-success="passcallback"></drag-verify>
       </el-form-item>
       <el-form-item prop="code">
-        <el-input placeholder="请输入验证码(1234)" v-model="formData.code" size="large">
+        <el-input placeholder="请输入验证码(默认为1234)" v-model="formData.code" size="large">
           <template #append>
             <el-button
               type="primary"

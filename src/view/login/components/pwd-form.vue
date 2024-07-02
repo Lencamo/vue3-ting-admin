@@ -15,7 +15,7 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-input placeholder="请输入验证码" v-model="formData.code" size="large">
+        <el-input placeholder="请输入验证码(区分大小写)" v-model="formData.code" size="large">
           <template #append>
             <canvas-verify
               ref="canvasRef"
