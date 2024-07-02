@@ -107,10 +107,13 @@ const handleClose = (tag: ITag) => {
   if (currentTag.value === tag) {
     // 指定tag是否在第二个位置
     if (tagIndex === 1 && currentTagList.value.length - 1 > tagIndex) {
-      currentTag.value = currentTagList.value[tagIndex]
+      currentTag.value = currentTagList.value[tagIndex + 1]
     } else {
       currentTag.value = currentTagList.value[tagIndex - 1]
     }
+
+    // 路由跳转
+    handleJump(currentTag.value)
   }
 
   // 2、删除指定tag元素
