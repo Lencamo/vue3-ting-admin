@@ -1,13 +1,24 @@
 <template>
   <div class="tags-view">
-    <div
-      v-for="tag in currentTagList"
-      :key="tag?.title"
-      :class="['tags-item', { 'is-active': tag === currentTag ? true : false }]"
-    >
-      <span v-show="tag === currentTag">●</span>
-      <span @click="handleJump(tag)">{{ tag?.title }}</span>
-      <span v-show="currentTagList.length > 1" @click="handleClose(tag)">✕</span>
+    <div class="left-icon" @click="handleLeftScroll">
+      <el-icon :size="20"><EpArrowLeft /></el-icon>
+    </div>
+    <div ref="tagsBox" class="tags-box">
+      <div
+        v-for="tag in currentTagList"
+        :key="tag?.title"
+        :class="['tags-item', { 'is-active': tag === currentTag ? true : false }]"
+      >
+        <span v-show="tag === currentTag">●</span>
+        <span @click="handleJump(tag)">{{ tag?.title }}</span>
+        <span v-show="currentTagList.length > 1" @click="handleClose(tag)">✕</span>
+      </div>
+    </div>
+    <div class="right-icon" @click="handleRightScroll">
+      <el-icon :size="20"><EpArrowRight /></el-icon>
+    </div>
+    <div class="clear-icon" @click="handleClearAll">
+      <el-icon :size="20"><EpCircleClose /></el-icon>
     </div>
   </div>
 </template>
@@ -119,6 +130,25 @@ const handleClose = (tag: ITag) => {
   // 2、删除指定tag元素
   currentTagList.value.splice(tagIndex, 1)
 }
+
+// ======= scroll handle ========
+
+let tagsBox: any = ref<HTMLDivElement>()
+
+// 点击按钮向左滚动
+const handleLeftScroll = () => {
+  tagsBox.value.scrollLeft -= 150
+}
+
+// 点击按钮向右滚动
+const handleRightScroll = () => {
+  tagsBox.value.scrollLeft += 150
+}
+
+// 点击按钮清除所有tag
+const handleClearAll = () => {
+  currentTagList.value = [currentTag.value as ITag]
+}
 </script>
 
 <style lang="scss" scoped>
@@ -128,37 +158,65 @@ const handleClose = (tag: ITag) => {
 }
 
 .tags-view {
+  position: relative;
   height: 100%;
-  margin: 0px 20px;
 
-  display: flex;
-  align-items: center;
-
-  // ✨ 滚动条
-  overflow: scroll;
-
-  &::-webkit-scrollbar {
-    height: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 2px;
+  .left-icon {
+    position: absolute;
+    left: 5px;
+    top: 5px;
   }
 
-  .tags-item {
-    margin: 0px 5px;
-    border: 1px solid #dfe1e8;
-    padding: 5px;
+  .right-icon {
+    position: absolute;
+    right: 45px;
+    top: 5px;
+  }
 
-    font-size: 11px;
+  .clear-icon {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+  }
 
-    display: flex; // 子元素水平排列
+  .tags-box {
+    /* margin: 0px 30px; */
+    margin-left: 30px;
+    margin-right: 70px;
 
-    span {
-      margin: 0px 4px;
-      cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
 
-      white-space: nowrap; // ✨ 防止换行
+    // ✨ 滚动条
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+
+      // bug修复：产生莫名其妙的padding-right
+      width: 100%;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 2px;
+    }
+
+    .tags-item {
+      margin: 0px 5px;
+      border: 1px solid #dfe1e8;
+      padding: 5px;
+
+      font-size: 11px;
+
+      display: flex; // 子元素水平排列
+
+      span {
+        margin: 0px 4px;
+        cursor: pointer;
+
+        white-space: nowrap; // ✨ 防止换行
+      }
     }
   }
 }
