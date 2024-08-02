@@ -116,10 +116,12 @@ const handleClose = (tag: ITag) => {
   // 1、active样式转移
   // 指定tag是否为当前页tag
   if (currentTag.value === tag) {
-    // 指定tag是否在第二个位置
-    if (tagIndex === 1 && currentTagList.value.length - 1 > tagIndex) {
+    // 指定tag是否在第一个位置
+    if (tagIndex === 0 && currentTagList.value.length > 1) {
+      // 行为：第一个tag，点击后向后移动跳转
       currentTag.value = currentTagList.value[tagIndex + 1]
     } else {
+      // 行为：非第一个tag，点击后向前移动跳转
       currentTag.value = currentTagList.value[tagIndex - 1]
     }
 
